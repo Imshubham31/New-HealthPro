@@ -1,0 +1,12 @@
+@import "variables";
+
+.mydp,
+.mydp .selectiongroup,
+.mydp .selection,
+.mydp .selector {
+    border-radius: $border-radius !important;
+}
+
+.mydp .selection{
+    padding: 6px;
+}

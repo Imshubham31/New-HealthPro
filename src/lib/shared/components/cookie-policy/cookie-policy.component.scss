@@ -1,0 +1,78 @@
+// @import '../../../../styles/variables';
+
+// :host {
+//     height: $navBarHeight;
+// }
+
+// .navbar {
+//     background: $brandTeal;
+//     z-index: 10;
+//     padding-inline-start: 7%;
+//     padding-inline-end: 7%;
+//     position: relative;
+//     height: 76px;
+//     @media screen and (max-width: 1280px) {
+//         padding: 0 4rem;
+//     }
+//     @media screen and (max-width: 640px) {
+//         padding: 0 1rem;
+//     }
+// }
+// .container{
+//     padding: 0 10% !important;
+// }
+// ::placeholder {
+//     font-weight: lighter;
+// }
+// .navbar-options {
+//     display: block;
+//     line-height: 1em;
+//     font-weight: 100;
+//     font-size: 0.9em;
+//     text-align: center;
+//     color: white;
+//     text-decoration: none;
+//     margin-top: 0.5em;
+// }
+
+// .navbar-options > p {
+//     margin-bottom: 0px;
+// }
+
+// .navbar-options img {
+//     display: block;
+//     margin: auto 2.6em;
+// }
+
+
+// .navbar-logo {
+//     background-size: contain;
+//     background-repeat: no-repeat;
+//     background-image: url('../../../../assets/navbar-logo.png');
+//     height: 2.7rem;
+//     width: 18rem;
+//     @media screen and (max-width: 960px) {
+//         width: 14rem;
+//     }
+//     border: none;
+//     outline: none;
+//     color: white;
+//     padding: 0;
+//     line-height: 0.9em;
+//     font-weight: 300;
+//     font-size: 0.8em;
+//     text-align: start;
+//     cursor: pointer;
+
+//     img {
+//         height: 2.7rem;
+//     }
+// }
+
+// .loading-spinner{
+//     color: $spinner-color;
+//     height: 100%;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//   }

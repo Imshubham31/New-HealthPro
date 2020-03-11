@@ -1,0 +1,20 @@
+@import '../../../../styles/variables';
+
+:host {
+    color: $brandTeal;
+    text-align: center;
+    font-weight: bold;
+    line-height: 1;
+    padding: 1rem;
+    margin-inline-start: 2rem;
+    margin-inline-end: 2rem;
+}
+
+.month,
+.year {
+    font-size: $font-size-sm;
+}
+
+.day {
+    font-size: 2.5rem;
+}

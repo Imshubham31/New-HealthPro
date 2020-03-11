@@ -1,0 +1,45 @@
+<div class="hcp-info">
+    <div
+        id="consentDescription"
+        *ngIf="showConsentDescription; else messageComponent"
+    >
+        <div class="column consent-details">
+            <img class="hcp-actions-icon" src="{{ consentDescription.icon }}" />
+            <div class="status_date">
+                <span>{{ consentDescription.description }}</span>
+                <p class="text-gray" *ngIf="consentDescription.date">
+                    {{ consentDescription.date | date: 'MMM d, y' }}
+                </p>
+            </div>
+        </div>
+    </div>
+    <ng-template #messageComponent>
+        <div class="columns margin-start-0 margin-end-0">
+            <create-new-message
+                class="column action-icon-container"
+                [hcp]="hcpData"
+            >
+            </create-new-message>
+            <div
+                class="column action-icon-container"
+                *ngIf="!(hospitalService.hospital | async).integrated"
+            >
+                <img
+                    class="hcp-actions-icon"
+                    src="../../../assets/calendar_b.svg"
+                />
+                <a
+                    id="createApptLink"
+                    class="link"
+                    (click)="appointmentFactory.makeCreateForm().open()"
+                    >{{ 'createAppt' | localise }}</a
+                >
+            </div>
+            <div class="column action-icon-container">
+                <a id="editProfileLink" class="link" (click)="editHcp.emit()">{{
+                    'editProfile' | localise
+                }}</a>
+            </div>
+        </div>
+    </ng-template>
+</div>

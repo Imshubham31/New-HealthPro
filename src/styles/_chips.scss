@@ -1,0 +1,13 @@
+.chip {
+  border-radius: 1.6rem;
+  background-color: $chip-background-color;
+  border: solid 0.1rem $gray-color-light;
+  font-size: $font-size-sm;
+  color: $dark-color;
+  padding: 0px;
+  .avatar.avatar-sm {
+      margin-left: 0;
+      margin-right: 0;
+      object-fit: cover;
+  }
+}

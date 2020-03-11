@@ -1,0 +1,25 @@
+<ng-container *ngIf="isLoading === false">
+    <page-container
+        title="{{ 'yourAppointments' | localise }}"
+        class="column col-10 col-xl-12 col-mx-auto"
+    >
+        <page-popover
+            [active]="(hospitalService.hospital | async).integrated"
+            [body]="'disabledAppointmentActionMessage' | localise"
+        >
+            <page-action-button
+                (onClick)="appointmentFactory.makeCreateForm().open()"
+                text="{{ 'scheduleNewAppointment' | localise }}"
+                icon="plus"
+                [disabled]="(hospitalService.hospital | async).integrated"
+            ></page-action-button>
+        </page-popover>
+        <page-content>
+            <weekly-calendar
+                [appointments]="appointments"
+                (onAppointmentClick)="handleAppointmentSelected($event)"
+            >
+            </weekly-calendar>
+        </page-content>
+    </page-container>
+</ng-container>

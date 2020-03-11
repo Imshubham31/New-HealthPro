@@ -1,0 +1,28 @@
+@import '_variables';
+@import '_onetrust';
+@import '../../node_modules/spectre.scss/spectre';
+@import '../../node_modules/spectre.scss/spectre-icons';
+@import '../../node_modules/spectre.scss/spectre-exp';
+@import 'mixins';
+@import 'utilities';
+@import 'buttons';
+@import 'modals';
+@import 'menus';
+@import 'virtualscroll';
+@import 'cards';
+@import 'layout';
+@import 'avatars';
+@import 'chips';
+// override third party libraries
+@import 'overrides/timepicker';
+@import 'overrides/auto-complete';
+@import 'overrides/dataTables';
+$fa-font-path: '../../node_modules/font-awesome/fonts';
+@import '../../node_modules/font-awesome/scss/font-awesome.scss';
+@import '../../node_modules/ng-zorro-antd/style/index.min.css';
+@import '../../node_modules/ng-zorro-antd/date-picker/style/index.min.css';
+html,
+body {
+    height: 100%;
+}
+

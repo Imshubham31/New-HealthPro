@@ -1,0 +1,32 @@
+@import '../../../../styles/variables.scss';
+
+.hcps-container {
+    padding-top: 1.5rem;
+    p {
+        line-height: 0.75rem;
+    }
+    h5 {
+        line-height: 1.75rem;
+        font-size: 2em;
+        font-weight: 400;
+        margin-bottom: 1rem;
+    }
+    font-size: $font-size;
+    margin: auto;
+    color: $body-font-color;
+    @media screen and (max-width: 960px){
+        text-align: center;
+    }
+    .date-name {
+        color: $light-gray;
+        padding-bottom: 0.75rem;
+    }
+    .patient-name {
+        font-size: $font-size-xl-lg;
+        font-weight: 600;
+        word-wrap: break-word;
+    }
+    .doctor-name {
+        padding-top: 1rem;
+    }
+}

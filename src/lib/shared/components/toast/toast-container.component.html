@@ -1,0 +1,14 @@
+<div
+class="toast"
+[ngClass]="{
+  'toast-primary': toast.style === toastStyles.Info,
+  'toast-success': toast.style === toastStyles.Success,
+  'toast-warning': toast.style === toastStyles.Warning,
+  'toast-error': toast.style === toastStyles.Error
+}"
+*ngFor="let toast of toastService.toasts" [@fadeInOut]
+>
+  <button class="btn btn-clear toast-close" (click)="toastService.remove(toast.id)"></button>
+  <div class="toast-title">{{toast.title}}</div>
+  <div class="toast-body">{{toast.body}}</div>
+</div>

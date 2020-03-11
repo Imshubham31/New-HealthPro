@@ -1,0 +1,22 @@
+<form [formGroup]="form" (ngSubmit)="submit()" *ngIf="documents; else loading" novalidate>
+  <div class="card-body">
+    <h4>{{documents[index].title}}</h4>
+    <div class="document-text" style="overflow-y:auto" [innerHTML]="documents[index].body">
+    </div>
+    <div class="toast toast-error" *ngIf="formError">
+      {{formError}}
+    </div>
+  </div>
+
+  <div class="card-footer text-center">
+    <button class="btn btn-primary btn-block btn-lg margin-bottom-1" [disabled]="shouldDisableSubmit()" [class.loading]="submitting">{{'iAgree' | localise }} {{currentPosition()}}
+    </button>
+    <a class="alternative-option text-center" (click)="openConfirm()">{{'iDontAgree' | localise }}</a>
+  </div>
+</form>
+
+<ng-template #loading>
+  <div class="loading-spinner">
+      <i class="fa fa-circle-o-notch fa-spin fa-2x fa-fw"></i>
+  </div>
+</ng-template>

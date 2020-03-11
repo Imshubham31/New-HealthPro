@@ -1,0 +1,65 @@
+@import '../../../styles/variables';
+
+:host {
+    display: block;
+}
+
+// this is here for specificity, as fullcalendar prefixes everything
+.fc {
+    .fc-head .fc-widget-header {
+        border: none;
+    }
+
+    th,
+    td,
+    thead,
+    tbody,
+    .fc-divider,
+    .fc-row,
+    .fc-content,
+    .fc-popover,
+    .fc-list-view,
+    .fc-list-heading td {
+        border-color: #efeff0;
+    }
+
+    .fc-time-grid .fc-event-container {
+        margin: 0;
+    }
+
+    .fc-axis {
+        background: white;
+        padding: 0.4rem;
+    }
+
+    .fc-prev-button,
+    .fc-next-button {
+        font-size: 2rem;
+        height: auto;
+        background: none;
+        border: none;
+        color: black;
+        box-shadow: none;
+
+        &:hover,
+        &:focus {
+            background: none;
+            color: $textColour;
+            box-shadow: none;
+        }
+    }
+
+    .fc-body > tr > .fc-widget-content {
+        border-left: none;
+        border-right: none;
+    }
+
+    .fc-toolbar.fc-header-toolbar {
+        margin-bottom: 5rem;
+    }
+
+    // Need this to be able to show shadows on last element in the grid.
+    .fc-scroller {
+        overflow:scroll;
+    }
+}

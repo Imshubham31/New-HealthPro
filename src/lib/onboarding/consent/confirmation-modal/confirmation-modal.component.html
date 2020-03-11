@@ -1,0 +1,8 @@
+<div modal-wrapper [modalTitle]="getTitle()" [modalSubTitle]="getSubtitle()" [modalWidth]="'520px'" #modal>
+  <div class="confirm-button">
+    <button id="cancelConfirmation" (click)="close()">{{'cancel' | localise | uppercase}}</button>
+  </div>
+  <div class="confirm-button">
+    <button id="submitConfirmation" [disabled]="isSubmitting" [class.loading]="isSubmitting" (click)="declineDocuments()">{{'iAmSure' | localise }}</button>
+  </div>
+</div>

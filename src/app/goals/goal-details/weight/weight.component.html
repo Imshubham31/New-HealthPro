@@ -1,0 +1,87 @@
+<div class="card-title">{{ 'weightLoss' | localise }}</div>
+
+<div class="columns col-gapless">
+    <div class="column col-3 goal-icon-container">
+        <label for="weight">{{ 'currentWeight' | localise }}</label>
+        <div class="column">
+            <input-with-pencil
+                id="weight"
+                (valueChanged)="createRecord($event)"
+                [value]="
+                    (goalService.goal | async).latestRecordValue
+                        | userUnits: 'weight'
+                "
+                [units]="unitUtils.weightUnit"
+            ></input-with-pencil>
+        </div>
+    </div>
+    <div class="column col-3 goal-icon-container">
+        <label for="goalWeight">{{ 'goal' | localise }}</label>
+        <div class="column">
+            <input-with-pencil
+                id="goalWeight"
+                (valueChanged)="updateWeightTarget($event)"
+                [value]="
+                    (goalService.goal | async).target | userUnits: 'weight'
+                "
+                [units]="unitUtils.weightUnit"
+            >
+            </input-with-pencil>
+        </div>
+    </div>
+    <div class="column col-3 goal-icon-container">
+        <p>{{ 'idealBodyWeight' | localise }}</p>
+        <p class="goal-label">
+            {{
+                goalService.getIdealBodyWeight(patient.patient.height) || '0'
+                    | userUnits: 'weight'
+            }}
+            {{ unitUtils.weightUnit }}
+        </p>
+    </div>
+    <div class="column col-3 goal-icon-container">
+        <p>{{ 'excessWeightLost' | localise }}</p>
+        <p class="goal-label">
+            <span *ngIf="lang == 'he'">{{ 'percent' | localise }}</span>
+            {{
+                goalService.getExcessWeightLoss(patient.patient.height) || '0'
+                    | localise
+            }}
+            <span *ngIf="lang != 'he'">{{ 'percent' | localise }} </span>
+        </p>
+    </div>
+</div>
+<div class="columns col-gapless">
+    <div class="col-3 goal-icon-container">
+        <label for="height">{{ 'height' | localise }}</label>
+        <div class="column">
+            <input-with-pencil
+                id="height"
+                (valueChanged)="updateHeight(patient.patient.backendId, $event)"
+                [value]="patient.patient.height | userUnits: 'height'"
+                [type]="heightType"
+                [units]="unitUtils.heightUnit"
+            ></input-with-pencil>
+        </div>
+    </div>
+    <div class="col-3 goal-icon-container">
+        <p>{{ 'bmi' | localise }}</p>
+        <p id="bmi" class="goal-label">
+            {{ goalService.getBmi(patient.patient.height) || '0' | localise }}
+        </p>
+    </div>
+    <div class="col-3 goal-icon-container">
+        <label for="initialWeight">{{ 'initialWeight' | localise }}</label>
+        <div class="column">
+            <input-with-pencil
+                id="initialWeight"
+                (valueChanged)="updateInitialWeight($event)"
+                [value]="
+                    (goalService.goal | async).initial | userUnits: 'weight'
+                "
+                [units]="unitUtils.weightUnit"
+            >
+            </input-with-pencil>
+        </div>
+    </div>
+</div>

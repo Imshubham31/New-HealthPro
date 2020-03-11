@@ -1,0 +1,23 @@
+<form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+    <div class="columns">
+        <div class="column">
+            <fieldset [disabled]="submitting">
+                <app-modal-form-control formControlName="surgery">
+                    <surgery-selection></surgery-selection>
+                </app-modal-form-control>
+            </fieldset>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-link" type="button" (click)="previous()">
+            {{ 'previous' | localise }}
+        </button>
+        <button
+            class="btn btn-primary"
+            [class.loading]="submitting"
+            [disabled]="shouldDisableSubmit()"
+        >
+            {{ 'addPatientToPlatform' | localise }}
+        </button>
+    </div>
+</form>

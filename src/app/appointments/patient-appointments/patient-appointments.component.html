@@ -1,0 +1,41 @@
+<div *ngIf="isLoading; else page" class="loading loading-lg centered"></div>
+<ng-template #page>
+    <div class="heading">
+        <div class="back" *ngIf="patient">
+            <a
+                [routerLink]="['/patient/details', { id: patient.backendId }]"
+                class="back link"
+            >
+                <i class="fa fa-arrow-left flip-on-rtl" aria-hidden="true"></i>
+                {{ 'backToPatientProfile' | localise }}
+            </a>
+        </div>
+        <div *ngIf="patient">
+            <div class="title">
+                <h1>
+                    {{
+                        'appointmentsForPatient' | localise: [patient.fullName]
+                    }}
+                </h1>
+
+                <span class="heading__badge">{{
+                    numberOfUpcomingAppointments
+                }}</span>
+            </div>
+        </div>
+        <page-popover
+            [body]="'disabledAppointmentActionMessage' | localise"
+            [active]="isIntegratedHospital | async"
+        >
+            <page-action-button
+                [disabled]="isIntegratedHospital | async"
+                (onClick)="appointmentFactory.makeCreateForm(patient).open()"
+                icon="plus"
+                [text]="'scheduleNewAppointment' | localise"
+            ></page-action-button>
+        </page-popover>
+    </div>
+    <patient-appointments-list
+        [appointments]="appointments"
+    ></patient-appointments-list>
+</ng-template>

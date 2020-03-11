@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="34px" height="39px" viewBox="0 0 34 39" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="background: #979797;">
+    <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
+    <title>Avatar</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="700" height="445" rx="2"></rect>
+        <filter x="-1.0%" y="-1.1%" width="102.0%" height="103.1%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.14733356 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Web" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="0-5-1-Profile-Picture" transform="translate(-873.000000, -335.000000)">
+            <g id="Login-Box" transform="translate(370.000000, 134.000000)">
+                <g id="Background">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                    <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                </g>
+                <g id="Right" transform="translate(340.000000, 0.000000)">
+                    <path d="M0,0 L358,0 L358,0 C359.104569,3.11908472e-14 360,0.8954305 360,2 L360,443 L360,443 C360,444.104569 359.104569,445 358,445 L0,445 L0,0 Z" id="Background" fill="#FFFFFF"></path>
+                    <g id="Content" transform="translate(36.000000, 64.000000)" fill="#000000">
+                        <g id="Profile-Pic" transform="translate(0.000000, 122.000000)">
+                            <rect id="Bounding" opacity="0" x="0" y="0" width="288" height="68"></rect>
+                            <g id="Avatar" transform="translate(110.000000, 0.000000)" fill-opacity="0.099999994" fill-rule="nonzero">
+                                <g id="Group-2" transform="translate(17.000000, 14.918367)">
+                                    <path d="M16.9442623,19.9224502 C22.3838164,19.9224502 26.7995803,15.5107098 26.7995803,10.0715364 C26.7995803,4.63441323 22.3841285,0.222405482 16.9442623,0.222405482 C11.5043961,0.222405482 7.08894426,4.63414581 7.08894426,10.0733192 C7.08894426,15.5104424 11.5043961,19.9224502 16.9442623,19.9224502 Z" id="Shape"></path>
+                                    <path d="M33.8430426,27.7677033 C33.574806,27.1444331 33.2194938,26.5193801 32.8624157,25.9396104 C30.901162,23.042545 27.8232813,21.082346 24.3902846,20.591182 C23.944383,20.5459165 23.4984813,20.6364475 23.1414033,20.902826 C21.3577967,22.1946498 19.2171121,22.9084867 16.9875148,22.9084867 C14.7579174,22.9084867 12.617322,22.1946498 10.8336262,20.902826 C10.4765571,20.6347093 10.0306466,20.5459165 9.58474492,20.591182 C6.15165902,21.0821677 3.07368918,22.9972617 1.11261377,25.9396104 C0.711997902,26.5193801 0.398457705,27.1426503 0.131986885,27.7677033 C-0.00213140984,28.03582 0.0431543607,28.3474729 0.177272656,28.5703241 C0.53434177,29.1500937 0.934948721,29.7733639 1.33733036,30.3078502 C1.91735921,31.110471 2.58621167,31.8678085 3.29858413,32.536362 C3.92213298,33.1596322 4.59098544,33.6959013 5.30514151,34.2303876 C8.69470741,36.7705345 12.751253,38.1076417 16.9873186,38.1076417 C21.2233841,38.1076417 25.2819809,36.7705345 28.6694956,34.2303876 C29.3836517,33.6959013 30.0525041,33.1161317 30.676053,32.536362 C31.390209,31.8678085 32.0590615,31.110471 32.6373068,30.3078502 C33.0379226,29.7733639 33.4402864,29.1935943 33.7973645,28.5703241 C33.9332262,28.3022074 33.9332262,28.0340996 33.8426502,27.7677033 L33.8430426,27.7677033 Z" id="Shape"></path>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

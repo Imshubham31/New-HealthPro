@@ -1,0 +1,29 @@
+<div class="columns">
+  <div *ngIf="(!patientOverview.patient.mdts || !patientOverview.patient.mdts.length) else mdtExist"
+    class="column mdt-details col-11">
+    <p>
+      <strong>{{'mdtTeam'|localise}}</strong>
+    </p>
+    <a *ngIf="patientOverview.patient.onboardingState.hasConsented else notConsented" class="link" (click)="openAssignMDT.emit(patientOverview)">{{'assignToMDT'|localise}}</a>
+    <ng-template #notConsented>
+      <p>{{'needsConsent'|localise}}</p>
+    </ng-template>
+  </div>
+  <ng-template #mdtExist>
+    <p class="column mdt-details col-11 mdt-details-margin-bottom mdt-details-padding-bottom">
+      <strong>{{'mdtTeam'|localise}}</strong>
+    </p>
+    <div class="column mdt-details col-11 mdt-details-padding-bottom mdt-details-padding-top" *ngFor="let mdt of patientOverview.patient.mdts; let i = index">
+      <p class="mdt-details-margin-bottom" *ngIf="!mdt.personal">
+        <span>-{{mdt.name}}</span>
+      </p>
+      <p class="mdt-details-margin-bottom" *ngIf="mdt.personal">
+        <ng-container *ngFor="let hcp of mdt.hcps; let j = index">
+          <div *ngIf="j <= 1" [class.gray-text]="hcp.isRestricted">-{{hcp | restricted}}</div>
+        </ng-container>
+      </p>
+      <div class="font-color-gray" *ngIf="mdt.personal && mdt.hcps && mdt.hcps.length > 2">
+        {{'andMore' | localise: [remaningTeamMembers]}} </div>
+    </div>
+  </ng-template>
+</div>

@@ -1,0 +1,10 @@
+<div class="col-12 hcp-contact-container">
+  <div class="text-ellipsis">
+    <img src="../../../assets/mail.svg">
+    <a href="mailto:{{hcpData.email}}">{{hcpData.email}}</a>
+  </div>
+  <div *ngIf="hcpData.phoneNumber" class="text-ellipsis">
+    <img src="../../../assets/phone.svg">
+    <span>{{hcpData.phoneNumber}}</span>
+  </div>
+</div>

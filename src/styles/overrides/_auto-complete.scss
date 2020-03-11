@@ -1,0 +1,35 @@
+@import "../variables";
+
+ng2-auto-complete {
+  // In the currently used version (0.12) z-index is hardcoded to 1, so the
+  // tag-input goes over the auto complete.
+  z-index: 50 !important;
+
+  .ng2-auto-complete > ul {
+    @extend .menu;
+
+    li {
+      @extend .menu-item;
+      border-bottom: none;
+
+      &.selected {
+        background: $textColour;
+        color: white;
+
+        a:hover {
+          color: white;
+        }
+      }
+
+      &:not(.selected) {
+        &:hover {
+          background: white;
+        }
+
+        a:hover {
+          color: $primary-color;
+        }
+      }
+    }
+  }
+}

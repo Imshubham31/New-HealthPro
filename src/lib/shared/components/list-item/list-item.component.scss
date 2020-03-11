@@ -1,0 +1,51 @@
+@import '../../../../styles/variables';
+.icon-holder {
+    font-size: 2rem;
+    text-align: center;
+    i.complete {
+        color: $control-color-success;
+    }
+    padding: 1rem;
+}
+
+.list-item-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+
+    span {
+        background-color: $brandTeal;
+        padding: 0.3rem;
+        padding-inline-start: 0.7rem;
+        padding-inline-end: 0.7rem;
+        line-height: 2.5rem;
+        font-size: $font-size-sm;
+        font-weight: 500;
+        color: white;
+        border-radius: 3px;
+    }
+}
+
+.list-item-subtitle {
+    word-wrap: break-word;
+    overflow: hidden;
+    line-height: 2rem;
+}
+
+.list-item-body {
+    margin-top: 0.8rem;
+}
+
+.chevron {
+    color: $gray-color-light;
+    display: flex;
+    align-items: center;
+}
+
+:host {
+    display: flex;
+}
+
+.icon-text {
+    font-size: 1.4rem;
+    font-weight: 600;
+}

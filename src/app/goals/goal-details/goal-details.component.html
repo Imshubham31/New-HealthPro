@@ -1,0 +1,18 @@
+<div class="card">
+  <div
+    class="loading loading-lg centered vertical-align-middle"
+    *ngIf="goalService.isFetching; else showDetails"
+  ></div>
+  <ng-template #showDetails>
+    <div *ngIf="goalsError; else showGoalsFields">
+      <div class="card-error">
+        <div class="toast toast-error">
+          <i class="fa fa-exclamation-triangle"></i> {{goalsError.message}}
+        </div>
+      </div>
+    </div>
+    <ng-template #showGoalsFields>
+      <ng-container *ngComponentOutlet="goalDetailsComponent"></ng-container>
+    </ng-template>
+  </ng-template>
+</div>

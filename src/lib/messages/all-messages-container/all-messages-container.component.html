@@ -1,0 +1,59 @@
+<div class="layout" *ngIf="chats.length === 0">
+    <div class="avatarImageContainer">
+        <img
+            alt="No messages to display"
+            class="noMessagesPageAvatar"
+            src="../../../assets/messages_grey.svg"
+        />
+    </div>
+    <p class="noFutureMessagesPage">{{ 'noFutureMessages' | localise }}</p>
+    <p class="feelFreeToMessageTeamPage">
+        {{ 'feelFreeToMessageTeam' | localise }}
+    </p>
+    
+    <master-detail-header
+        (onCreate)="messagesCoordinatorService.showStartNewConversationModal()"
+        [title]="'messages' | localise"
+        [buttonTitle]="'startNewConversation' | localise"
+    ></master-detail-header>
+</div>
+<div [hidden]="chats.length === 0">
+    <master-detail-header
+        (onCreate)="messagesCoordinatorService.showStartNewConversationModal()"
+        [title]="'messages' | localise"
+        [buttonTitle]="'startNewConversation' | localise"
+    >
+        <app-search-input
+            master-search
+            [dataSource]="chats"
+            [keys]="searchFields"
+            [placeholder]="'searchInConversation' | localise"
+            (onChange)="ref.detectChanges()"
+            #search
+        ></app-search-input>
+    </master-detail-header>
+    <virtual-scroll
+        [style.height]="height"
+        [childHeight]="90"
+        [items]="search.results"
+        (update)="viewPortItems = $event"
+        #virtualScroll
+    >
+        <chat-summary
+            [class.unread-messages]="chat.unreadMessages > 0"
+            [title]="chat.subject"
+            [count]="chat.unreadMessages"
+            [lastMessage]="chat.messages[chat.messages.length - 1]"
+            [user]="user"
+            [users]="chat.participantDetails"
+            [patientsMap]="patientsMap"
+            *ngFor="let chat of viewPortItems"
+            [routerLink]="[
+                '/messages',
+                { outlets: { detail: chat.id.toString() } }
+            ]"
+            routerLinkActive="selected"
+            queryParamsHandling="preserve"
+        ></chat-summary>
+    </virtual-scroll>
+</div>

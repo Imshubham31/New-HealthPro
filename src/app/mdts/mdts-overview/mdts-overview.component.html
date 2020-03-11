@@ -1,0 +1,113 @@
+<div class="col-10 col-xl-12 all-pages-container">
+    <div class="flex-container">
+        <h3 class="page-header">
+            {{ 'mdts' | localise }} -
+            {{ (hospitalService.hospital | async).name }}
+        </h3>
+        <button
+            id="create-mdts"
+            class="btn btn-primary"
+            (click)="startMdtsCreate()"
+        >
+            {{ 'addMdt' | localise }}
+        </button>
+    </div>
+    <div class="columns">
+        <div class="column">
+            <div class="divider"></div>
+        </div>
+    </div>
+    <div class="container grid-lg">
+        <div class="columns">
+            <div class="column col-6 rtl-aware">
+                <div class="dropdown text-left pull-left margin-rt-12">
+                    <a class="btn dropdown-toggle" tabindex="0">
+                        <img src="../../../../../assets/filter.svg" alt="" />
+                        {{ 'filter' | localise }}
+                        <i class="icon icon-caret"></i>
+                    </a>
+                    <ul class="menu filter-menu">
+                        <li
+                            *ngFor="
+                                let filterItem of filterItems;
+                                let i = index
+                            "
+                            class="form-check menu-item"
+                        >
+                            <label class="form-check-label">
+                                <input
+                                    type="checkbox"
+                                    class="form-check-input"
+                                    [(ngModel)]="filterItem.checked"
+                                    [value]="filterItem.value"
+                                />{{ filterItem.name }}
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <app-search-input
+                    [dataSource]="mdtsService.getMdts()"
+                    [keys]="searchFields"
+                    [placeholder]="'search' | localise"
+                    (onChange)="updateFilterItems($event)"
+                    #search
+                    class="pull-left"
+                ></app-search-input>
+            </div>
+            <div class="column col-6 text-right">
+                <div class="dropdown text-left">
+                    <a class="btn dropdown-toggle" tabindex="0">
+                        <i
+                            class="fa"
+                            [ngClass]="{
+                                'fa-sort-alpha-asc': sort.order === 'asc',
+                                'fa-sort-alpha-desc': sort.order === 'desc'
+                            }"
+                        ></i>
+                        {{ sortLabel }} <i class="icon icon-caret"></i>
+                    </a>
+                    <ul class="menu">
+                        <li class="menu-item">
+                            <a (click)="sortOn('name', 'asc')">
+                                <i class="fa fa-sort-alpha-asc"></i
+                                >{{ 'NameAsc' | localise }}</a
+                            >
+                        </li>
+                        <li class="menu-item">
+                            <a (click)="sortOn('name', 'desc')">
+                                <i class="fa fa-sort-alpha-desc"></i
+                                >{{ 'NameDesc' | localise }}</a
+                            >
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="columns gray-text">
+            <div class="column col-4 text-uppercase" *ngIf="search.results">
+                <span *ngIf="search.results.length === 0">
+                    {{ search.results.length }} {{ 'Teams' | localise }}</span
+                >
+                <span *ngIf="search.results.length > 0 && disableSearchCount">
+                    {{ search.results.length }} {{ 'Teams' | localise }}</span
+                >
+                <span *ngIf="count && checked()[0] && checked()[0].checked">
+                    {{ count }} {{ 'Teams' | localise }}</span
+                >
+            </div>
+        </div>
+        <div
+            #count
+            class="columns"
+            *ngFor="
+                let mdt of (search.results
+                    | checkboxFilter: nestedKey:filterKeys:checked():false
+                    | sortOn: sort);
+                let i = index
+            "
+        >
+            <app-mdts-card-row class="column" [mdt]="mdt"></app-mdts-card-row>
+            {{ hcpCount(i) }}
+        </div>
+    </div>
+</div>

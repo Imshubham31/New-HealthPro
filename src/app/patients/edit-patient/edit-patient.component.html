@@ -1,0 +1,91 @@
+<div
+    #modal
+    modal-wrapper
+    [modalTitle]="'editPatient' | localise"
+    [modalWidth]="'520px'"
+>
+    <div class="toast toast-error margin-bottom-small" *ngIf="errors.length">
+        <div *ngFor="let error of errors">
+            {{ error }}
+        </div>
+    </div>
+    <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+        <app-modal-form-control
+            [required]="true"
+            label="{{ 'firstName' | localise }}"
+            formControlName="firstName"
+        >
+            <app-modal-input [maxLength]="30"></app-modal-input>
+        </app-modal-form-control>
+
+        <app-modal-form-control
+            [required]="true"
+            label="{{ 'lastName' | localise }}"
+            formControlName="lastName"
+        >
+            <app-modal-input [maxLength]="40"></app-modal-input>
+        </app-modal-form-control>
+
+        <div class="form-group">
+            <label class="form-label">{{ 'gender' | localise }}</label>
+            <label class="form-radio">
+                <input type="radio" value="male" formControlName="gender" />
+                <i class="form-icon"></i> {{ 'male' | localise }}
+            </label>
+            <br />
+            <label class="form-radio">
+                <input type="radio" value="female" formControlName="gender" />
+                <i class="form-icon"></i> {{ 'female' | localise }}
+            </label>
+            <br />
+            <label class="form-radio">
+                <input type="radio" value="unknown" formControlName="gender" />
+                <i class="form-icon"></i> {{ 'unknown' | localise }}
+            </label>
+        </div>
+
+        <app-modal-form-control
+            [required]="true"
+            label="{{ 'dateOfBirth' | localise }}"
+            formControlName="dob"
+        >
+            <app-modal-datepicker
+                [canClear]="false"
+                [max]="currentDate"
+            ></app-modal-datepicker>
+        </app-modal-form-control>
+
+        <app-modal-form-control
+            [required]="true"
+            label="{{ 'email' | localise }}"
+            formControlName="email"
+        >
+            <app-modal-input></app-modal-input>
+        </app-modal-form-control>
+
+        <app-modal-form-control
+            label="{{ 'phoneNumber' | localise }}"
+            formControlName="phoneNumber"
+        >
+            <app-modal-input mask="phone" [maxLength]="100"></app-modal-input>
+        </app-modal-form-control>
+
+        <app-modal-form-control formControlName="surgery">
+            <surgery-selection></surgery-selection>
+        </app-modal-form-control>
+
+        <div class="modal-footer">
+            <div class="helper-text">* {{ 'requiredFields' | localise }}</div>
+            <button class="btn btn-link" type="button" (click)="close()">
+                {{ 'cancel' | localise }}
+            </button>
+            <button
+                class="btn btn-primary"
+                [disabled]="shouldDisableSubmit()"
+                [class.loading]="submitting"
+            >
+                {{ 'saveChanges' | localise }}
+            </button>
+        </div>
+    </form>
+</div>

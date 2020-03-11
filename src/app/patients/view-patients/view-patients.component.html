@@ -1,0 +1,119 @@
+<div class="container grid-lg">
+    <div class="columns col-gapless padding-bottom-0">
+        <div class="column col-3">
+            <app-search-input
+                [dataSource]="(patientService.store$ | async).list"
+                [keys]="searchFields"
+                [placeholder]="'search' | localise"
+                #search
+            ></app-search-input>
+        </div>
+        <div class="column col-9 text-right">
+            <div class="dropdown text-left">
+                <a class="btn dropdown-toggle" tabindex="0">
+                    <i
+                        class="fa"
+                        [ngClass]="{
+                            'fa-sort-alpha-asc': sort.order === 'asc',
+                            'fa-sort-alpha-desc': sort.order === 'desc'
+                        }"
+                    ></i>
+                    {{ sortLabel }} <i class="icon icon-caret"></i>
+                </a>
+                <ul class="menu">
+                    <li class="menu-item">
+                        <a (click)="sortOn('patient.lastName', 'asc')">
+                            <i class="fa fa-sort-alpha-asc"></i
+                            >{{ 'lastNameAsc' | localise }}</a
+                        >
+                    </li>
+                    <li class="menu-item">
+                        <a (click)="sortOn('patient.lastName', 'desc')">
+                            <i class="fa fa-sort-alpha-desc"></i
+                            >{{ 'lastNameDesc' | localise }}</a
+                        >
+                    </li>
+                    <li class="menu-item">
+                        <a (click)="sortOn('patient.firstName', 'asc')">
+                            <i class="fa fa-sort-alpha-asc"></i
+                            >{{ 'firstNameAsc' | localise }}</a
+                        >
+                    </li>
+                    <li class="menu-item">
+                        <a (click)="sortOn('patient.firstName', 'desc')">
+                            <i class="fa fa-sort-alpha-desc"></i
+                            >{{ 'firstNameDesc' | localise }}</a
+                        >
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="columns gray-text">
+        <div class="column col-4 text-uppercase">
+            {{
+                'patientsCount'
+                    | localise: [search.results.length || '0' | localise]
+                    | uppercase
+            }}
+        </div>
+        <div class="column col-2 text-center">{{ 'mdtTeamUC' | localise }}</div>
+        <div class="column col-3 text-center">
+            {{ 'contactInfo' | localise }}
+        </div>
+        <div class="column col-mr-auto text-center">
+            {{ 'consent' | localise | uppercase }}
+        </div>
+    </div>
+    <div
+        class="columns patient-container"
+        *ngFor="
+            let patientOverview of (search.results
+                | sortOn: sort
+                | paginate: { itemsPerPage: 5, currentPage: currentPage })
+        "
+        #container
+    >
+        <patient-overview-card
+            class="column col-4"
+            [patientOverviewData]="patientOverview"
+        ></patient-overview-card>
+        <div class="divider-vert"></div>
+        <patient-mdt-team
+            class="column col-2 relative-block flexy"
+            (openAssignMDT)="openAssignMDT($event)"
+            [patientOverview]="patientOverview"
+        ></patient-mdt-team>
+        <div class="divider-vert"></div>
+        <patient-contact-info
+            class="column col-3 relative-block"
+            [patient]="patientOverview.patient"
+        ></patient-contact-info>
+        <div class="divider-vert"></div>
+        <patient-consent
+            [patient]="patientOverview.patient"
+            class="column col-mr-auto relative-block"
+        ></patient-consent>
+        <div
+            *ngIf="canDelete(patientOverview.patient)"
+            class="column delete-button col-1"
+            role="button"
+            (click)="showDeletePatient(patientOverview)"
+        >
+            <div class="block-centered">
+                <i class="fa fa-trash" aria-hidden="true"></i>
+                <p>{{ 'delete' | localise }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="columns">
+        <app-pagination-controls
+            class="column col-4"
+            (pageChange)="currentPage = $event"
+        ></app-pagination-controls>
+        <hospital-logo
+            class="column col-4 col-md-12"
+            [center]="true"
+        ></hospital-logo>
+    </div>
+</div>

@@ -1,0 +1,125 @@
+@import "../styles/_variables";
+@import url("https://fonts.googleapis.com/earlyaccess/droidarabicnaskh.css");
+::ng-deep .wrapper[dir="rtl"] {
+  .text-right {
+    text-align: left;
+  }
+  .carousel-arrow {
+    transform: rotate(180deg);
+  }
+  .text-left,
+  .rtl-aware,
+  .tableHeaders {
+    text-align: right;
+  }
+  .rtl-aware {
+    a.customdropdown{
+      right:auto;
+      left:5px;
+    }
+    .custom-dropdown ul::before{
+      left:20px;
+    }
+    .margin-rt-12{
+      margin-right:0;
+      margin-left:12px;
+    }
+    .pull-left{
+      float: right;
+    }
+    .dropdown .menu{
+      left:auto;
+      right:0;
+    }
+  }
+  .flip-on-rtl {
+    transform: scaleX(-1);
+  }
+  .modal-footer {
+    text-align: left;
+  }
+  .modal-container {
+    text-align: right;
+  }
+  .helper-text {
+    float: right;
+  }
+  .close-btn {
+    float: left;
+  }
+  .form-checkbox .form-icon,
+  .form-radio .form-icon {
+    right: 0;
+    left: auto;
+  }
+  .mydp .mydpicon {
+    transform: scaleX(-1);
+  }
+  input[type="email"] {
+    direction: ltr;
+  }
+  .logo_at_start img {
+    object-position: right !important;
+  }
+  .navbar-logo {
+    background-position: right center;
+  }
+
+  .fa.fc-icon-right-single-arrow,
+  .fa.fc-icon-left-single-arrow {
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+  }
+
+  .icon-container {
+    right: auto !important;
+    left: 1rem;
+  }
+  /*manage template list component*/
+  app-template-list{
+    .content-box{
+      img{
+          margin-left: 3.5rem;
+          margin-right: 0;
+          }
+        }
+    .column.details-button {
+        margin: -1rem -0rem -1rem -2rem;
+      }
+  }
+  /*Data table styles overide for rtl lang*/
+  table.dataTable thead .sorting,
+  table.dataTable thead .sorting_asc,
+  table.dataTable thead .sorting_desc,
+  table.dataTable thead .sorting_asc_disabled,
+  table.dataTable thead .sorting_asc_disabled{
+    background-position: right;
+  }
+  table.dataTable tbody tr td .link{
+    display: inline-block;
+  }
+  /*Create new Appointment */
+  appointment-form{
+    .dropdown{
+      display: block;
+      .custom-dropdown{
+        position:static;
+        ul::before{
+          left:20px;
+        }
+      }
+      a.customdropdown{
+        left:6px;
+      }
+      ul.listblcok{
+        width:100%;
+      }
+    }
+  }
+}
+
+:lang(ar):not(fa) {
+  font-family: "Droid Arabic Naskh", $body-font-family;
+}

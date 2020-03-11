@@ -1,0 +1,25 @@
+<fancy-date [date]="appointment.date"></fancy-date>
+
+<div class="details">
+    <div class="time" *ngIf="appointment.startDateIncludesTime">
+        {{ appointment.timeSlot.start | localisedDate: 'HH:mm' }}
+    </div>
+    <div class="title">
+        {{ title }}
+    </div>
+    <appointment-status
+        class="status"
+        [status]="appointment.status"
+        [text]="getAppointmentStatusText() | localise"
+    ></appointment-status>
+</div>
+
+<div class="HCPs">
+    <div
+        class="HCP tooltip tooltip-left"
+        *ngFor="let HCP of appointment.watcherDetails"
+        [attr.data-tooltip]="HCP | restricted"
+    >
+        <avatar-img [user]="appointment.isIntegrated ? null : HCP"></avatar-img>
+    </div>
+</div>

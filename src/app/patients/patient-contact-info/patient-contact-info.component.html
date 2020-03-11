@@ -1,0 +1,10 @@
+<div class="columns">
+  <div class="column block-centered col-11 contact-info-container text-ellipsis">
+    <img src="../../../assets/mail.svg">
+    <a class="link" href="mailto:{{patient.email}}">{{patient.email}}</a>
+    <div *ngIf="patient.phoneNumber" class="padding-top-half">
+      <img src="../../../assets/phone.svg">
+      <span>{{patient.phoneNumber}}</span>
+    </div>
+  </div>
+</div>

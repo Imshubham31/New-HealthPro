@@ -1,0 +1,32 @@
+<div class="card-title">
+    {{ 'walk' | localise | titlecase }} {{ stepsService.getCurrentGoal() }}
+    {{ 'stepsPerDay' | localise }}
+    <p class="nameVthSteps">
+        {{ patientFirstName | titlecase }} {{ 'walkedText' | localise }}
+        <span *ngIf="stepsService.getCurrentSteps() >= 0">
+            {{ stepsService.getCurrentSteps() }}
+        </span>
+        {{ 'steps' | localise }} {{ 'today' | localise }}
+    </p>
+</div>
+
+<bar-chart
+    [data]="data | async"
+    (disablePrevNextPencil)="onNextPrePencil($event)"
+></bar-chart>
+
+<div class="columns col-gapless">
+    <div class="column col-3 goal-icon-container">
+        <label for="goalStepCount">{{ 'goalStepCount' | localise }}</label>
+        <div class="column">
+            <input-with-pencil
+                id="goalStepCount"
+                [value]="(goalService.goal | async).target"
+                (valueChanged)="updateGoalTarget($event)"
+                [type]="stepType"
+                [pencildisabled]="pencilDisabled"
+            >
+            </input-with-pencil>
+        </div>
+    </div>
+</div>

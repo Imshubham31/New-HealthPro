@@ -1,0 +1,30 @@
+@import '../../../styles/mixins.scss';
+.details-button {
+    margin-top: -2rem;
+    margin-bottom: -2rem;
+    margin-inline-end: -1rem;
+    position: relative;
+    width: 3.3em;
+    background: rgba(151, 151, 151, 0.1);
+    color: black;
+    cursor: pointer;
+    text-align: center;
+    margin-inline-start: auto;
+    p {
+        margin: 0;
+    }
+}
+
+.column {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.divider-vert {
+    margin: 15px 0;
+}
+
+.patient-card-container {
+    @include card-mixin(2rem, 2rem, 1rem);
+    overflow: hidden;
+}

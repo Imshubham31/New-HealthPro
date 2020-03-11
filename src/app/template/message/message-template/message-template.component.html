@@ -1,0 +1,67 @@
+<div class="col-10 col-xl-12 all-pages-container">
+    <a class="link" [routerLink]="['/managetemplate']">
+        <i
+            _ngcontent-plu-c36=""
+            aria-hidden="true"
+            class="fa fa-arrow-left flip-on-rtl"
+        ></i>
+        {{ 'backToTemplateTypes' | localise }}
+    </a>
+    <p>&nbsp;</p>
+    <div class="flex-container">
+        <h3 class="page-header">
+            {{ 'messagesTemplates' | localise }}
+        </h3>
+        <button class="btn btn-primary" (click)="startMessageCreate()">
+            + {{ 'addNewMessageTemplate' | localise }}
+        </button>
+    </div>
+    <div class="columns">
+        <div class="column">
+            <div class="divider"></div>
+        </div>
+    </div>
+    <div>
+        <table
+            datatable
+            [dtOptions]="dtOptions"
+            [dtTrigger]="dtTrigger"
+            class="row-border hover"
+        >
+            <thead *ngIf="showTable">
+                <tr class="tableHeaders">
+                    <th>{{ 'pathway' | localise }}</th>
+                    <th>{{ 'subject' | localise }}</th>
+                    <th>{{ 'messages' | localise }}</th>
+                    <th>{{ 'actions' | localise }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let messagetemp of messageList; let i = index">
+                    <td>{{ getCareModuleTitle(messagetemp.caremoduleId) }}</td>
+                    <td>{{ messagetemp.subject }}</td>
+                    <td>{{ messagetemp.message }}</td>
+                    <td>
+                        <a class="link" (click)="startMessageEdit(messagetemp)">
+                            <img
+                                src="../../../../../assets/accent_grey.svg"
+                                alt=""
+                            />{{ 'edit' | localise }}</a
+                        >&nbsp;&nbsp;
+                        <a
+                            class="link"
+                            (click)="deletetemplatemodal(messagetemp.id)"
+                        >
+                            <img
+                                width="16px"
+                                height="16px"
+                                src="../../../../../assets/delete-button.svg"
+                                alt=""
+                            />{{ 'delete' | localise }}</a
+                        >
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

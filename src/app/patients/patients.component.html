@@ -1,0 +1,21 @@
+<div class="col-10 col-xl-12 all-pages-container">
+    <div class="flex-container">
+        <h3 class="page-header">
+            {{ 'patients' | localise }} -
+            {{ (hospitalService.hospital | async).name }}
+        </h3>
+        <button
+            *ngIf="(hospitalService.canAddPatient() | async)"
+            class="btn btn-primary"
+            (click)="openCreatePatient()"
+        >
+            {{ 'addNewPatient' | localise }}
+        </button>
+    </div>
+    <div class="columns">
+        <div class="column">
+            <div class="divider"></div>
+        </div>
+    </div>
+    <view-patients></view-patients>
+</div>

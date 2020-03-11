@@ -1,0 +1,25 @@
+@import '../../../../styles/variables.scss';
+
+.subphase-title {
+    font-size: $font-size-sm;
+    color: $gray-text;
+    margin-bottom: 3rem;
+}
+
+.phase-title {
+    font-weight: 600;
+    font-size: 2rem;
+}
+
+.edit-pathway-link {
+    position: absolute;
+    bottom: 10%;
+    text-decoration: underline;
+}
+
+img {
+    height: 2rem;
+    padding-left: 1rem;
+    margin-bottom: 0.5rem;
+    vertical-align: middle;
+}

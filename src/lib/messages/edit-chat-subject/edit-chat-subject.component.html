@@ -1,0 +1,82 @@
+<div
+    modal-wrapper
+    [modalTitle]="getTitle()"
+    [modalSubTitle]=""
+    [modalWidth]="'520px'"
+    [contentOverflow]="'visible'"
+    #modal
+>
+    <form [formGroup]="form" novalidate>
+        <div class="vertical-line"></div>
+        <fieldset
+            [disabled]="submitting"
+            class="form-group"
+            (ngSubmit)="submit()"
+            novalidate
+        >
+            <div *ngIf="this.patient" class="columns">
+                <div class="column message-input">
+                    <label for="subject-input" class="form-label label-text"
+                        >{{ 'Patient' | localise }}*</label
+                    >
+                    <input
+                        class="form-input col-12"
+                        formControlName="participant"
+                        id="patient-name"
+                    />
+                </div>
+            </div>
+            <div class="columns">
+                <div class="column message-input">
+                    <label for="subject" class="form-label label-text">{{
+                        'subject' | localise
+                    }}</label>
+                    <input
+                        class="col-12 form-input"
+                        formControlName="subject"
+                        id="subject"
+                        type="text"
+                        maxlength="48"
+                    />
+                </div>
+            </div>
+            <app-modal-form-control
+                label="{{ 'Participants' | localise }}"
+                class="label-text padding-left-0 inputAlignment"
+                [required]="false"
+                [maxlength]="48"
+                formControlName="hcpParticipant"
+            >
+                <app-modal-multi-tag-input
+                    *ngIf="this.patient"
+                    [options]="HCPs"
+                    [labelFormatter]="hcpLabelFormatter"
+                    [detailLabelFormatter]="hcpRoleLabel"
+                    [matchProperty]="'backendId'"
+                    [prefixTags]="[patient ? [patient.displayName] : null]"
+                    [canRemoveLastTag]="false"
+                ></app-modal-multi-tag-input>
+                <participant-multi-selector
+                    *ngIf="!this.patient"
+                    [placeholdertext]="''"
+                    [role]="true"
+                    [participantType]="hcpParticipantType"
+                ></participant-multi-selector>
+            </app-modal-form-control>
+        </fieldset>
+        <div class="modal-footer mx-0 pt-0">
+            <div class="helper-text">* {{ 'requiredFields' | localise }}</div>
+            <button class="btn btn-link" type="button" (click)="close()">
+                {{ 'cancel' | localise }}
+            </button>
+            <button
+                class="btn btn-primary"
+                [disabled]="shouldDisableSubmit()"
+                [class.loading]="submitting"
+                (click)="submit()"
+            >
+                {{ 'saveChanges' | localise }}
+            </button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,39 @@
+@import '../../../../styles/variables';
+@import '../../../../styles/utilities';
+@import '../../../../styles/mixins';
+.modal-header {
+    @include padding-on-element(1.5rem, 0rem, 1.5rem, 1.5rem);
+    font-weight: 600;
+}
+
+.modal-body {
+    max-height: none;
+    overflow: auto;
+}
+
+.modal-header:empty {
+    display: none;
+}
+
+.modal-footer:empty {
+    display: none;
+}
+
+#modal-subtitle {
+    font-size: 1.5rem;
+    color: $gray-color;
+}
+
+#modal-title {
+    font-size: $font-size-xl-lg;
+}
+
+.modal-container {
+    max-height: 97%;
+    display: flex;
+    flex-direction: column;
+}
+
+.close-btn {
+    float: right;
+}

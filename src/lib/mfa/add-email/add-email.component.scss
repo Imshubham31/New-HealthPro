@@ -1,0 +1,13 @@
+@import '../../../styles/mixins';
+
+form {
+    @include flex-column-even-spacing();
+}
+
+h2 {
+    @include mfa-header();
+}
+
+p {
+    font-size: $font-size-md;
+}

@@ -1,0 +1,19 @@
+<form [formGroup]="resetPasswordForm" (ngSubmit)="submit()" novalidate>
+    <div class="card-body">
+        <h3>{{'forgotPasswordViewTitle' | localise}}</h3>
+        <div class="toast toast-error" *ngIf="formError">
+            {{formError}}
+        </div>
+        <p>{{'forgotPasswordInstruction' | localise}}</p>
+        <div class="form-group">
+            <label class="form-label" for="email">{{'emailAddress' | localise}}</label>
+            <input class="form-input input-lg" type="email" id="email" formControlName="email" />
+        </div>
+    </div>
+    <div class="card-footer">
+        <button class="btn btn-primary btn-block btn-lg" [disabled]="shouldDisableSubmit()" [class.loading]="submitting">{{'resetPassword' | localise}}
+        </button>
+        <a class="btn btn-link btn-block btn-link-secondary" (click)="backToLogin()">{{'backToLogin' | localise}}
+        </a>
+    </div>
+</form>

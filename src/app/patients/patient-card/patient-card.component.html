@@ -1,0 +1,50 @@
+<div class="patient-card-container">
+    <div class="columns">
+        <patient-overview-card
+            [showEditDetails]="showEditDetails"
+            class="column col-4 flexy"
+            [patientOverviewData]="patient"
+        ></patient-overview-card>
+        <div class="divider-vert"></div>
+        <patient-registration
+            class="column col-3"
+            [pathway]="pathway"
+            [patientOverviewData]="patient"
+            [startNewConversation]="startNewConversation"
+        ></patient-registration>
+        <div *ngIf="!pathway; else pathwayLoaded" class="column col-4 loading">
+            {{ 'loadingTaskProgress' | localise }}
+        </div>
+        <ng-template #pathwayLoaded>
+            <task-progress
+                class="column col-2 flexy"
+                [pathway]="pathway"
+                [patient]="patient.patient"
+                [subtext]="'tasksCompleted' | localise"
+            ></task-progress>
+            <goal-progress
+                class="column col-2 flexy"
+                [pathway]="pathway"
+                [patient]="patient.patient"
+            ></goal-progress>
+        </ng-template>
+        <div
+            *ngIf="showDetailsButton"
+            class="column details-button col-1"
+            role="button"
+            [routerLink]="[
+                '/patient/details',
+                { id: patient.patient.backendId }
+            ]"
+        >
+            <div class="block-centered">
+                <img
+                    src="../../../assets/details.svg"
+                    class="flip-on-rtl"
+                    alt=""
+                />
+                <p>{{ 'details' | localise }}</p>
+            </div>
+        </div>
+    </div>
+</div>

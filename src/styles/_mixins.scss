@@ -1,0 +1,58 @@
+@import 'utilities';
+@import '../styles/variables';
+@mixin flex-column-center {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+}
+
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+@mixin card-mixin($padding-start, $padding-end, $padding-t-b) {
+    @include white-background();
+    @extend .shadow-4 !optional;
+    padding-top: $padding-t-b;
+    padding-bottom: $padding-t-b;
+    padding-inline-start: $padding-start;
+    padding-inline-end: $padding-end;
+}
+
+@mixin padding-on-element(
+    $padding-top,
+    $padding-bottom,
+    $padding-start,
+    $padding-end
+) {
+    padding-top: $padding-top;
+    padding-bottom: $padding-bottom;
+    padding-inline-start: $padding-start;
+    padding-inline-end: $padding-end;
+}
+
+@mixin white-background {
+    background-color: white;
+}
+
+@mixin flex-column-even-spacing {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;    
+}
+
+@mixin large-image {
+    height: 80px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@mixin mfa-header {
+    font-weight: 400;
+    font-size: 2.4rem;
+}

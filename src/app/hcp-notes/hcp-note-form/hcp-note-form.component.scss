@@ -1,0 +1,10 @@
+@import '../../../styles/utilities.scss';
+textarea {
+    height: 30vh;
+}
+
+.chars-left-container {
+    @extend .padding-top-0;
+    @extend .margin-top-0;
+    text-align: right;
+}

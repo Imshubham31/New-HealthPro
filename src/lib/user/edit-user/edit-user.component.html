@@ -1,0 +1,317 @@
+<div class="all-pages-container col-9 col-mx-auto col-sm-12">
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title">{{ 'editProfile' | localise }}</div>
+        </div>
+        <div class="card-body">
+            <div class="divider"></div>
+            <div class="columns">
+                <div class="column col-6 col-xl-9 col-sm-12">
+                    <form [formGroup]="form" novalidate>
+                        <div class="columns col-oneline circle-container">
+                            <avatar-img
+                                [user]="user"
+                                size="10rem"
+                                #avatar
+                            ></avatar-img>
+                            <div class="col-6 change-profile-container">
+                                <a
+                                    class="vertical-align-middle"
+                                    (click)="changeProfilePicture()"
+                                    >{{ 'editProfilePicture' | localise }}</a
+                                >
+                            </div>
+                        </div>
+                        <fieldset (ngSubmit)="submit()">
+                            <div class="column">
+                                <div class="form-group">
+                                    <label
+                                        class="form-label label-text"
+                                        for="personalDetailsFirstName"
+                                        >{{ 'firstName' | localise }} *</label
+                                    >
+                                    <input
+                                        class="form-input"
+                                        id="personalDetailsFirstName"
+                                        placeholder="{{
+                                            'firstName' | localise
+                                        }}"
+                                        formControlName="firstName"
+                                        maxlength="30"
+                                    />
+                                </div>
+                                <div class="form-group">
+                                    <label
+                                        class="form-label label-text"
+                                        for="personalDetailsLastName"
+                                        >{{ 'lastName' | localise }} *</label
+                                    >
+                                    <input
+                                        class="form-input"
+                                        id="personalDetailsLastName"
+                                        placeholder="{{
+                                            'lastName' | localise
+                                        }}"
+                                        formControlName="lastName"
+                                        maxlength="40"
+                                    />
+                                </div>
+                                <div class="form-group">
+                                    <label
+                                        class="form-label label-text"
+                                        for="personalDetailsEmail"
+                                        >{{ 'email' | localise }} *</label
+                                    >
+                                    <input
+                                        class="form-input disabled"
+                                        type="email"
+                                        id="personalDetailsEmail"
+                                        placeholder="{{ 'email' | localise }}"
+                                        formControlName="email"
+                                        maxlength="100"
+                                    />
+                                </div>
+                                <div class="form-group">
+                                    <label
+                                        class="form-label label-text"
+                                        for="personalDetailsPhone"
+                                        >{{ 'phoneNumber' | localise }} *</label
+                                    >
+                                    <input
+                                        class="form-input"
+                                        type="tel"
+                                        id="personalDetailsPhone"
+                                        placeholder="{{
+                                            'phoneNumber' | localise
+                                        }}"
+                                        formControlName="phoneNumber"
+                                        maxlength="100"
+                                        #phoneNumberField
+                                    />
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label label-text"
+                                        >{{ 'gender' | localise }} *</label
+                                    >
+                                    <label class="form-radio">
+                                        <input
+                                            type="radio"
+                                            value="male"
+                                            formControlName="gender"
+                                        />
+                                        <i class="form-icon"></i>
+                                        {{ 'male' | localise }}
+                                    </label>
+                                    <label class="form-radio">
+                                        <input
+                                            type="radio"
+                                            value="female"
+                                            formControlName="gender"
+                                        />
+                                        <i class="form-icon"></i>
+                                        {{ 'female' | localise }}
+                                    </label>
+                                    <label class="form-radio">
+                                        <input
+                                            type="radio"
+                                            value="unknown"
+                                            formControlName="gender"
+                                        />
+                                        <i class="form-icon"></i>
+                                        {{ 'unknown' | localise }}
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label label-text"
+                                        >{{ 'units' | localise }} *</label
+                                    >
+                                    <label class="form-radio">
+                                        <input
+                                            type="radio"
+                                            value="imperial"
+                                            formControlName="units"
+                                        />
+                                        <i class="form-icon"></i>
+                                        {{ 'imperial' | localise }}
+                                    </label>
+                                    <label class="form-radio">
+                                        <input
+                                            type="radio"
+                                            value="metric"
+                                            formControlName="units"
+                                            checked
+                                        />
+                                        <i class="form-icon"></i>
+                                        {{ 'metric' | localise }}
+                                    </label>
+                                </div>
+
+                                <div class="form-group column col-9 padding-0">
+                                    <label
+                                        class="form-label label-text"
+                                        for="role"
+                                        >{{
+                                            'firstdayOftheWeek' | localise
+                                        }}</label
+                                    >
+                                    <div class="flexy">
+                                        <select
+                                            class="form-select full-width"
+                                            formControlName="firstDayOfWeek"
+                                        >
+                                            <option
+                                                value=""
+                                                disabled
+                                                selected
+                                                >{{
+                                                    'selectDay' | localise
+                                                }}</option
+                                            >
+                                            <option
+                                                *ngFor="
+                                                    let day of firstDayOfWeek
+                                                "
+                                                [value]="day"
+                                            >
+                                                {{ day | localise }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group column col-9 padding-0">
+                                    <label
+                                        class="form-label label-text"
+                                        for="role"
+                                        >{{ 'dateformat' | localise }}</label
+                                    >
+                                    <div class="flexy">
+                                        <select
+                                            class="form-select full-width"
+                                            formControlName="dateFormat"
+                                        >
+                                            <option
+                                                value=""
+                                                disabled
+                                                selected
+                                                >{{
+                                                    'selectDateFormat'
+                                                        | localise
+                                                }}</option
+                                            >
+                                            <option
+                                                *ngFor="let date of dateformat"
+                                                [value]="date.format"
+                                            >
+                                                {{ date.format }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group column col-9 padding-0">
+                                    <label
+                                        class="form-label label-text"
+                                        for="role"
+                                        >{{ 'language' | localise }} *</label
+                                    >
+                                    <div class="flexy">
+                                        <select
+                                            class="form-select full-width"
+                                            formControlName="language"
+                                        >
+                                            <option
+                                                value=""
+                                                disabled
+                                                selected
+                                                >{{
+                                                    'selectLanguage' | localise
+                                                }}</option
+                                            >
+                                            <option
+                                                *ngFor="
+                                                    let language of localiseService.appLanguages
+                                                "
+                                                [value]="language.code"
+                                            >
+                                                {{ language.name }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group column col-9 padding-0">
+                                    <label
+                                        class="form-label label-text"
+                                        for="role"
+                                        >{{ 'function' | localise }} *</label
+                                    >
+                                    <div class="flexy">
+                                        <input
+                                            type="radio"
+                                            class="margin-end-1 align-center"
+                                            formControlName="roleRadioSelection"
+                                            value="existing"
+                                        />
+                                        <select
+                                            class="form-select full-width"
+                                            formControlName="existingRole"
+                                        >
+                                            <option
+                                                value=""
+                                                disabled
+                                                selected
+                                                >{{
+                                                    'selectFunction' | localise
+                                                }}</option
+                                            >
+                                            <option
+                                                *ngFor="
+                                                    let userRole of userRoles
+                                                "
+                                                [value]="userRole.value"
+                                                >{{ userRole.label }}</option
+                                            >
+                                        </select>
+                                    </div>
+                                    <div class="flexy padding-top-1">
+                                        <label class="form-radio">
+                                            <input
+                                                type="radio"
+                                                class="margin-end-1"
+                                                formControlName="roleRadioSelection"
+                                                value="other"
+                                            />
+                                            <i class="form-icon"></i>
+                                            {{ 'other' | localise }}
+                                        </label>
+                                        <input
+                                            class="form-input"
+                                            formControlName="otherRole"
+                                            maxlength="45"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="edit-user-footer text-right grey-background">
+            <div class="helper-text">* {{ 'requiredFields' | localise }}</div>
+            <div class="text-right">
+                <button class="btn btn-link" type="button" (click)="finish()">
+                    {{ 'cancel' | localise }}
+                </button>
+                <button
+                    class="btn btn-primary"
+                    (click)="submit()"
+                    [disabled]="shouldDisableSubmit()"
+                    [class.loading]="submitting"
+                >
+                    {{ 'saveChanges' | localise }}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

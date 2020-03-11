@@ -1,0 +1,6 @@
+<div class="progress">
+    <div
+        *ngFor="let page of pages"
+        class="progress-section {{ currentPage == page ? 'current' : 'other' }}"
+    ></div>
+</div>

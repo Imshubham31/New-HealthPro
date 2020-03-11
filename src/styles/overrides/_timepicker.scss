@@ -1,0 +1,28 @@
+@import "../variables";
+
+.ui-timepicker-list {
+  @extend .menu;
+  max-height: 400px;
+  overflow: auto;
+
+  li {
+    @extend .menu-item;
+
+    padding: .2rem .4rem;
+    cursor: pointer;
+
+    &:hover {
+      color: $primary-color;
+    }
+
+    &.ui-timepicker-selected {
+      background: $textColour;
+      color: white;
+    }
+  }
+}
+
+.ui-timepicker-wrapper {
+  z-index: 1000;
+  outline: none;
+}

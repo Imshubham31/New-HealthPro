@@ -1,0 +1,6 @@
+@import "variables";
+.btn-link {
+  &.btn-link-secondary {
+    color: $gray-color-dark;
+  }
+}

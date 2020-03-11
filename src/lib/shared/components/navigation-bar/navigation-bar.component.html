@@ -1,0 +1,154 @@
+<header class="navbar header-menu">
+    <section class="navbar-section logo-section">
+        <a [routerLink]="['/']" class="navbar-logo"> </a>
+        <div>{{ localise.fromKey(appName) }}</div>
+    </section>
+    <section class="navbar-section navbar-user-options">
+        <a
+            [routerLink]="['/messages', { outlets: { master: 'all' } }]"
+            class="navbar-options"
+        >
+            <img
+                src="../../../assets/messages.svg"
+                alt="{{ localise.fromKey('messages') }}"
+            />
+            <p>{{ localise.fromKey('messages') }}</p>
+        </a>
+        <a routerLink="/appointments" class="navbar-options">
+            <img
+                src="../../../assets/calendar.svg"
+                alt="{{ localise.fromKey('appointments') }}"
+            />
+            <p>{{ localise.fromKey('appointments') }}</p>
+        </a>
+        <div *ngIf="isCareCoordinator()" class="dropdown dropdown-right" id = "menuDropDown">
+            <a
+                role="button"
+                class="navbar-options dropdown-toggle admin-container hand"
+                tabindex="0"
+            >
+                <img
+                    src="../../../assets/admin.svg"
+                    class="admin-img"
+                    alt="..."
+                />{{ localise.fromKey('administration') }}
+                <i class="icon icon-caret"></i>
+            </a>
+            <ul class="menu menu-options admin-box">
+                <li class="menu-item">
+                    <a
+                        role="button"
+                        [routerLink]="['/managehcp']"
+                        routerLinkActive="active"
+                        >{{ localise.fromKey('manageHCPs') }}</a
+                    >
+                </li>
+                <li class="menu-item">
+                    <a
+                        role="button"
+                        [routerLink]="['/patients']"
+                        routerLinkActive="active"
+                        >{{ localise.fromKey('managePatients') }}</a
+                    >
+                </li>
+
+                <li class="menu-item">
+                    <a
+                        role="button"
+                        [routerLink]="['/patients-overview']"
+                        routerLinkActive="active"
+                        >{{ localise.fromKey('patientsOverview') }}</a
+                    >
+                </li>
+                <li class="menu-item">
+                    <a
+                        role="button"
+                        [routerLink]="['/managetemplate']"
+                        routerLinkActive="active"
+                        >{{ localise.fromKey('manageTemplate') }}</a>
+                </li>
+                <li class="menu-item">
+                    <a
+                        role="button"
+                        [routerLink]="['/managemdts']"
+                        routerLinkActive="active"
+                        >{{ localise.fromKey('managemdts') }}</a
+                    >
+                </li>
+                <li class="menu-item">
+                    <a
+                        role="button"
+                        id="generateRegistrationCode"
+                        (click)="generateRegistrationCodeEvent()"
+                        >{{ 'generateOnboardingCode' | localise }}</a
+                    >
+                </li>
+                <li class="menu-item">
+                    <a
+                        role="button"
+                        [routerLink]="['/manageregistration']"
+                        routerLinkActive="active"
+                        id="manageRegistration"
+                        >{{ localise.fromKey('manageRegistration') }}</a>
+                </li>
+                <div *ngIf="(hospitalService.canAddPatient() | async)">
+                    <li class="divider"></li>
+                    <li
+                        class="menu-item"
+                        id="addPatientButton"
+                        (click)="addingPatientEvent()"
+                    >
+                        <a role="button">
+                            <img
+                                class="icon"
+                                src="../../../assets/add.svg"
+                                class="admin-img"
+                                alt="..."
+                            />
+                            <span
+                                class="margin-right-1 margin-left-1 "
+                                role="button"
+                                >{{ localise.fromKey('addPatient') }}</span
+                            >
+                        </a>
+                    </li>
+                </div>
+            </ul>
+        </div>
+
+        <div class="vertical-line"></div>
+
+        <div class="dropdown dropdown-right user-options">
+            <a
+                role="button"
+                class="navbar-options dropdown-toggle hand"
+                tabindex="0"
+            >
+                <avatar-img size="3rem" [user]="user" #avatar></avatar-img>
+                {{ user.firstName }} {{ user.lastName }}
+                <i class="icon icon-caret"></i>
+            </a>
+            <ul class="menu menu-options arrow-box">
+                <li class="menu-item">
+                    <a role="button" routerLink="/user">{{
+                        localise.fromKey('myProfile')
+                    }}</a>
+                </li>
+                <li class="menu-item">
+                    <a role="button" [routerLink]="['/settings']">{{
+                        localise.fromKey('settings')
+                    }}</a>
+                </li>
+                <li class="divider"></li>
+                <li class="menu-item" (click)="logout()">
+                    <a role="button">
+                        <i class="icon icon-shutdown"></i>
+                        <span role="button">{{
+                            localise.fromKey('logout')
+                        }}</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </section>
+</header>

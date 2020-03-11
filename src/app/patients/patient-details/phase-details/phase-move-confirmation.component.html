@@ -1,0 +1,21 @@
+<div modal-wrapper [modalSubTitle]="" [modalWidth]="'380px'" [contentOverflow]="'visible'" #modal class="text-center">
+    <form [formGroup]="form" class="form-group" [ngClass]="{'has-error': formError}" (ngSubmit)="submit()" novalidate>
+        <div class="toast toast-error" *ngIf="formError">
+            {{formError}}
+        </div>
+        <fieldset [disabled]="submitting">
+            <div class="columns text-center column" *ngIf="patientToBeMoved">
+                <h5>{{'movePhaseConfirmation' | localise: [ patientToBeMoved.patient.fullName, (nextPhaseTitle|async)] }}</h5>
+            </div>
+            <div>
+                <label class="form-label" for="password">{{'pleaseProvidePassword' | localise}}</label>
+                <input class="form-input input-lg" type="password" id="password" placeholder="{{'password' | localise}}" formControlName="password"
+                />
+            </div>
+        </fieldset>
+        <div class="modal-footer">
+            <button class="btn btn-link" type="button" [disabled]="submitting" (click)="close()">{{'cancel' | localise}}</button>
+            <button class="btn btn-primary" [disabled]="shouldDisableSubmit()" [class.loading]="submitting">{{'iAmSure' | localise}}</button>
+        </div>
+    </form>
+</div>

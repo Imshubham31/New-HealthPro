@@ -1,0 +1,34 @@
+@import '../../../styles/variables';
+.goal-progress-wrap {
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.goal-progress {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    max-width: 130px;
+    max-height: 130px;
+    &.error {
+        opacity: 0.5;
+    }
+}
+
+.goal-description {
+    position: absolute;
+    text-align: center;
+    p {
+        font-size: 3rem;
+        margin-bottom: 0.2rem;
+    }
+    label {
+        font-size: 1rem;
+    }
+    color: #002b32;
+}

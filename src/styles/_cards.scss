@@ -1,0 +1,44 @@
+@import 'utilities';
+@import '../styles/variables';
+@import 'mixins';
+$padding-top-bottom: 2rem;
+$card-padding-sides: 2.5rem;
+$small-padding-top-bottom: 1rem;
+$small-padding-left-right: 2rem;
+.card {
+    @include card-mixin(
+        $card-padding-sides,
+        $card-padding-sides,
+        $padding-top-bottom
+    );
+    height: 100%;
+    overflow: hidden;
+    .card-title {
+        font-weight: 600;
+        font-size: $font-size-xl-lg;
+        color: $body-font-color;
+    }
+    .card-subtitle {
+        font-size: $font-size-sm;
+        line-height: 1.3rem;
+        margin-bottom: 1rem;
+        color: $gray-color-dark;
+    }
+    .card-header {
+        padding: 0;
+        margin-bottom: 1rem;
+    }
+    .card-body {
+        padding: 0;
+    }
+    .card-footer {
+        padding: 2rem 1rem;
+        margin-left: -1rem;
+        margin-right: -1rem;
+        margin-bottom: -$padding-top-bottom;
+        .helper-text {
+            float: left;
+            line-height: 3.2rem;
+        }
+    }
+}

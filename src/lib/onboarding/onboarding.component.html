@@ -1,0 +1,24 @@
+<div splash-wrapper *ngIf="user">
+    <initial-consent
+        *ngIf="onboardingCoordinator.showConsent()"
+    ></initial-consent>
+    <reset-password
+        *ngIf="onboardingCoordinator.showInitialPassword()"
+        [state]="passwordComponentState"
+    ></reset-password>
+    <profile-picture
+        *ngIf="onboardingCoordinator.showProfilePicture()"
+        (notNow)="onboardingCoordinator.skipProfilePictureAndFinish()"
+        (profilePictureSet)="onboardingCoordinator.finishOnboarding()"
+    ></profile-picture>
+    <div
+        *ngIf="onboardingCoordinator.showLoading()"
+        class="overlay-spinner loading-spinner"
+    >
+        <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+    </div>
+    <progress-bar
+        [currentPage]="onboardingCoordinator.pageNumber"
+        [totalPages]="3"
+    ></progress-bar>
+</div>

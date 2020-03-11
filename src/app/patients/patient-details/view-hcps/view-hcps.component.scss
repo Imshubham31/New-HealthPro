@@ -1,0 +1,23 @@
+.mdt-container {
+    background-color: white;
+    position: relative;
+    a {
+        text-decoration: underline;
+        color: #002b32;
+        top: 28px;
+    }
+}
+
+.small-avatar {
+    height: 6rem;
+    width: 6rem;
+    margin-inline-end: 16px;
+}
+
+.mdt-detail{
+    display: inline-block;
+}
+
+.display-contents {
+    display: contents;
+}

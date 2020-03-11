@@ -1,0 +1,81 @@
+@import '../styles/_colours';
+@import '../styles/_variables';
+
+:host {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+.orientation_warning {
+    display: none;
+    @media screen and (orientation: portrait) and (max-device-width: 1024px) {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        z-index: 1000;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: white;
+    }
+    .color_logo {
+        background-image: url('../assets/logo-color.png');
+        width: 50%;
+        height: 20%;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    .rotate_icon {
+        background-image: url('../assets/turn-device-icon.svg');
+        width: 40%;
+        height: 40%;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    .rotation_text {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 20%;
+        font-size: 5vh;
+        text-transform: uppercase;
+        word-wrap: unset;
+        color: #003479;
+        font-weight: 300;
+    }
+}
+
+.overlay {
+    background: rgba(255, 255, 255, 0.75);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    cursor: default;
+    display: block;
+    .overlay-spinner {
+        text-align: center;
+        position: fixed;
+        top: 50%;
+        left: 0%;
+        width: 100%;
+        .fa {
+            color: $brandTeal;
+        }
+        div {
+            padding: 1rem;
+        }
+    }
+}

@@ -1,0 +1,27 @@
+<div
+    id="modalCustom"
+    modal-wrapper
+    [modalTitle]="'areYouSureDeleteTemplate'| localise"
+    [modalSubTitle]=""
+    [modalWidth]="'380px'"
+    [contentOverflow]="'visible'"
+    #modal
+>
+    <h6 class="contentTxt">
+        {{ 'scheduledAppointmentInDropdown' | localise }}
+    </h6>
+    <div class="modal-footer">
+        <a
+            href="javascript:void(0)"
+            class="link cancel"
+            id="appDeletecancel"
+            (click)="close()"
+            >{{ 'cancel' | localise }}</a
+        >&nbsp;&nbsp;<a
+            href="javascript:void(0)"
+            class="link iAmSure"
+            (click)="deleteappointment()"
+            >{{ 'iAmSure' | localise }}</a
+        >
+    </div>
+</div>

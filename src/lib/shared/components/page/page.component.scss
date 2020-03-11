@@ -1,0 +1,23 @@
+:host {
+  display: block;
+  flex: 1;
+}
+
+.heading {
+  display: flex;
+  align-items: center;
+  margin-bottom: 3rem;
+  border-bottom: 1px solid #F0F0F2;
+}
+
+h1 {
+  flex: 1;
+  font-size: 3rem;
+  font-weight: 400;
+}
+
+.inner {
+  background: white;
+  box-shadow: 0 0 5px 0 #e4e4e4;
+  padding: 2rem;
+}

@@ -1,0 +1,176 @@
+<div class="barChartCont">
+    <div class="step-dates">
+        <div class="weekActionblock mt-3" *ngIf="weekView">
+            <div class="columns">
+                <div class="column col-sm-4">
+                    <button
+                        id="prevWeek"
+                        class="previousData carousel-arrow arrowl"
+                        (click)="onNextPrev('subtract')"
+                    >
+                        <i class="fa fa-angle-left "></i>
+                    </button>
+                </div>
+                <div class="column col-sm-4">
+                    <p *ngIf="nextPrevWeek">{{ nextPrevWeek }}</p>
+                </div>
+                <div class="column col-sm-4">
+                    <button
+                        *ngIf="weekDifference >= 1"
+                        class="nextData carousel-arrow arrowr"
+                        id="nextWeekEn"
+                        (click)="onNextPrev('add')"
+                    >
+                        <i class="fa fa-angle-right "></i>
+                    </button>
+                    <button
+                        *ngIf="weekDifference <= 0"
+                        class="nextData carousel-arrow arrowr arrowl_backg"
+                        id="nextWeekDis"
+                    >
+                        <i class="fa fa-angle-right "></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="monthActionblock mt-3" *ngIf="monthView">
+            <div class="columns">
+                <div class="column col-sm-4">
+                    <button
+                        id="prevMonth"
+                        class="previousData carousel-arrow arrowl"
+                        (click)="onMonthPrevNext('subtract')"
+                    >
+                        <i class="fa fa-angle-left"></i>
+                    </button>
+                </div>
+                <div class="column col-sm-4">
+                    <p *ngIf="nextPrevMonthName">{{ nextPrevMonthName }}</p>
+                </div>
+                <div class="column col-sm-4">
+                    <button
+                        *ngIf="monthDifference > 0"
+                        class="nextData carousel-arrow arrowr"
+                        id="nextMonthEn"
+                        (click)="onMonthPrevNext('add')"
+                    >
+                        <i class="fa fa-angle-right"></i>
+                    </button>
+                    <button
+                        *ngIf="monthDifference <= 0"
+                        class="nextData carousel-arrow arrowr arrowl_backg"
+                        id="nextMonthDis"
+                    >
+                        <i class="fa fa-angle-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="yearActionblock mt-3" *ngIf="yearView">
+            <div class="columns">
+                <div class="column col-sm-4">
+                    <button
+                        id="prevYear"
+                        class="previousData carousel-arrow arrowl"
+                        (click)="onYearPrevNext('subtract')"
+                    >
+                        <i class="fa fa-angle-left "></i>
+                    </button>
+                </div>
+                <div class="column col-sm-4">
+                    <p *ngIf="nextPrevYearName">{{ nextPrevYearName }}</p>
+                </div>
+                <div class="column col-sm-4">
+                    <button
+                        *ngIf="yearDifference > 0"
+                        class="nextData carousel-arrow arrowr"
+                        id="nextYearEn"
+                        (click)="onYearPrevNext('add')"
+                    >
+                        <i class="fa fa-angle-right"></i>
+                    </button>
+                    <button
+                        *ngIf="yearDifference <= 0"
+                        class="nextData carousel-arrow arrowr arrowl_backg"
+                        id="nextYearDis"
+                    >
+                        <i class="fa fa-angle-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="chartbtn-section text-right">
+        <button
+            type="button"
+            class="btn"
+            id="weekView"
+            [ngClass]="{ active: weekView === true }"
+            (click)="weekShow()"
+        >
+            {{ 'week' | localise }}
+        </button>
+        <button
+            type="button"
+            class="btn"
+            id="monthView"
+            [ngClass]="{ active: monthView === true }"
+            (click)="monthShow()"
+        >
+            {{ 'month' | localise }}
+        </button>
+        <button
+            type="button"
+            class="btn"
+            id="yearView"
+            [ngClass]="{ active: yearView === true }"
+            (click)="yearShow()"
+        >
+            {{ 'year' | localise }}
+        </button>
+    </div>
+    <div class="weeklyView">
+        <canvas
+            *ngIf="weekView"
+            height="120"
+            baseChart
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [options]="barChartOptions"
+            [legend]="barChartLegend"
+            [colors]="colors"
+            [chartType]="barChartType"
+        ></canvas>
+    </div>
+    <div class="monthlyView">
+        <div *ngIf="showLoading" class="overlay-spinner loading-spinner">
+            <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+        </div>
+        <canvas
+            *ngIf="monthView"
+            baseChart
+            [datasets]="mBarChartData"
+            [labels]="mBarChartLabels"
+            [options]="mBarChartOptions"
+            [chartType]="barChartType"
+            [colors]="colors"
+            [legend]="barChartLegend"
+        >
+        </canvas>
+    </div>
+    <div class="yearlyView">
+        <canvas
+            *ngIf="yearView"
+            baseChart
+            [datasets]="yBarChartData"
+            [labels]="yBarChartLabels"
+            [options]="yBarChartOptions"
+            [chartType]="barChartType"
+            [colors]="colors"
+            [legend]="barChartLegend"
+        >
+        </canvas>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+<div modal-wrapper [modalTitle]="'generateNewCode' | localise" #modal>
+  <div *ngIf="displayCodeGenerationForm" [formGroup]="form">
+    <fieldset [disabled]="submitting">
+      <div class="form-group">
+        <label class="form-label" for="generateOnboardingCodeId">{{ 'pathway' | localise }} *</label>
+        <select id="generateOnboardingCodeId" class="form-select half-width" formControlName="hospitalCode">
+          <option value="" disabled selected>{{
+          'selectPathwayText' | localise
+      }}</option>
+          <option *ngFor="let careModule of hospitalCodeOptions" [value]="careModule.hospitalCode">
+            {{ careModule.caremodule.title }}
+          </option>
+        </select>
+      </div>
+    </fieldset>
+    <div class="modal-footer">
+      <div class="helper-text">* {{ 'requiredFields' | localise }}</div>
+      <button class="btn btn-link cancelRegisterBtn" type="button" id="registrationCodeCancel" (click)="finish()">
+        {{ 'cancel' | localise }}
+      </button>
+      <button (click)="showGeneratedCode()" id="generateCodeBtn" [disabled]="shouldDisableSubmit()"
+        class="btn btn-primary generateButton">
+        {{ 'generateCode' | localise }}
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="!displayCodeGenerationForm">
+    <div id="registrationPathwayCode">
+      <p class="pathwayLabel">{{ 'pathwayCode' | localise }}</p>
+      <p class="codePath" id="pathwayCodeId">{{ codes.hospitalCode }}</p>
+      <img class="copyText" id="copyHospitalCode" (click)="copyTextToClipboard(codes.hospitalCode)"
+        src="../../../assets/copy.svg" />
+    </div>
+    <div id="registrationTimedCode">
+      <div id="pathwayCodeLabel">
+        <span class="pathwayLabel">{{ 'timedCode' | localise }}</span>
+        <span class="timedLabel">({{ 'validUntil' | localise }} {{ codes.expires | dateformat }})</span>
+      </div>
+      <p class="registerLabel" id="registrationCodeId">{{ codes.registrationCode }}</p>
+      <img class="copyText" id="copyRegistrationCode" (click)="copyTextToClipboard(codes.registrationCode)"
+        src="../../../assets/copy.svg" />
+    </div>
+  </div>
+</div>

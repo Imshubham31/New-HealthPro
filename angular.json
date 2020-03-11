@@ -1,0 +1,302 @@
+{
+    "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+    "version": 1,
+    "newProjectRoot": "projects",
+    "projects": {
+        "hcp": {
+            "root": "",
+            "sourceRoot": "src",
+            "projectType": "application",
+            "architect": {
+                "build": {
+                    "builder": "@angular-builders/custom-webpack:browser",
+                    "options": {
+                        "customWebpackConfig": {
+                            "path": "./extra-webpack.config.js"
+                        },
+                        "outputPath": "dist",
+                        "index": "src/index.html",
+                        "main": "src/main.hcp.ts",
+                        "tsConfig": "src/tsconfig.app.json",
+                        "polyfills": "src/polyfills.ts",
+                        "stylePreprocessorOptions": {
+                            "includePaths": ["src/styles"]
+                        },
+                        "assets": [
+                            "src/assets",
+                            "src/favicon.ico",
+                            "src/new-relic/new-relic.js",
+                            "src/new-relic/nr-config.js"
+                        ],
+                        "styles": [
+                            "node_modules/datatables.net-dt/css/jquery.dataTables.css",
+                            "node_modules/fullcalendar/dist/fullcalendar.css",
+                            "src/styles/main.scss"
+                        ],
+                        "scripts": [
+                            "node_modules/jquery/dist/jquery.js",
+                            "node_modules/datatables.net/js/jquery.dataTables.js"
+                        ]
+                    },
+                    "configurations": {
+                        "production": {
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "extractCss": true,
+                            "namedChunks": false,
+                            "aot": true,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true,
+                            "serviceWorker": false,
+                            "ngswConfigPath": "/src/ngsw-config.json",
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.prod.ts"
+                                }
+                            ]
+                        },
+                        "apigeeTest": {
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "extractCss": true,
+                            "namedChunks": false,
+                            "aot": true,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true,
+                            "serviceWorker": false,
+                            "ngswConfigPath": "/src/ngsw-config.json",
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.apigeeTest.ts"
+                                }
+                            ]
+                        },
+                        "apigeeDev": {
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.apigeeDev.ts"
+                                },
+                                {
+                                    "replace": "src/new-relic/nr-config.js",
+                                    "with": "src/new-relic/nr-config.dev.js"
+                                }
+                            ]
+                        },
+                        "apigeeLocal": {
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "extractCss": true,
+                            "namedChunks": false,
+                            "aot": true,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true,
+                            "serviceWorker": false,
+                            "ngswConfigPath": "/src/ngsw-config.json",
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.apigeeLocal.ts"
+                                }
+                            ]
+                        },
+                        "apigeeStgDev": {
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "extractCss": true,
+                            "namedChunks": false,
+                            "aot": true,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true,
+                            "serviceWorker": false,
+                            "ngswConfigPath": "/src/ngsw-config.json",
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.apigeeStgDev.ts"
+                                },
+                                {
+                                    "replace": "src/new-relic/nr-config.js",
+                                    "with": "src/new-relic/nr-config.stage.js"
+                                }
+                            ]
+                        },
+                        "apigeeStg": {
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "extractCss": true,
+                            "namedChunks": false,
+                            "aot": true,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true,
+                            "serviceWorker": false,
+                            "ngswConfigPath": "/src/ngsw-config.json",
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.apigeeStg.ts"
+                                },
+                                {
+                                    "replace": "src/new-relic/nr-config.js",
+                                    "with": "src/new-relic/nr-config.stage.js"
+                                }
+                            ]
+                        },
+                        "apigeeMarketingStg": {
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "extractCss": true,
+                            "namedChunks": false,
+                            "aot": true,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true,
+                            "serviceWorker": false,
+                            "ngswConfigPath": "/src/ngsw-config.json",
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.apigeeMarketingStg.ts"
+                                }
+                            ]
+                        },
+                        "apigeeMarketingProd": {
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "extractCss": true,
+                            "namedChunks": false,
+                            "aot": true,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true,
+                            "serviceWorker": false,
+                            "ngswConfigPath": "/src/ngsw-config.json",
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.apigeeMarketingProd.ts"
+                                }
+                            ]
+                        },
+                        "apigeeProd": {
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "extractCss": true,
+                            "namedChunks": false,
+                            "aot": true,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true,
+                            "serviceWorker": false,
+                            "ngswConfigPath": "/src/ngsw-config.json",
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.apigeeProd.ts"
+                                },
+                                {
+                                    "replace": "src/new-relic/nr-config.js",
+                                    "with": "src/new-relic/nr-config.prod.js"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "serve": {
+                    "builder": "@angular-devkit/build-angular:dev-server",
+                    "options": {
+                        "browserTarget": "hcp:build",
+                        "port": 4200
+                    },
+                    "configurations": {
+                        "production": {
+                            "browserTarget": "hcp:build:production"
+                        },
+                        "apigeeTest": {
+                            "browserTarget": "hcp:build:apigeeTest"
+                        },
+                        "apigeeDev": {
+                            "browserTarget": "hcp:build:apigeeDev"
+                        },
+                        "apigeeLocal": {
+                            "browserTarget": "hcp:build:apigeeLocal"
+                        },
+                        "apigeeStg": {
+                            "browserTarget": "hcp:build:apigeeStg"
+                        },
+                        "apigeeStgDev": {
+                            "browserTarget": "hcp:build:apigeeStgDev"
+                        },
+                        "apigeeMarketingStg": {
+                            "browserTarget": "hcp:build:apigeeMarketingStg"
+                        },
+                        "apigeeMarketingProd": {
+                            "browserTarget": "hcp:build:apigeeMarketingProd"
+                        }
+                    }
+                },
+                "extract-i18n": {
+                    "builder": "@angular-devkit/build-angular:extract-i18n",
+                    "options": {
+                        "browserTarget": "hcp:build"
+                    }
+                },
+                "test": {
+                    "builder": "@angular-devkit/build-angular:karma",
+                    "options": {
+                        "main": "src/test.ts",
+                        "karmaConfig": "./karma.conf.js",
+                        "polyfills": "src/polyfills.ts",
+                        "tsConfig": "src/tsconfig.spec.json",
+                        "scripts": [],
+                        "sourceMap": true,
+                        "styles": [
+                            "node_modules/fullcalendar/dist/fullcalendar.css",
+                            "src/styles/main.scss"
+                        ],
+                        "assets": ["src/assets", "src/favicon.ico"],
+                        "codeCoverageExclude": [
+                            "src/lib/localise/lang-*",
+                            "**/new-relic.js",
+                            "src/lib/shared/services/env.service.ts"
+                        ]
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": [
+                            "src/tsconfig.app.json",
+                            "src/tsconfig.spec.json"
+                        ],
+                        "exclude": ["**/node_modules/**"]
+                    }
+                }
+            }
+        }
+    },
+    "schematics": {
+        "@schematics/angular:component": {
+            "prefix": "app",
+            "styleext": "scss"
+        },
+        "@schematics/angular:directive": {
+            "prefix": "app"
+        }
+    }
+}

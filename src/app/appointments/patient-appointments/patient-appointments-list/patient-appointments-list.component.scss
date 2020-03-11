@@ -1,0 +1,29 @@
+@import '../../../../styles/variables';
+.appointment {
+    cursor: pointer;
+    padding: 1.5rem;
+    &.selected {
+        background: white;
+    }
+    &.past {
+        opacity: 0.7;
+    }
+}
+
+.heading {
+    display: flex;
+    align-items: center;
+    margin: 2rem 0 2rem 0rem;
+}
+
+.month {
+    font-size: 1.8rem;
+    color: $textColour;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.separator {
+    flex: 1;
+    border-bottom: 1px solid #e7e9ed;
+}

@@ -1,0 +1,50 @@
+<div class="loading-container" *ngIf="(loading$ | async); else showDetails">
+    <div class="loading"></div>
+    <div>{{ 'progressMsgLogin' | localise }}</div>
+</div>
+<ng-template #showDetails>
+    <div class="columns">
+        <div class="col-10 col-xl-12 all-pages-container">
+            <div class="columns">
+                <patient-card
+                    [showEditDetails]="true"
+                    class="column"
+                    [patient]="patient"
+                    [pathway]="pathway"
+                    [showDetailsButton]="false"
+                    [startNewConversation]="true"
+                ></patient-card>
+            </div>
+            <div class="columns">
+                <phase-details
+                    [pathway]="pathway"
+                    [patient]="patient.patient"
+                    (confirmMove)="confirmMove()"
+                    class="column col-4 col-lg-12 relative-block"
+                ></phase-details>
+                <goal-details
+                    [patient]="patient"
+                    [pathway]="pathway"
+                    class="column col-8 col-lg-12"
+                ></goal-details>
+            </div>
+            <div class="columns">
+                <task-list
+                    class="column col-8 col-lg-12"
+                    [pathway]="pathway"
+                ></task-list>
+                <patient-details-hcp-notes
+                    [patient]="patient"
+                    class="column col-4 col-lg-12 relative-block"
+                ></patient-details-hcp-notes>
+            </div>
+            <div class="columns">
+                <view-hcps
+                    class="column"
+                    (editMDT)="editMdtTeam()"
+                    [mdts]="patient.patient.mdts"
+                ></view-hcps>
+            </div>
+        </div>
+    </div>
+</ng-template>

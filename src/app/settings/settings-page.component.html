@@ -1,0 +1,109 @@
+<div class="all-pages-container col-6 col-mx-auto col-xl-9 col-sm-12">
+    <div class="card">
+        <div class="columns settings-row settings-title">
+            {{ 'settings' | localise }}
+        </div>
+        <div class="columns" *ngIf="error">
+            <div class="toast toast-error">{{ error }}</div>
+        </div>
+        <div class="columns settings-row">
+            <div class="column col-6 settings-name">
+                <img src="../../../assets/Password.svg" />
+                <div>{{ 'password' | localise }}</div>
+            </div>
+            <div class="col-ml-auto">
+                <button
+                    class="btn btn-primary btn-lg"
+                    (click)="showChangePasswordModal()"
+                >
+                    {{ 'changePassword' | localise }}
+                </button>
+            </div>
+        </div>
+        <div class="columns settings-row" *gdpr="gdprConstants.EXPORT_MY_DATA">
+            <div class="column col-6 settings-name">
+                <img src="../../../assets/export_data.svg" />
+                <div>{{ 'exportMyData' | localise }}</div>
+            </div>
+            <div class="col-ml-auto">
+                <button
+                    class="btn btn-primary btn-lg"
+                    (click)="displayExportModal()"
+                >
+                    {{ 'export' | localise }}
+                </button>
+            </div>
+        </div>
+
+        <div
+            class="columns settings-row"
+            *gdpr="gdprConstants.RIGHT_TO_BE_FORGOTTEN"
+        >
+            <div class="column col-6 settings-name">
+                <img src="../../../assets/forgotten.svg" />
+                <div>{{ 'rightToBeForgotten' | localise }}</div>
+            </div>
+            <div class="col-ml-auto">
+                <button
+                    [disabled]="disableButton"
+                    class="btn btn-primary btn-lg"
+                    (click)="showBeForgottenModal()"
+                >
+                    {{ 'initiate' | localise }}
+                </button>
+            </div>
+        </div>
+
+        <div
+            class="columns settings-row"
+            *gdpr="gdprConstants.RIGHT_TO_RESTRICT_PROCESSING_DATA"
+        >
+            <div class="column col-6 settings-name">
+                <img src="../../../assets/restrict_processing.svg" />
+                <div>{{ 'restrictProcessingPersonal' | localise }}</div>
+            </div>
+            <div class="col-ml-auto">
+                <button
+                    [disabled]="disableButton"
+                    class="btn btn-primary btn-lg"
+                    (click)="showRightToBeRestrcitedModal()"
+                >
+                    {{ 'initiate' | localise }}
+                </button>
+            </div>
+        </div>
+
+        <div class="columns settings-row">
+            <div class="column col-6 settings-name">
+                <img src="../../../assets/contact.svg" />
+                <div>{{ 'contact' | localise }}</div>
+            </div>
+            <div class="col-ml-auto">
+                <button class="btn btn-primary btn-lg" (click)="support()">
+                    {{ 'viewDetails' | localise }}
+                </button>
+            </div>
+        </div>
+
+        <div class="toast toast-error" *ngIf="fetchingDocumentsError">
+            {{ fetchingDocumentsError }}
+        </div>
+
+        <ng-template [ngIf]="fetchingDocuments">
+            <div class="loading-docs">
+                <div class="loading"></div>
+                {{ 'loadingLegalDocuments' | localise }}
+            </div>
+        </ng-template>
+
+        <ng-template [ngIf]="!fetchingDocuments && !fetchingDocumentsError">
+            <legal-document-row
+                class="columns settings-row"
+                *ngFor="let doc of acceptedDocuments"
+                [document]="doc"
+            ></legal-document-row>
+        </ng-template>
+
+        <div><hospital-logo></hospital-logo></div>
+    </div>
+</div>

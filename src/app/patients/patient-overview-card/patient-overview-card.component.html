@@ -1,0 +1,57 @@
+<div class="columns col-12">
+    <div class="column col-4 col-lg-12 avatar-container">
+        <avatar-img
+            size="10rem"
+            [user]="patientOverviewData.patient"
+        ></avatar-img>
+    </div>
+    <div class="column patients-container">
+        <div class="patient-name">
+            {{ patientOverviewData.patient.firstName }}
+            {{ patientOverviewData.patient.lastName }}
+        </div>
+        <div id="patientOverviewDataDate" class="date-name">
+            {{ patientOverviewData.patient.dob | dateformat }},
+            {{ patientOverviewData.patient.dob | age }}
+        </div>
+        <div class="caremodule-container">
+            <div>
+                {{ patientOverviewData.careModule?.title }}
+            </div>
+            <span
+                class="link"
+                [title]="'editCareModule' | localise"
+                (click)="openEditCareModule()"
+            >
+                <img
+                    *ngIf="(canShowEditIcon() | async)"
+                    class="icon"
+                    src="../../../assets/accent.svg"
+                />
+            </span>
+        </div>
+        <ng-container *ngIf="patientOverviewData.patient.surgery">
+            <p *ngIf="patientOverviewData.patient.surgery.startDateTime">
+                {{
+                    patientOverviewData.patient.surgery.startDateTime
+                        | dateformat
+                }}
+            </p>
+            <div
+                class="doctor-name"
+                [class.gray-text]="
+                    patientOverviewData.patient.surgery.surgeon.isRestricted
+                "
+                *ngIf="patientOverviewData.patient.surgery.surgeon"
+            >
+                {{ patientOverviewData.patient.surgery.surgeon | restricted }}
+            </div>
+        </ng-container>
+        <a
+            *ngIf="shouldShowEditProfile"
+            class="padding-0 link"
+            (click)="editPatient()"
+            >{{ 'editProfile' | localise }}</a
+        >
+    </div>
+</div>

@@ -1,0 +1,165 @@
+<div modal-wrapper modalTitle="{{ state.titleTextKey | localise }}" #modal>
+    <form [formGroup]="form" (submit)="submit()">
+        <div
+            class="toast toast-error margin-bottom-small"
+            *ngIf="(errors$ | async)?.length"
+        >
+            <div *ngFor="let error of (errors$ | async)">
+                {{ error }}
+            </div>
+        </div>
+
+        <app-modal-form-control
+            [required]="true"
+            label="{{ 'patient' | localise }}"
+            [makeBolder]="true"
+            formControlName="patient"
+        >
+            <participant-selector
+                [participantType]="participantType"
+                (onChange)="handlePatientChange($event)"
+            ></participant-selector>
+        </app-modal-form-control>
+        <app-modal-form-control
+            label="{{ 'appointmentName' | localise }}"
+            formControlName="title"
+            [makeBolder]="true"
+            [required]="true"
+        >
+            <app-modal-input
+                (click)="getAppointmentsTemplate($event)"
+            ></app-modal-input>
+            <div class="dropdown">
+                <div class="btn-group">
+                    <a class="btn dropdown-toggle customdropdown" tabindex="0">
+                        <i class="icon icon-caret"></i>
+                    </a>
+
+                    <div class="custom-dropdown">
+                        <ul
+                            class="menu listblcok arrow-box"
+                            *ngIf="
+                                showTitleWidget &&
+                                appointmentTemplates?.length > 0
+                            "
+                        >
+                            <li class="font-gray">
+                                {{ 'prefillTemplatesFor' | localise
+                                }}{{ titleHeader }}
+                            </li>
+                            <li
+                                class="menu-item listitem"
+                                *ngFor="let appointment of appointmentTemplates"
+                                (click)="getTitle(appointment, $event)"
+                            >
+                                {{ appointment.title }}
+                            </li>
+                            <a
+                                *ngIf="
+                                    authenticationService.isCareCoordinator()
+                                "
+                                [routerLink]="['/appointmenttemplate']"
+                                routerLinkActive="active"
+                                (click)="close()"
+                                ><li>
+                                    <span class="padding-right-5">{{
+                                        'manageTheAppointmentTemplates'
+                                            | localise
+                                    }}</span
+                                    ><i class="fa fa-external-link"></i></li
+                            ></a>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </app-modal-form-control>
+        <app-modal-form-control
+            label="{{ 'hcpsMedicalStaff' | localise }}"
+            formControlName="HCPs"
+            [required]="true"
+            [makeBolder]="true"
+        >
+            <app-modal-multi-tag-input
+                [options]="HCPs"
+                [matchProperty]="'backendId'"
+                [labelFormatter]="hcpLabelFormatter"
+            ></app-modal-multi-tag-input>
+        </app-modal-form-control>
+        <p *ngIf="selectedPatient && HCPs.length === 0">
+            {{ 'noMdtAssigned' | localise }}
+        </p>
+
+        <app-modal-form-control
+            [required]="true"
+            label="{{ 'date' | localise }}"
+            formControlName="date"
+            [makeBolder]="true"
+        >
+            <app-modal-datepicker [min]="minDate"></app-modal-datepicker>
+        </app-modal-form-control>
+
+        <app-modal-form-control
+            [errors]="hints.timeSpan"
+            formControlName="timeSpan"
+            [required]="true"
+            [makeBolder]="true"
+        >
+            <app-modal-time-range
+                [date]="form.value.date"
+            ></app-modal-time-range>
+        </app-modal-form-control>
+
+        <app-modal-form-control
+            label="{{ 'location' | localise }}"
+            formControlName="location"
+            [required]="true"
+            [makeBolder]="true"
+        >
+            <app-modal-input></app-modal-input>
+        </app-modal-form-control>
+
+        <app-modal-form-control
+            formControlName="includeLinkToLocation"
+            [makeBolder]="true"
+        >
+            <app-modal-checkbox
+                label="{{ 'includeLinkToLocation' | localise }}"
+            ></app-modal-checkbox>
+        </app-modal-form-control>
+
+        <app-modal-form-control
+            label="{{ 'locationUrl' | localise }}"
+            formControlName="locationUrl"
+            [makeBolder]="true"
+        >
+            <app-modal-input></app-modal-input>
+        </app-modal-form-control>
+
+        <app-modal-form-control
+            [required]="true"
+            label="{{ 'description' | localise }}"
+            formControlName="description"
+            [makeBolder]="true"
+        >
+            <app-modal-textarea
+                [rows]="3"
+                [maxLength]="240"
+            ></app-modal-textarea>
+        </app-modal-form-control>
+        <p class="warning-text">{{ 'refrainEnteringMedData' | localise }}</p>
+
+        <div class="modal-footer">
+            <div class="helper-text">* {{ 'requiredFields' | localise }}</div>
+            <button class="btn btn-link" type="button" (click)="close()">
+                {{ 'cancel' | localise }}
+            </button>
+            <button
+                [disabled]="!form.valid || submitting"
+                class="btn btn-primary"
+                [class.loading]="submitting"
+            >
+                {{ this.state.submitButtonTextKey | localise }}
+            </button>
+        </div>
+    </form>
+</div>

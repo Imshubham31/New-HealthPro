@@ -1,0 +1,63 @@
+<div class="row">
+    <div
+        id="masterRowDate"
+        class="col-12 row-date"
+        *ngIf="lastMessage && lastMessage.time"
+    >
+        {{ formatDate(lastMessage.time) }}
+    </div>
+    <div class="col-12 row-title">
+        <div class="truncate">{{ title }}</div>
+    </div>
+    <div class="col-12 row-body container">
+        <div class="col-11 row-body">
+            <div *ngIf="lastMessage" class="truncate-overflow">
+                <system-messages
+                    *ngIf="lastMessage.code"
+                    [message]="lastMessage"
+                ></system-messages>
+                <ng-container *ngIf="lastMessage.body">
+                    <span *ngIf="lastUser">{{ lastUser.displayName }}:</span>
+                    <span> {{ lastMessage.body }}</span>
+                </ng-container>
+            </div>
+        </div>
+        <div class="col-1 row-date">
+            <span *ngIf="count > 0" class="count-badge">{{ count }}</span>
+        </div>
+    </div>
+    <div
+        class="row-users truncate"
+        *ngIf="sortedUsers && sortedUsers.length > 0"
+    >
+        <i
+            *ngIf="sortedUsers.length > 1"
+            class="fa fa-users"
+            aria-hidden="true"
+        ></i>
+        <avatar-img
+            *ngIf="sortedUsers.length === 1"
+            [user]="sortedUsers[0]"
+            size="1.3rem"
+            #avatar
+        ></avatar-img>
+        <span>&nbsp;</span>
+        <span
+            *ngFor="
+                let user of sortedUsers;
+                let i = index;
+                trackBy: trackByBackendId
+            "
+        >
+            <span *ngIf="i > 0">, </span>
+            <span [class.patient]="isPatient(user)">{{
+                user.displayName
+            }}</span>
+            <span
+                *ngIf="this.patientsMap && isPatient(user)"
+                class="patient-dob"
+                >{{ this.getDobSuffix(user.backendId) }}</span
+            >
+        </span>
+    </div>
+</div>

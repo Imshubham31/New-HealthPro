@@ -1,0 +1,44 @@
+<form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+    <div class="card-header">
+        <h3>{{ 'profilePicture' | localise }}</h3>
+        <p class="margin-bottom-1">{{ 'pictureInstructions' | localise }}</p>
+    </div>
+    <div class="card-body text-center">
+        <img
+            *ngIf="base64Image; else showAvatar"
+            class="large-avatar circle"
+            [src]="base64Image"
+        />
+        <ng-template #showAvatar>
+            <avatar-img [user]="user" size="10rem" #avatar></avatar-img>
+        </ng-template>
+        <div class="form-group columns">
+            <label for="profile-picture" class="column col-12 link">{{
+                'choosePicture' | localise
+            }}</label>
+            <input
+                type="file"
+                id="profile-picture"
+                accept="image/*"
+                class="hidden"
+                formControlName="picture"
+                (change)="onUpload($event)"
+            />
+        </div>
+        <div class="toast toast-error" *ngIf="formError">
+            {{ formError }}
+        </div>
+    </div>
+    <div class="text-center">
+        <button
+            class="btn btn-primary btn-block btn-lg margin-bottom-1"
+            [disabled]="shouldDisableSubmit()"
+            [class.loading]="submitting"
+        >
+            {{ 'saveAndContinue' | localise }}
+        </button>
+        <a class="link text-center" (click)="skipProfilePicture()">{{
+            'notNow' | localise
+        }}</a>
+    </div>
+</form>

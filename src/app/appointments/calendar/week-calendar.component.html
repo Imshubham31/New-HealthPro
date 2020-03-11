@@ -1,0 +1,68 @@
+<div *ngIf="modelPop" class="modelListAppoinment">
+    <div class="modal appointMentmodal active" id="modal-id">
+        <span
+            class="modal-overlay"
+            aria-label="Close"
+            (click)="closemodal()"
+        ></span>
+        <div class="modal-container">
+            <div class="modal-header">
+                <span
+                    id="appointment-close"
+                    class="btn btn-clear float-right"
+                    (click)="closemodal()"
+                    aria-label="Close"
+                ></span>
+                <h4>
+                    {{ 'appointments' | localise }}
+                    {{ 'for' | localise }}
+                    {{ getDate | date: 'dd MMMM y' }}
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="content">
+                    <div classs="appointments-row">
+                        <div
+                            class="noAppointments"
+                            *ngIf="appointmentOnDate.length <= 0"
+                        >
+                            <h5 class="text-center">
+                                {{ 'noAppointments' | localise }}
+                            </h5>
+                        </div>
+                        <div
+                            id="appointment-list-wrapper"
+                            class="appointment-list"
+                            [ngClass]="{
+                                approve: appoint.status == '0',
+                                pending: appoint.status == '2',
+                                decline: appoint.status == '1'
+                            }"
+                            *ngFor="let appoint of appointmentOnDate"
+                        >
+                            <span id="appointment-time">
+                                {{ appoint.timeSlot.start | date: 'HH:mm' }}-
+                                {{ appoint.timeSlot.end | date: 'HH:mm' }}</span
+                            >
+
+                            <h4 id="appointment-title">{{ appoint.title }}</h4>
+
+                            <span    
+                        >{{ appoint.patientDetails.firstName }}</span>, 
+                            <span
+                                id="appointment-doctor-name"
+                                *ngFor="
+                                    let attendeeName of appoint.watcherDetails;
+                                    let isLast = last
+                                "
+                                >{{ attendeeName.firstName }}
+                                {{ attendeeName.lastName }}
+                                {{ isLast ? '' : ', ' }}</span
+                            >
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

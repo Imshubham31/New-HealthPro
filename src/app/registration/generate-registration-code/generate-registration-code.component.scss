@@ -1,0 +1,61 @@
+@import '../../../assets/../styles/variables';
+.half-width {
+    width: 50% !important;
+}
+.generateButton {
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color:$color-hex-white;
+}
+.timedLabel {
+    font-size: 12px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color:$timed-label-color;
+    padding-left: 3px;
+}
+.pathwayLabel {
+    font-size: 12px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color:$dark-blue;
+}
+.codePath {
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color:$dark-blue;
+    display: inline;
+}
+.cancelRegisterBtn {
+    font-size: 12px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: right;
+    color:$dark-blue !important;
+    text-decoration: underline;
+}
+.copyText{
+    cursor: pointer;
+}
+
+.registerLabel {
+    display: inline;
+}

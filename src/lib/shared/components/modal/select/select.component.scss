@@ -1,0 +1,33 @@
+@import '../../../../../styles/variables';
+// TODO: remove after spectre.css is used instead of spectre.scss
+.has-icon-right {
+    position: relative;
+    .icon-container {
+        position: absolute;
+        top: 0.6rem;
+        text-align: end;
+        right: 1rem;
+        width: 5rem;
+    }
+    .fa-caret-down {
+        color: $primary-color;
+    }
+    .fa-times-circle {
+        opacity: 0.5;
+        cursor: pointer;
+        &:hover {
+            opacity: 1;
+        }
+    }
+    i {
+        margin-inline-start: 1rem;
+    }
+}
+
+:host ::ng-deep .ng2-auto-complete-wrapper ul {
+    max-height: 20em;
+    overflow: auto;
+    list-style: none;
+    padding: 1rem;
+    position: relative;
+}

@@ -1,0 +1,29 @@
+@import "variables";
+.optanon-alert-box-wrapper {
+    background-color: $trust-box-background !important;
+}
+.optanon-alert-box-wrapper .optanon-alert-box-bg p {
+    color: $trust-box-color !important;
+}
+
+// .optanon-alert-box-wrapper .optanon-button-more .optanon-alert-box-button-middle button {
+//     padding: 10px 10px;
+//     border-radius: 5px;
+//     color: #ffffff !important;
+//     cursor: pointer;
+//     background: #6CC04A !important;
+// }
+// .optanon-alert-box-wrapper{
+//     bottom: 0px !important;
+//     display: block !important;
+//     position: relative !important;
+// }
+.banner-content a{color:$light-color;}
+.optanon-alert-box-wrapper .optanon-alert-box-button-middle {
+    background-color: $trust-button-color !important;
+    border-color: $trust-button-color !important;
+}
+.optanon-alert-box-button-middle {
+    background-color: $trust-button-color !important;
+    border-color: $trust-button-color !important;
+}

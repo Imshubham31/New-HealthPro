@@ -1,0 +1,30 @@
+@import '../../../styles/mixins.scss';
+
+.circle-container {
+    @include padding-on-element(0.5rem, 0.5rem, 2rem, 0rem);
+}
+
+.change-profile-container {
+    padding-top: 4rem;
+    margin-inline-start: 1rem;
+    text-decoration: underline;
+}
+
+.edit-user-footer {
+    padding: 2rem 1rem;
+    margin-left: -2.5rem;
+    margin-right: -2.5rem;
+    margin-bottom: -2rem;
+    .helper-text {
+        float: left;
+        line-height: 3.2rem;
+    }
+}
+
+::ng-deep .wrapper[dir='rtl'] {
+    .edit-user-footer {
+        .helper-text {
+            float: right;
+        }
+    }
+}

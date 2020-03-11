@@ -1,0 +1,244 @@
+@import '../../../styles/variables';
+@import '../../../lib/appointments/calendar/calendar.component.scss';
+
+// this is here for specificity, as fullcalendar prefixes everything
+.fc {
+    th {
+        text-align: left;
+        padding: 0 0 1rem 1rem;
+        color: #a4a4a5;
+        font-weight: normal;
+        font-size: 1.4rem;
+
+        &.fc-today {
+            color: $textColour;
+
+            .day-and-month {
+                border-left-color: $primary-color;
+            }
+        }
+
+        .day {
+            color: $textColour;
+            font-size: 2.8em;
+        }
+
+        .day-and-month {
+            // Move the day number to the baseline
+            line-height: 0.8em;
+            padding-top: 0.7rem;
+
+            margin-top: 0.8rem;
+        }
+
+        .day-name,
+        .day-and-month {
+            padding-left: 1rem;
+            border-left: 3px solid transparent;
+        }
+    }
+
+    // The height of one row
+    .fc-time-grid .fc-slats td {
+        height: 9rem;
+        vertical-align: top;
+    }
+
+    .fc-bg {
+        background: #f7f8f9;
+    }
+
+    .fc-event {
+        padding: 1rem;
+        background: white;
+        border-radius: 3px;
+        border: none;
+        box-shadow: 0px 2px 5px 1px #e4e4e4;
+        border-left-width: 3px;
+        border-left-style: solid;
+        color: $textColour;
+        margin-top: 1px;
+
+        &:hover {
+            color: $textColour;
+        }
+
+        &--accepted, &--scheduled, &--updated {
+            border-color: #73cd1f;
+            .fc-status-label {
+                color: #73cd1f;
+            }
+        }
+
+        &--declined, &--missed {
+            border-color: #f7211b;
+            .fc-status-label {
+                color: #f7211b;
+            }
+        }
+
+        &--pending {
+            border-color: #ffb402;
+            .fc-status-label {
+                color: #ffb402;
+            }
+        }
+
+        &--past {
+            opacity: 0.5;
+        }
+    
+        &--attended {
+            border-color: $primary-color;
+            .fc-status-label {
+                color: $primary-color;
+            }
+        }
+    }
+
+    .fc-time-grid-event {
+        .fc-content {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .fc-title {
+            font-size: 1.7rem;
+            font-weight: bold;
+            flex: 1;
+        }
+
+        .fc-status-label {
+            text-align: right;
+        }
+
+        .fc-time {
+            font-size: 1.3rem;
+        }
+    }
+
+    .fc-today-button {
+        background: $textColour;
+        border: none;
+        color: white;
+        padding: 0 2.5rem;
+    }
+
+    .fc-prev-button,
+    .fc-next-button {
+        font-size: 2rem;
+        height: auto;
+        background: none;
+        border: none;
+        color: black;
+        box-shadow: none;
+
+        &:hover,
+        &:focus {
+            background: none;
+            color: $textColour;
+            box-shadow: none;
+        }
+    }
+
+    // flex was added for vertical alignment
+    .fc-toolbar {
+        display: flex;
+        align-items: center;
+
+        h2 {
+            font-size: 2rem;
+        }
+
+        // want to vertically align the toolbar
+        .fc-left,
+        .fc-right {
+            float: none;
+        }
+
+        // vertically align left area items
+        .fc-left {
+            display: flex;
+            align-items: center;
+            flex: 1;
+        }
+    }
+
+    .fc-body > tr > .fc-widget-content {
+        border-left: none;
+        border-right: none;
+    }
+
+    .fc-toolbar.fc-header-toolbar {
+        margin-bottom: 5rem;
+    }
+
+    // Need this to be able to show shadows on last element in the grid.
+    .fc-scroller {
+        overflow:scroll;
+    }
+    .fc-scroller::-webkit-scrollbar-track
+{
+    width: 5px;
+    border-radius: 20px;
+	border: 1px solid #089fba;
+	background-color: #F5F5F5;
+}
+
+.fc-scroller::-webkit-scrollbar
+{
+    width: 5px;
+    border-radius: 20px;
+	background-color: #F5F5F5;
+}
+
+.fc-scroller::-webkit-scrollbar-thumb
+{
+    width: 5px;
+    border-radius: 20px;
+	background-color: #089fba;	
+}
+}
+.modal-container{
+    width: 600px !important;
+}
+
+.modelListAppoinment{
+    .appointment-list {
+        padding: 10px;
+        border-radius: 4px;
+        box-shadow: 1px 0px 5px rgba(0, 0, 0, 0.1);
+        margin-bottom:10px;
+        &.approve{
+            border-left: 3px solid #51c35a;
+        }
+        &.pending{
+            border-left: 3px solid #e4c931;
+        }
+        &.decline{
+            border-left: 3px solid #f7211b;
+        }
+    }
+}
+.modal-body::-webkit-scrollbar-track
+{
+    width: 10px;
+    border-radius: 20px;
+	border: 1px solid #089fba;
+	background-color: #F5F5F5;
+}
+
+.modal-body::-webkit-scrollbar
+{
+    width: 10px;
+    border-radius: 20px;
+	background-color: #F5F5F5;
+}
+
+.modal-body::-webkit-scrollbar-thumb
+{
+    width: 10px;
+    border-radius: 20px;
+	background-color: #089fba;	
+}

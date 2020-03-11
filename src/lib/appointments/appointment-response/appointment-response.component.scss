@@ -1,0 +1,51 @@
+@import '../../../styles/variables';
+
+.responseBtn {
+    background-color: $dark-color;
+    color: white;
+    padding: 1rem;
+    font-size: $font-size-lg;
+    border: none;
+    cursor: pointer;
+}
+
+.response {
+    position: relative;
+    display: inline-block;
+    font-size: $font-size-lg;
+}
+
+.response-options {
+    display: none;
+    position: absolute;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+.response-options div {
+    color: black;
+    padding: 12px 16px;
+    background-color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.response-options div i {
+    padding-inline-end: 1rem;
+}
+
+.response-options div:hover {
+    background-color: #f1f1f1;
+}
+
+.response:hover .response-options {
+    display: block;
+}
+
+.accept {
+    color: $control-color-success;
+}
+
+.decline {
+    color: $control-color-error;
+}

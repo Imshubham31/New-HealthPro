@@ -1,0 +1,13 @@
+<div class="group" *ngFor="let group of groups">
+    <div class="heading">
+        <span class="month margin-sides-1">{{ group.name }}</span>
+        <div class="separator"></div>
+    </div>
+    <patient-appointments-list-item
+        class="appointment"
+        *ngFor="let appointment of group.appointments"
+        [appointment]="appointment"
+        [ngClass]="getAppointmentClass(appointment)"
+        (click)="handleAppointmentSelected(appointment)"
+    ></patient-appointments-list-item>
+</div>

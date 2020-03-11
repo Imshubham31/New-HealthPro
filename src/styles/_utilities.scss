@@ -1,0 +1,218 @@
+@import '_colours';
+@import '_variables';
+@import '../../node_modules/spectre.scss/src/_layout.scss';
+@import 'layout';
+body {
+    background: $brandLightBlue;
+}
+
+.light-blue-background {
+    background: $brandLightBlue;
+}
+
+.grey-background {
+    background: $greyLight;
+}
+
+.full-width {
+    width: 100% !important;
+}
+
+.all-pages-container {
+    @extend .col-mx-auto;
+    padding: 5rem 4rem 0 4rem;
+    margin-bottom: 1rem;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.empty {
+    background: inherit;
+}
+
+.semi-bold {
+    font-weight: 600;
+}
+
+.divider-vert {
+    width: 1px;
+    background: #e3e3e3;
+}
+
+.align-center {
+    align-self: center;
+}
+
+.block-centered {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+$increments: (
+    0: 0rem,
+    1: 1rem,
+    2: 2rem,
+    3: 3rem,
+    4: 4rem,
+    5: 5rem,
+    large: 8rem,
+    small: 0.75rem,
+    half: 0.5rem,
+);
+@each $key, $value in $increments {
+    .padding-#{$key} {
+        padding: #{$value};
+    }
+    .padding-sides-#{$key} {
+        padding-left: #{$value};
+        padding-right: #{$value};
+    }
+    .padding-left-#{$key} {
+        padding-left: #{$value};
+    }
+    .padding-right-#{$key} {
+        padding-right: #{$value};
+    }
+    .padding-top-#{$key} {
+        padding-top: #{$value};
+    }
+    .padding-bottom-#{$key} {
+        padding-bottom: #{$value};
+    }
+    .padding-start-#{$key} {
+        padding-inline-start: #{$value};
+    }
+    .margin-left-#{$key} {
+        margin-left: #{$value};
+    }
+    .margin-right-#{$key} {
+        margin-right: #{$value};
+    }
+    .margin-#{$key} {
+        margin: #{$value};
+    }
+    .margin-sides-#{$key} {
+        margin-left: #{$value};
+        margin-right: #{$value};
+    }
+    .margin-top-#{$key} {
+        margin-top: #{$value};
+    }
+    .margin-bottom-#{$key} {
+        margin-bottom: #{$value};
+    }
+    .margin-start-#{$key} {
+        margin-inline-start: #{$value};
+    }
+    .margin-end-#{$key} {
+        margin-inline-end: #{$value};
+    }
+}
+
+.small-line-height {
+    line-height: 1.75rem;
+}
+
+.flexy {
+    display: flex;
+}
+
+// Cursors
+.outline-none {
+    outline: none;
+}
+
+.characters-remaining {
+    font-size: $font-size-sm;
+    color: $light-gray;
+}
+
+.vertical-align-middle {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.label-text {
+    font-weight: 600;
+    font-size: $font-size-sm;
+}
+
+.page-header {
+    font-weight: 600;
+    font-size: 3rem;
+    color: $body-font-color;
+}
+
+.relative-block {
+    position: relative;
+}
+
+.gray-text {
+    color: $gray-text;
+}
+
+.loading.loading-lg {
+    min-height: 2rem;
+    &::after {
+        height: 1.6rem;
+        margin-left: -0.8rem;
+        margin-top: -0.8rem;
+        width: 1.6rem;
+    }
+}
+
+.link {
+    text-decoration: underline;
+    color: $body-font-color;
+    position: relative;
+    cursor: pointer;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+.flex-container {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+.shadow-4 {
+    box-shadow: 0 0.4rem 1rem rgba(69, 77, 93, 0.3);
+}
+
+.text-ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.hcp-actions-icon {
+    width: 1.7rem;
+    height: 1.7rem;
+    vertical-align: middle;
+    margin-inline-end: 0.75rem;
+}
+.warning-text {
+    color: #ec3a18;
+}
+
+.loading-container {
+    height: 100vh;
+    text-align: center;
+    padding-top: 40vh;
+}
+
+.truncate {
+  width: 95%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

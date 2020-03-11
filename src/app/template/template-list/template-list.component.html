@@ -1,0 +1,80 @@
+<div class="col-10 col-xl-12 all-pages-container">
+    <div class="flex-container">
+        <h3 class="page-header">
+            {{ 'template' | localise }}
+        </h3>
+    </div>
+    <div class="columns">
+        <div class="column">
+            <div class="divider"></div>
+        </div>
+    </div>
+    <div class="container grid-lg">
+        <div class="columns gray-text">
+            <div class="column text-uppercase contact-details-container">
+                {{ 'typesTwo' | localise }}
+            </div>
+        </div>
+        <div class="columns hcp-container">
+            <div class="column content-box">
+                <img
+                    class=""
+                    src="../../../assets/greycalender.svg"
+                    alt="appointment"
+                />
+                <div class="">
+                    <h4>{{ 'appointments' | localise }}</h4>
+                    <p class="gray-text">
+                        {{ appointementTemplateCount }}
+                        {{ 'template' | localise }}
+                    </p>
+                </div>
+            </div>
+
+            <div
+                class="column details-button col-1"
+                role="button"
+                [routerLink]="['/appointmenttemplate']"
+            >
+                <div class="block-centered">
+                    <img
+                        src="../../../assets/details.svg"
+                        class="flip-on-rtl"
+                        alt=""
+                    />
+                    <p>{{ 'details' | localise }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="columns hcp-container">
+            <div class="column content-box">
+                <img
+                    class=""
+                    src="../../../assets/messages_grey.svg"
+                    alt="message"
+                />
+                <div class="">
+                    <h4>{{ 'messages' | localise }}</h4>
+                    <p class="gray-text">
+                        {{ messageTemplateCount }} {{ 'template' | localise }}
+                    </p>
+                </div>
+            </div>
+
+            <div
+                class="column details-button col-1"
+                role="button"
+                [routerLink]="['/messagetemplate']"
+            >
+                <div class="block-centered">
+                    <img
+                        src="../../../assets/details.svg"
+                        class="flip-on-rtl"
+                        alt=""
+                    />
+                    <p>{{ 'details' | localise }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

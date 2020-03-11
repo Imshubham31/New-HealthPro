@@ -1,0 +1,11 @@
+@import '../../../../styles/colours';
+
+.restricted {
+    display: flex;
+    color: $grayColour;
+    align-items: center;
+}
+
+.display-contents {
+    display:contents;
+}

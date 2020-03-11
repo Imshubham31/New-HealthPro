@@ -1,0 +1,13 @@
+@import '../../../../assets/../styles/variables';
+.modal-footer{
+    display: flex;
+    justify-content: space-around;
+}
+.form-label {
+    font-weight: 600 !important;
+}
+.btn.btn-link {
+    color:$btn-link-color;
+    font-weight: bold;
+    text-decoration: underline;
+}

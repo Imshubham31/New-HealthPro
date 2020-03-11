@@ -1,0 +1,41 @@
+@import '../../../styles/mixins.scss';
+.hcp-container {
+    @include card-mixin(2rem, 2rem, 1rem);
+    margin-bottom: 20px;
+}
+.details-button {
+    margin-top: -2rem;
+    margin-bottom: -2rem;
+    margin-inline-end: -1rem;
+    position: relative;
+    width: 3.3em;
+    background: rgba(129, 68, 68, 0.1);
+    color: black;
+    cursor: pointer;
+    text-align: center;
+    margin-inline-start: auto;
+    p {
+        margin: 0;
+    }
+}
+.column.details-button {
+    padding-top: 0;
+    padding-bottom: 0;
+    margin:-1rem -2rem -1rem 0;
+}
+.content-box{
+    display: flex;
+    align-items: center;
+    img{
+        margin-right: 3.5rem;
+        width: 50px;
+        height: 50px;
+    }
+    h4{
+        font-weight: 400;
+        margin-bottom: 0;
+    }
+    p{
+        margin-bottom: 0;
+    }
+}

@@ -1,0 +1,52 @@
+<div class="columns">
+    <div class="column phase-container">
+        <div>
+            <div class="appointment-phase">{{ pathway | currentPhase }}</div>
+            <div class="appointment-subphase margin-bottom-1">
+                {{ pathway | currentSubPhase }}
+            </div>
+        </div>
+
+        <div
+            *ngIf="loadingAppointment; else showAppointment"
+            class="loading"
+        ></div>
+        <ng-template #showAppointment>
+            <!--TODO: move the responsibility of the url building to next-appt-info  -->
+            <next-appt-info
+                [startDateTime]="appointment ? appointment.startDateTime : null"
+                [routeLink]="[
+                    '/appointments/user/' +
+                        patientOverviewData.patient.backendId,
+                    {
+                        outlets: {
+                            master: 'all',
+                            detail: appointment ? appointment.id : null
+                        }
+                    }
+                ]"
+            >
+            </next-appt-info>
+        </ng-template>
+
+        <div
+            *ngIf="loadingMessages; else showNoOfUnreadMessage"
+            class="loading"
+        ></div>
+        <ng-template #showNoOfUnreadMessage>
+            <new-message-info
+                [messageCount]="noOfUnreadMessage"
+                [userId]="patientOverviewData.patient.backendId"
+            >
+            </new-message-info>
+        </ng-template>
+        <a
+            *ngIf="startNewConversation"
+            id="startNewConversationModalPatient"
+            class="link"
+            (click)="showNewMessageModal(patientDetails)"
+        >
+            {{ 'sendMsgPatient' | localise }}
+        </a>
+    </div>
+</div>

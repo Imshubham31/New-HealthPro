@@ -1,0 +1,13 @@
+@import '../../../../assets/../styles/variables';
+textarea{
+    height:auto;
+}
+.form-label {
+    font-weight: bold !important;
+}
+.btn.btn-link {
+    color:$btn-link-color;
+    font-weight: bold;
+    text-decoration: underline;
+}
+

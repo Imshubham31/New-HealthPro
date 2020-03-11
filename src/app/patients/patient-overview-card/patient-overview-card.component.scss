@@ -1,0 +1,40 @@
+@import '../../../styles/variables.scss';
+.patients-container {
+    padding-inline-start: 2rem;
+    font-size: $font-size;
+    margin: auto;
+    color: $body-font-color;
+    @media screen and (max-width: 960px) {
+        text-align: center;
+    }
+    .date-name {
+        color: $light-gray;
+        padding-bottom: 1rem;
+    }
+    .patient-name {
+        font-size: $font-size-xl-lg;
+        font-weight: 600;
+        line-height: 2rem;
+        word-wrap: break-word;
+    }
+    .doctor-name {
+        padding-top: 1rem;
+    }
+    a {
+        color: $primary-color;
+    }
+}
+
+.avatar-container {
+    display: flex;
+    justify-content: center;
+    margin: 1rem;
+}
+
+.caremodule-container {
+    display: flex;
+    align-items: center;
+    img {
+        margin-inline-start: 1rem;
+    }
+}

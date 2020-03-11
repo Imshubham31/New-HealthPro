@@ -1,0 +1,107 @@
+<div class="col-10 col-xl-12 all-pages-container">
+    <div class="flex-container">
+        <h3 class="page-header">
+            {{ 'hcps' | localise }} -
+            {{ (hospitalService.hospital | async).name }}
+        </h3>
+        <button class="btn btn-primary" (click)="startHcpCreate()">
+            {{ 'addNewHCP' | localise }}
+        </button>
+    </div>
+    <div class="columns">
+        <div class="column">
+            <div class="divider"></div>
+        </div>
+    </div>
+    <div class="container grid-lg">
+        <div class="columns">
+            <div class="column col-3">
+                <app-search-input
+                    [dataSource]="
+                        hcpService.getHCPs$({
+                            includeLoggedInUser: false,
+                            onlyActiveUsers: false
+                        }) | async
+                    "
+                    [keys]="searchFields"
+                    [placeholder]="'search' | localise"
+                    #search
+                ></app-search-input>
+            </div>
+        </div>
+        <div class="columns gray-text">
+            <div
+                class="column col-4 text-uppercase padding-left-0"
+                *ngIf="search.results"
+            >
+                {{
+                    'healthCareProfessionals'
+                        | localise: [search.results.length || '0' | localise]
+                }}
+            </div>
+            <div class="column col-3 text-uppercase contact-details-container">
+                {{ 'contactDetails' | localise }}
+            </div>
+            <div class="column col-3 text-uppercase">
+                {{ 'actions' | localise }}
+            </div>
+        </div>
+        <div
+            class="columns hcp-container"
+            *ngFor="
+                let hcp of (search.results
+                    | paginate: { itemsPerPage: 5, currentPage: currentPage })
+            "
+        >
+            <ng-container
+                *ngIf="hcp.isActive; then active; else inactive"
+            ></ng-container>
+            <ng-template #inactive>
+                <hcp-overview
+                    class="column col-4"
+                    [hcpData]="hcp"
+                ></hcp-overview>
+                <div class="column col-3 flexy center-content">
+                    {{ 'contactNotAvailableOnDeactivated' | localise }}
+                </div>
+                <div class="column hcp-actions-container">
+                    <div class="column margin-start-2">
+                        <img
+                            class="hcp-actions-icon"
+                            src="../../../assets/Deactivated.svg"
+                        />
+                        <div class="center-text">
+                            <span>{{ 'deactivated' | localise }}</span>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template #active>
+                <hcp-overview
+                    class="column col-4"
+                    [hcpData]="hcp"
+                ></hcp-overview>
+                <hcp-contact-info
+                    class="column col-3 flexy"
+                    [hcpData]="hcp"
+                ></hcp-contact-info>
+                <hcp-action-card
+                    class="column hcp-actions-container"
+                    [hcpData]="hcp"
+                    (editHcp)="startHcpEdit(hcp)"
+                >
+                </hcp-action-card>
+            </ng-template>
+        </div>
+        <div class="columns">
+            <app-pagination-controls
+                class="column col-4"
+                (pageChange)="currentPage = $event"
+            ></app-pagination-controls>
+            <hospital-logo
+                class="column col-4 col-md-12"
+                [center]="true"
+            ></hospital-logo>
+        </div>
+    </div>
+</div>

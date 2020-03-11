@@ -1,0 +1,12 @@
+:host ::ng-deep {
+    #modal-title {
+        text-align: center;
+    }
+}
+
+.options {
+    display: flex;
+    .yes {
+        margin-right: 2rem;
+    }
+}

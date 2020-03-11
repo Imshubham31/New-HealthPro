@@ -1,0 +1,74 @@
+<div
+    class="tag-container"
+    [class.focused]="hasFocus"
+    [class.disabled]="disabled"
+>
+    <div class="input-container" [class.focused]="hasFocus">
+        <ng-container *ngFor="let tag of prefixTags">
+            <div class="tag tag-prefix" *ngIf="tag">
+                {{ tag }}
+            </div>
+        </ng-container>
+        <div
+            [class]="'tag tag-' + tag.type.toLocaleLowerCase()"
+            *ngFor="let tag of values"
+        >
+            {{ tag.name }}
+            <span>
+                <i class="close fa fa-close" (click)="removeTag(tag)"></i>
+            </span>
+        </div>
+        <input
+            type="text"
+            [placeholder]="placeholder || ''"
+            (focus)="handleFocus()"
+            (blur)="handleBlur()"
+            [value]="inputText"
+            (input)="handleInput($event)"
+            (keydown)="handleKeydown($event)"
+            (keyup)="handleKeyup($event)"
+            [disabled]="disabled"
+            #input
+        />
+    </div>
+
+    <div
+        class="dropdown"
+        *ngIf="hasFocus"
+        [class.posAbsolute]="this.absolute"
+        #mltagdropdown
+    >
+        <ul>
+            <ng-container
+                *ngFor="
+                    let list of filterOptionsGroups;
+                    trackBy: this.trackByName
+                "
+            >
+                <li class="tag-group">{{ list.name }}</li>
+                <li
+                    *ngFor="let option of list.options; trackBy: trackById"
+                    class="selectable"
+                    [class.highlighted]="
+                        this.highlightedOption !== null &&
+                        this.highlightedOption.id === option.id
+                    "
+                    (click)="handleSelection($event, option)"
+                    id="mltag-option-{{ option.id }}"
+                >
+                    {{ option.name }}
+                    <span class="label-detail">
+                        {{ option.detail }}
+                    </span>
+                </li>
+                <li class="no-result-tag" *ngIf="list.options.length === 0">
+                    {{
+                        (list.noResultsMsg
+                            ? list.noResultsMsg(this.values)
+                            : 'noResultFound') | localise
+                    }}
+                </li>
+            </ng-container>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+    <div class="toast toast-primary">
+        {{ 'editCareModuleWarning' | localise }}
+    </div>
+    <app-modal-form-control formControlName="modules">
+        <care-module-selection
+            [excludeIds]="[changePathwayCoordinator.patient.careModule.id]"
+        ></care-module-selection>
+    </app-modal-form-control>
+
+    <div class="modal-footer">
+        <button
+            class="btn btn-link"
+            type="button"
+            (click)="changePathwayCoordinator.exit.next()"
+        >
+            {{ 'cancel' | localise }}
+        </button>
+        <button
+            class="btn btn-primary"
+            [disabled]="shouldDisableSubmit()"
+            [class.loading]="submitting"
+        >
+            {{ submitText }}
+        </button>
+    </div>
+</form>

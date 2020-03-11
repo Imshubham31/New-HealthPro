@@ -1,0 +1,83 @@
+<div
+    modal-wrapper
+    [modalTitle]="state ? state.title : ''"
+    [modalSubTitle]="state ? state.subTitle : ''"
+    [modalWidth]="'380px'"
+    (onCloseModal)="cleanForm()"
+    #modal
+>
+    <form *ngIf="form" [formGroup]="form" novalidate>
+        <div
+            class="toast toast-error margin-bottom-small"
+            *ngIf="errors.length > 0"
+        >
+            <div *ngFor="let error of errors">
+                {{ error | errorMsg }}
+            </div>
+        </div>
+        <fieldset [disabled]="submitting" (ngSubmit)="submit()">
+            <div class="form-group">
+                <label class="form-label" for="messageCareModuleId"
+                    >{{ 'pathway' | localise }} *</label
+                >
+                <select
+                    class="form-select full-width"
+                    id="messageCareModuleId"
+                    formControlName="caremoduleId"
+                >
+                    <option [value]="null" disabled>{{
+                        'selectPathway' | localise
+                    }}</option>
+                    <option
+                        *ngFor="let careModule of careModulesList"
+                        [value]="careModule.id"
+                    >
+                        {{ careModule.title }}
+                    </option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="subject"
+                    >{{ 'subject' | localise }} *</label
+                >
+                <input
+                    class="form-input"
+                    id="subject"
+                    formControlName="subject"
+                    maxlength="40"
+                />
+            </div>
+            <div class="form-group column padding-0">
+                <label class="form-label" for="messageTempMessage"
+                    >{{ 'message' | localise }}
+                </label>
+                <textarea
+                    class="form-input"
+                    id="messageTempMessage"
+                    formControlName="message"
+                    maxlength="240"
+                    row="3"
+                ></textarea>
+            </div>
+        </fieldset>
+        <div class="modal-footer">
+            <button
+                class="btn btn-link"
+                type="button"
+                id="messCancel"
+                (click)="finish()"
+            >
+                {{ 'cancel' | localise }}
+            </button>
+            <button
+                id="appointmentTempFormSubmit"
+                class="btn btn-primary"
+                [disabled]="shouldDisableSubmit()"
+                [class.loading]="submitting"
+                (click)="state.submit()"
+            >
+                {{ state.submitButtonText }}
+            </button>
+        </div>
+    </form>
+</div>

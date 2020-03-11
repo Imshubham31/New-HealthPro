@@ -1,0 +1,20 @@
+<form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+    <app-modal-form-control
+        *ngIf="form.get('modules')"
+        formControlName="modules"
+    >
+        <care-module-selection></care-module-selection>
+    </app-modal-form-control>
+    <div class="modal-footer">
+        <button class="btn btn-link" type="button" (click)="previous()">
+            {{ 'previous' | localise }}
+        </button>
+        <button
+            class="btn btn-primary"
+            [disabled]="shouldDisableSubmit()"
+            [class.loading]="submitting"
+        >
+            {{ 'nextSurgeryInformation' | localise }}
+        </button>
+    </div>
+</form>

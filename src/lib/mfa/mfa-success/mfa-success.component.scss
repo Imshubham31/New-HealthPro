@@ -1,0 +1,13 @@
+@import '../../../styles/mixins';
+
+:host {
+    @include flex-column-even-spacing();
+}
+
+img {
+    @include large-image();
+}
+
+h2 {
+    @include mfa-header();
+}

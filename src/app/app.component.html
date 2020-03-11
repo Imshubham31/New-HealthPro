@@ -1,0 +1,23 @@
+<div class="wrapper" dir="{{translate.getDirection()}}" lang="{{translate.getLocale()}}">
+  <navigation-bar *ngIf="showNavBar" class="shadow-4"></navigation-bar>
+  <main class="container">
+    <toast-container></toast-container>
+    <router-outlet></router-outlet>
+    <div class="orientation_warning">
+      <div class="color_logo"></div>
+      <div class="rotate_icon"></div>
+      <div class="rotation_text">{{loadingState.message || ( 'rotateYourDevice' | localise )}}</div>
+    </div>
+    <div class="overlay" *ngIf="loadingState.loading">
+      <div class="overlay-spinner">
+        <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+        <div>
+          <span>{{
+            loadingState.hideMessage ? '' :
+              loadingState.message || ( 'loading' | localise )}}</span>
+        </div>
+      </div>
+    </div>
+  </main>
+  <modal-placeholder></modal-placeholder>
+</div>

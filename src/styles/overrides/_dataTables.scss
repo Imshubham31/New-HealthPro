@@ -1,0 +1,61 @@
+@import "../variables";
+
+table.dataTable{
+    thead{
+        tr{
+            background: rgba(151, 151, 151, 0.1);
+        }
+        th{
+            font-weight: 600;
+            border-bottom: 1px solid #cac3c3;
+        }
+        .sorting, .sorting_asc, .sorting_desc, .sorting_asc_disabled, .sorting_asc_disabled{
+            background-position-x: 90px;
+        }
+    }
+    tbody{
+        th,td{
+            padding: 12px 17px;
+        }
+        tr{
+            td:last-child{
+                background:rgba(151, 151, 151, 0.1);
+                text-align: center;
+                a:first-child{
+                    margin-right:20px;
+                }
+                img{
+                    width: 16px;
+                    height: 16px;
+                    margin: 0 6px;
+                    vertical-align: text-bottom;
+                }
+            }
+        }
+    }
+}
+.dataTables_wrapper .dataTables_filter{
+    float: none; 
+    text-align: left; 
+    margin-bottom: 10px;
+    input{
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background: #fff;
+        border: .1rem solid #c4c9d3;
+        border-radius: .2rem;
+        color: #002b32;
+        -webkit-transition: .2s;
+        transition: all .2s ease;
+        display: block;
+        font-size: 1.4rem;
+        height: 3.2rem;
+        line-height: 2rem;
+        max-width: 100%;
+        outline: 0;
+        padding: .5rem .8rem;
+        position: relative;
+        margin-left: 0;
+    }
+}

@@ -1,0 +1,42 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+:host {
+    @include flex-column-even-spacing();
+}
+
+h2 {
+    @include mfa-header();
+}
+
+p {
+    font-size: $font-size-md;
+}
+
+button {
+    padding: 10px;
+    background-color: transparent;
+    display: flex;
+    box-shadow: 0 0.2rem 0.5rem rgba(69, 77, 93, 0.3);
+
+    p {        
+        font-size: $font-size-lg;
+        margin: 0;
+    }
+
+    .subtitle {
+        color: $gray-text;
+        font-size: $font-size-sm;
+    }
+
+    img {
+        padding: 7px;
+    }
+
+    span {
+        text-align: start;
+    }
+}
+.mfa-sigin{
+    margin-top: 55px;
+}

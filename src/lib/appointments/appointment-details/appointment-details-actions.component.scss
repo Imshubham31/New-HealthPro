@@ -1,0 +1,15 @@
+@import "../../../styles/variables";
+page-popover {
+  text-align: end;
+}
+.green {
+    color: $control-color-success;
+}
+
+.btn-link.delete {
+    color: $control-color-error;
+}
+
+.button-container {
+    text-align: end;
+}

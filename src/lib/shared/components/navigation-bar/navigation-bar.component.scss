@@ -1,0 +1,203 @@
+@import '../../../../styles/variables';
+
+:host {
+    height: $navBarHeight;
+}
+
+.navbar {
+    background: $brandTeal;
+    z-index: 10;
+    padding-inline-start: 7%;
+    padding-inline-end: 7%;
+    position: relative;
+    @media screen and (max-width: 1280px) {
+        padding: 0 4rem;
+    }
+    @media screen and (max-width: 640px) {
+        padding: 0 1rem;
+    }
+}
+
+::placeholder {
+    font-weight: lighter;
+}
+
+#patientSearch {
+    width: 32em;
+    border-radius: 0.3em;
+    border: transparent;
+}
+
+.has-form-icon {
+    position: relative;
+    .form-icon {
+        position: absolute;
+        top: 0.8em;
+        right: 0.8em;
+        color: lightgray;
+    }
+}
+
+.btn-link {
+    color: $light-color;
+}
+
+.vertical-line {
+    border-left: solid thick white;
+    height: 80%;
+    border-width: 1px;
+    margin-left: 1.5em;
+    margin-right: 1.5em;
+    @media screen and (max-width: 650px) {
+        margin: 0 1rem;
+    }
+}
+
+.user-avatar {
+    text-align: center;
+}
+
+.navbar-user-options {
+    position: relative;
+    right: 0.5em;
+    left: 0.5em;
+}
+
+.menu-item {
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.menu-item i {
+    margin-right: 0.3em;
+}
+
+.arrow-box {
+    border: 3px solid white;
+    min-width: unset;
+}
+
+.arrow-box:after,
+.arrow-box:before {
+    bottom: 100%;
+    left: 85%;
+    border: solid transparent;
+    content: ' ';
+    position: absolute;
+}
+
+.arrow-box:after {
+    border-bottom-color: white;
+    border-width: 1em;
+    margin-left: -1em;
+}
+
+.arrow-box:before {
+    border-width: 1.6em;
+    margin-left: -1.6em;
+}
+
+.admin-box {
+    border: 3px solid white;
+    min-width: unset;
+    top: 82%;
+}
+
+.admin-box:after,
+.admin-box:before {
+    bottom: 100%;
+    left: 85%;
+    border: solid transparent;
+    content: ' ';
+    position: absolute;
+}
+
+.admin-box:after {
+    border-bottom-color: white;
+    border-width: 1em;
+    margin-left: -1em;
+    right: 5%;
+}
+
+.admin-box:before {
+    border-width: 1.6em;
+    margin-left: -1.6em;
+}
+
+.navbar-options {
+    display: block;
+    line-height: 1em;
+    font-weight: 100;
+    font-size: 0.9em;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    margin-top: 0.5em;
+}
+
+.navbar-options > p {
+    margin-bottom: 0px;
+}
+
+.navbar-options img {
+    display: block;
+    margin: auto 2.6em;
+}
+
+.admin-container {
+    padding-bottom: 0.5em;
+}
+
+.admin-img {
+    padding-bottom: 0.5em;
+    vertical-align: middle;
+}
+
+.user-options {
+    bottom: 0.2em;
+    margin-inline-start: 1rem;
+}
+
+.navbar-logo {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url('../../../../assets/navbar-logo.png');
+    height: 2.7rem;
+    width: 18rem;
+    margin-top: 1.4rem;
+    @media screen and (max-width: 960px) {
+        width: 14rem;
+    }
+    height: 90%;
+    border: none;
+    outline: none;
+    color: white;
+    padding: 0;
+    line-height: 0.9em;
+    font-weight: 300;
+    font-size: 0.8em;
+    text-align: start;
+    cursor: pointer;
+
+    img {
+        height: 2.7rem;
+    }
+}
+
+.navbar-avatar {
+    height: 3rem;
+    width: 3rem;
+    align-self: center;
+    object-fit: cover;
+    border-radius: 50%;
+    padding: 0.1rem;
+}
+
+.logo-section {
+    color: white;
+    display: grid;
+    line-height: 0.9em;
+    font-weight: 100;
+    font-size: 0.8em;
+    margin-bottom: 0.3rem;
+}

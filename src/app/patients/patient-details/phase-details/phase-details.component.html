@@ -1,0 +1,11 @@
+<div class="card">
+  <div *ngIf="!pathway else finishedLoading" class="loading loading-lg centered vertical-align-middle"></div>
+  <ng-template #finishedLoading>
+    <div class="phase-title">{{pathway | currentPhase}}</div>
+    <div class="subphase-title">{{pathway | currentSubPhase}}</div>
+    <button class="btn btn-primary btn-block btn-lg margin-bottom-1" [disabled]="isLastSubphase()" (click)="moveToNextPhase()">{{'moveToNextPhase'|localise}}
+      <img src="../../../../assets/light.svg">
+    </button>
+    <a role="button" [routerLink]="['/patient/pathway-dates', {id: patient.backendId}]" class="edit-pathway-link">{{'viewAndEditPathway'|localise}}</a>
+  </ng-template>
+</div>

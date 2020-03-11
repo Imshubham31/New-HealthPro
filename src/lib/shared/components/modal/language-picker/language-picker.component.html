@@ -1,0 +1,6 @@
+<select class="form-select" [formControl]="formControl">
+  <option [value]="null" disabled>{{ 'selectLanguage' | localise }}</option>
+  <option *ngFor="let language of localiseService.appLanguages" [value]="language.code">
+    {{ language.code | localise }}
+  </option>
+</select>

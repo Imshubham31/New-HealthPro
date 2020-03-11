@@ -1,0 +1,53 @@
+<div
+    class="card loading"
+    *ngIf="(hcpNotesService.store$ | async).isFetching; else showContent"
+></div>
+<ng-template #showContent>
+    <div class="card">
+        <div class="columns card-title">
+            <div class="column col-9">{{ 'consultationNotes' | localise }}</div>
+            <div class="text-right column">
+                {{ (hcpNotesService.store$ | async).list.length }}
+            </div>
+        </div>
+        <button
+            class="btn btn-primary btn-lg btn-block"
+            (click)="startHcpCreateNote()"
+        >
+            {{ 'createNewNote' | localise }}
+        </button>
+        <div
+            class="empty"
+            *ngIf="
+                (
+                    hcpNotesService.recentNotes$(patient.patient.backendId, 3)
+                    | async
+                ).length === 0;
+                else showNotes
+            "
+        >
+            {{ 'noNotesAvailable' | localise }}
+        </div>
+        <ng-template #showNotes>
+            
+            <app-list-item
+                class="columns"
+                *ngFor="
+                    let note of (hcpNotesService.recentNotes$(
+                        patient.patient.backendId,
+                        3
+                    ) | async)
+                "
+                [title]="note.title | truncate: 50"
+                [subtitle]="note.body | truncate: 100"
+                [date]="note.created.datetime | dateformat"
+            >
+            </app-list-item>
+            <a
+                [routerLink]="mostRecentNoteLink | async"
+                class="link hcp-notes-link"
+                >{{ 'viewAllConsultationNotes' | localise }}</a
+            >
+        </ng-template>
+    </div>
+</ng-template>

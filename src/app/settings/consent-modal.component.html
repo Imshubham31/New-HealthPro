@@ -1,0 +1,4 @@
+<div modal-wrapper [modalTitle]="document ? document.title: '-'" [modalWidth]="'520px'" [contentOverflow]="'visible'" #modal>
+  <div *ngIf="document" [innerHTML]="document.body"></div>
+  <p *ngIf="!document">{{'errorFindingConsentDocument' | localise}}</p>
+</div>

@@ -1,0 +1,25 @@
+@import '../../../../styles/colours';
+@import '../../../../styles/variables';
+.chip.disabled {
+    background-color: lighten($grayColour, 40%);
+    avatar-img {
+        opacity: 0.5;
+    }
+    color: $gray-text;
+}
+avatar-img {
+    margin-top: 0.37rem;
+}
+.chip {
+    margin: 0 0.1rem 0.5rem 0;
+}
+.patient {
+    color: $brandTeal;
+    font-weight: bolder;
+}
+
+.chipBlock{
+    border: none;
+    background-color: transparent;
+    color: $gray-text;
+}

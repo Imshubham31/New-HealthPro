@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="4px" height="4px" viewBox="0 0 4 4" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>Circle 1</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Web" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" fill-opacity="0.300000012">
+        <g id="0-5-1-Profile-Picture" transform="translate(-869.000000, -560.000000)" fill="#009DB9">
+            <g id="Login-Box" transform="translate(370.000000, 136.000000)">
+                <g id="Right" transform="translate(340.000000, 0.000000)">
+                    <g id="Progress" transform="translate(159.000000, 423.000000)">
+                        <circle id="Circle-1" cx="2" cy="3" r="2"></circle>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

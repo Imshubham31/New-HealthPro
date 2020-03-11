@@ -1,0 +1,101 @@
+@import '../../../styles/utilities.scss';
+@import '../../../styles/variables.scss';
+
+:host ::ng-deep fieldset {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.message-input {
+    padding-inline-start: 1.5rem;
+    @extend .padding-bottom-0;
+    @extend .margin-bottom-0;
+    textarea {
+        height: auto;
+    }
+}
+
+.chars-left-container {
+    @extend .padding-top-0;
+    @extend .margin-top-0;
+    text-align: right;
+    padding-inline-start: 1.5rem;    
+}
+
+.warning-message {
+    text-align: left;
+    font-size: $font-size-sm;
+    line-height: 2rem;
+}
+
+a.customdropdown {
+    position: absolute;
+    right: 5px;
+    top: -40px;
+    border: 0;
+    padding: 0px;
+    height: 0;
+}
+ul.listblcok {
+    display: block;
+    width: 100%;
+    margin-top: -10px;
+}
+.dropdown{
+    width:100%;
+}
+li.listitem {
+    padding: 5px;
+}
+.arrow-box {
+    border: 3px solid white;
+    min-width: unset;
+}
+.arrow-box:after,
+.arrow-box:before {
+    bottom: 100%;
+    left: 85%;
+    border: solid transparent;
+    content: ' ';
+    position: absolute;
+}
+.font-gray {
+    color: #9a9c9ed6;
+    background-color: #bbb7b730;
+}
+.padding-right-5 {
+    padding-right: 5px;
+}
+.custom-dropdown{
+    position:relative;
+    width:100%;
+}
+.custom-dropdown ul:before{
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    margin-left: -1.5em;
+    top: -2px;
+    left: 100%;
+    box-sizing: border-box;
+    border: 0.5em solid black;
+    border-color: transparent transparent;
+    transform-origin: 0 0;
+    transform: rotate(-45deg);
+    box-shadow: 1px -1px 1px 0 rgba(148, 146, 146, 0.4);
+}
+.modal-message{
+    overflow: auto;
+}
+.warning-text.relating-patient{
+    margin-top: 0px;
+    margin-left: 0px;
+}
+.warning-text.not-relating-patient{
+    margin-top: 0px;
+    margin-left: 16px;
+}
+.warning-text.message{
+    margin-left: 12px;
+}

@@ -1,0 +1,92 @@
+<div class="container">
+    <div class="columns">
+        <div class="column col-9 col-mr-auto">
+            <h3>{{ title }}</h3>
+        </div>
+        <div class="column">
+            <ng-container *ngxComponentOutlet="actionsComponent"></ng-container>
+        </div>
+    </div>
+    <hr />
+    <div class="participants">
+        <div
+            class="columns"
+            *ngIf="appointment.patientDetails.backendId && canSeePatients"
+        >
+            <div class="column type">
+                {{ 'patient' | localise }}
+            </div>
+            <div class="column">
+                <ng-container
+                    *ngxComponentOutlet="
+                        watcherComponent;
+                        context: { user: appointment.patientDetails }
+                    "
+                ></ng-container>
+            </div>
+        </div>
+        <div class="columns">
+            <div class="column type">
+                {{ 'hcps' | localise }}
+            </div>
+            <div class="column">
+                <ng-container
+                    *ngFor="let watcher of appointment.watcherDetails"
+                >
+                    <ng-container
+                        *ngxComponentOutlet="
+                            watcherComponent;
+                            context: { user: watcher }
+                        "
+                    ></ng-container>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div class="columns">
+        <div  class="column col-6">
+            <div class="section-heading">
+                {{ 'timeAndLocation' | localise }}
+            </div>
+            <p id="appointmentDetailsstartDate">{{ startDate(appointment) }}</p>
+            <p id="appointmentDetailsstartDayandTime">{{ dayAndTime(appointment) }}</p>
+            
+            <a
+                *ngIf="appointment.location.url"
+                target="_blank"
+                class="location"
+                [href]="appointment.location.url"
+            >
+                {{ appointment.location.name }}
+            </a>
+            <p *ngIf="!appointment.location.url" class="location">
+                {{ appointment.location.name }}
+            </p>
+        </div>
+        <div id="appointmentDetailsModalStatus" class="column col-3">
+            <div class="section-heading">
+                {{ 'status' | localise }}
+            </div>
+            <appointment-status
+                [status]="appointment.status"
+                [text]="statusText | localise"
+            ></appointment-status>
+            <p id="appointmentDetailslastModifiedDate">{{ lastModifiedDate(appointment) }}</p>
+        </div>
+        <div class="column col-3">
+            <appointment-response
+                *ngIf="canRespond"
+                (response)="onResponse.emit($event)"
+            ></appointment-response>
+        </div>
+    </div>
+    <div class="columns">
+        <div class="column col-10 description">
+            <div class="section-heading">
+                {{ 'description' | localise }}
+            </div>
+            {{ description(appointment) }}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,116 @@
+<form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+    <fieldset [disabled]="submitting">
+        <fieldset>
+            <span>{{ 'addPatientReceivedConsent' | localise }}</span>
+            <div class="divider"></div>
+        </fieldset>
+        <fieldset>
+            <div class="form-group">
+                <label class="form-label" for="personalDetailsFirstName"
+                    >{{ 'firstName' | localise }} *</label
+                >
+                <input
+                    class="form-input"
+                    id="personalDetailsFirstName"
+                    placeholder="{{ 'firstName' | localise }}"
+                    formControlName="firstName"
+                    maxlength="30"
+                />
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="personalDetailsLastName"
+                    >{{ 'lastName' | localise }} *</label
+                >
+                <input
+                    class="form-input"
+                    id="personalDetailsLastName"
+                    placeholder="{{ 'lastName' | localise }}"
+                    formControlName="lastName"
+                    maxlength="40"
+                />
+            </div>
+            <div class="form-group">
+                <label class="form-label">{{ 'gender' | localise }}</label>
+                <label class="form-radio">
+                    <input type="radio" value="male" formControlName="gender" />
+                    <i class="form-icon"></i> {{ 'male' | localise }}
+                </label>
+                <br />
+                <label class="form-radio">
+                    <input
+                        type="radio"
+                        value="female"
+                        formControlName="gender"
+                    />
+                    <i class="form-icon"></i> {{ 'female' | localise }}
+                </label>
+                <br />
+                <label class="form-radio">
+                    <input
+                        type="radio"
+                        value="unknown"
+                        formControlName="gender"
+                    />
+                    <i class="form-icon"></i> {{ 'unknown' | localise }}
+                </label>
+            </div>
+            <app-modal-form-control
+                [required]="true"
+                [label]="'dateOfBirth' | localise"
+                formControlName="dob"
+            >
+                <app-modal-datepicker
+                    id="personalDetailsDob"
+                    [max]="currentDate"
+                ></app-modal-datepicker>
+            </app-modal-form-control>
+            <div class="form-group">
+                <label class="form-label" for="personalDetailsEmail"
+                    >{{ 'email' | localise }} *</label
+                >
+                <input
+                    class="form-input"
+                    type="email"
+                    id="personalDetailsEmail"
+                    placeholder="{{ 'email' | localise }}"
+                    formControlName="email"
+                    maxlength="100"
+                />
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="personalDetailsPhone">{{
+                    'phoneNumber' | localise
+                }}</label>
+                <input
+                    class="form-input"
+                    type="tel"
+                    id="personalDetailsPhone"
+                    placeholder="{{ 'phoneNumber' | localise }}"
+                    formControlName="phone"
+                    maxlength="100"
+                    #inputField
+                />
+            </div>
+            <app-modal-form-control
+                [required]="true"
+                [label]="'language' | localise"
+                formControlName="language"
+            >
+                <app-modal-language-picker></app-modal-language-picker>
+            </app-modal-form-control>
+        </fieldset>
+    </fieldset>
+    <div class="modal-footer">
+        <div class="helper-text">* {{ 'requiredFields' | localise }}</div>
+        <button class="btn btn-link" type="button" (click)="cancel()">
+            {{ 'cancel' | localise }}
+        </button>
+        <button
+            class="btn btn-primary"
+            [disabled]="shouldDisableSubmit()"
+            [class.loading]="submitting"
+        >
+            {{ 'nextSelectCareModule' | localise }}
+        </button>
+    </div>
+</form>

@@ -1,0 +1,36 @@
+<div
+    modal-wrapper
+    [modalTitle]="'editMTDTeam' | localise: [patient.patient.fullName]"
+    [modalSubTitle]=""
+    [modalWidth]="'520px'"
+    [contentOverflow]="'visible'"
+    #modal
+>
+    <form *ngIf="form" [formGroup]="form">
+        <div class="vertical-line"></div>
+        <app-modal-form-control
+            formControlName="mdt"
+            label="{{ 'mdts' | localise }}/{{ 'hcps' | localise }}"
+        >
+            <mdts-participant-multi-selector
+                (valueChanged)="this.handleMdtMembersChanged($event)"
+            >
+            </mdts-participant-multi-selector>
+        </app-modal-form-control>
+        <div class="modal-footer mx-0 padding-top-0">
+            <div class="helper-text">* {{ 'requiredFields' | localise }}</div>
+            <button class="btn btn-link" type="button" (click)="close()">
+                {{ 'cancel' | localise }}
+            </button>
+            <button
+                type="button"
+                class="btn btn-primary"
+                (click)="submit()"
+                [disabled]="!form.valid"
+                [class.loading]="submitting"
+            >
+                {{ 'saveChanges' | localise }}
+            </button>
+        </div>
+    </form>
+</div>

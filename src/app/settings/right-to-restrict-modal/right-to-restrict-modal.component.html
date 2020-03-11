@@ -1,0 +1,68 @@
+<div
+    modal-wrapper
+    [modalTitle]="'rightToRestrictTitle' | localise"
+    [modalWidth]="'520px'"
+    [contentOverflow]="'visible'"
+    #modal
+    class="text-center"
+>
+    <form
+        [formGroup]="form"
+        class="form-group"
+        [ngClass]="{ 'has-error': formError }"
+        novalidate
+    >
+        <div class="toast toast-error" *ngIf="formError">
+            {{ formError | errorMsg }}
+        </div>
+        <fieldset id="rightToRestrictQuestion">
+            <label class="form-label" for="gdprOptions">{{
+                'rightToRestrictQuestion' | localise
+            }}</label>
+            <div class="form-group">
+                <div [id]="option" *ngFor="let option of options">
+                    <label class="form-radio">
+                        <input
+                            type="radio"
+                            value="{{ option | localise }}"
+                            formControlName="gdprOptions"
+                        />
+                        <i class="form-icon"></i>
+
+                        <span>{{ option | localise }}</span>
+                    </label>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset id="rightToRestrictExplanation">
+            <div class="form-group">
+                <label class="form-label" for="gdprExplanation">{{
+                    'rightToRestrictExplanation' | localise
+                }}</label>
+                <textarea
+                    class="form-input"
+                    name="gdprExplanation"
+                    id="gdprExplanation"
+                    rows="3"
+                    formControlName="gdprExplanation"
+                    [placeholder]="
+                        'rightToRestrictExplanationPlaceholder' | localise
+                    "
+                ></textarea>
+            </div>
+        </fieldset>
+        <div class="modal-footer">
+            <button class="btn btn-link link" (click)="close()">
+                {{ 'cancel' | localise }}
+            </button>
+            <button
+                (click)="showPasswordConfirmation()"
+                class="btn btn-primary btn-lg"
+                [disabled]="shouldDisableSubmit()"
+                [class.loading]="submitting"
+            >
+                {{ 'restrictProcessing' | localise }}
+            </button>
+        </div>
+    </form>
+</div>

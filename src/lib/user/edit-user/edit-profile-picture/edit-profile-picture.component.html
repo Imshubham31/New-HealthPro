@@ -1,0 +1,3 @@
+<div modal-wrapper [modalSubTitle]="" [modalWidth]="'520px'" [contentOverflow]="'visible'" #modal class="text-center">
+    <profile-picture (notNow)="modal.closeModal()" (profilePictureSet)="pictureChanged()"></profile-picture>
+</div>

@@ -1,0 +1,19 @@
+.logo-container {
+    display: flex;
+    max-height: 48px;
+    margin: 2rem 0 1rem 1rem;
+    img {
+        max-height: 100%;
+        max-width: 100%;
+        object-fit: contain;
+    }
+}
+.logo_centered {
+    justify-content: center;
+}
+.logo_at_start {
+    justify-content: start;
+    img {
+        object-position: left;
+    }
+}

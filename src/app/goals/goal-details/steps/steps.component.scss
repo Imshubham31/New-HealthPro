@@ -1,0 +1,19 @@
+@import '../../../../styles/utilities';
+@import '../../../../styles/variables';
+
+.step-dates {
+    color: $primary-color-light;
+    text-align: center;
+}
+
+bar-chart {
+    height: 200px;
+}
+
+.nameVthSteps{
+    font-size: 15px;
+    color:#b5b0b0;
+}
+.displayPencilNone{
+    display: none;
+}

@@ -1,0 +1,15 @@
+<page-container class="column col-6 col-lg-12 col-mx-auto">
+    <page-header>
+        <a routerLink="/appointments" class="link">
+            <i class="fa fa-arrow-left flip-on-rtl" aria-hidden="true"></i>
+            {{ 'backToAppointments' | localise }}
+        </a>
+    </page-header>
+
+    <page-content>
+        <appointment-details
+            *ngIf="appointment"
+            (onDelete)="handleDelete()"
+        ></appointment-details>
+    </page-content>
+</page-container>

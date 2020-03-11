@@ -1,0 +1,24 @@
+.progress {
+    height: 20px;
+    width: 100%;
+    text-align: center;
+    background: transparent;
+    bottom: 5px;
+}
+
+.progress-section {
+    width: 20px;
+    height: 100%;
+    display: inline-block;
+    margin: auto;
+    margin-top: 10px;
+}
+
+.current {
+    background: url('../../../../assets/progress_circle_current.svg') no-repeat
+        center;
+}
+
+.other {
+    background: url('../../../../assets/progress_circle.svg') no-repeat center;
+}

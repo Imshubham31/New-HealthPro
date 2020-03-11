@@ -1,0 +1,22 @@
+@import '../../../styles/variables';
+
+.accepted, .scheduled, .updated {
+  color: $control-color-success;
+}
+
+.attended {
+  color: $primary-color;
+}
+
+.declined, .missed {
+  color: $control-color-error;
+}
+
+.pending {
+  color: $control-color-warning;
+}
+
+span {
+  margin-left: 0.3rem;
+  margin-right: 0.3rem;
+}

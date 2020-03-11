@@ -1,0 +1,44 @@
+@import '../../../../styles/variables';
+@import '../../../../styles/colours';
+
+:host {
+    display: block;
+    word-wrap: break-word;
+    padding: 1rem;
+    cursor: pointer;
+    padding: 2rem 2.7rem 2rem 2.7rem;
+    &:focus {
+        outline: 0;
+    }
+    &.selected {
+        background: white;
+    }
+    &:hover:not(.selected) {
+        background: lighten($color: $brandLightBlue, $amount: 0.9);
+    }
+}
+
+.row-title {
+    margin-bottom: 0.75rem;
+}
+.row-date {
+    font-size: $font-size;
+    color: $light-gray;
+    margin-bottom: 0.2rem;
+    margin-top: 1;
+}
+.row-body {
+    color: $light-gray;
+}
+.padding0 {
+    padding: 0px;
+}
+
+.container {
+    display: inherit;
+}
+
+.row-body  {
+    color: $light-gray;
+    padding-left: 0px;
+}

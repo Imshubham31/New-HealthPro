@@ -1,0 +1,62 @@
+<div
+    modal-wrapper
+    [modalTitle]="state.title"
+    [modalWidth]="'520px'"
+    (onCloseModal)="cleanForm()"
+    #modal
+>
+    <form *ngIf="form" [formGroup]="form" novalidate>
+        <div
+            class="toast toast-error margin-bottom-small"
+            *ngIf="errors.length > 0"
+        >
+            <div *ngFor="let error of errors">
+                {{ error | errorMsg }}
+            </div>
+        </div>
+        <fieldset [disabled]="submitting" (ngSubmit)="submit()">
+            <div class="form-group">
+                <label class="form-label" for="nameMdts"
+                    >{{ 'name' | localise }}*</label
+                >
+                <input
+                    class="form-input"
+                    id="name"
+                    formControlName="name"
+                    value="mdts.name"
+                    maxlength="40"
+                />
+            </div>
+            <div class="form-group">
+                <app-modal-form-control
+                    label="{{ 'members' | localise }}"
+                    formControlName="HCPs"
+                    [required]="true"
+                    class="text-box-align"
+                >
+                    <app-modal-multi-tag-input
+                        [labelFormatter]="hcpLabelFormatter"
+                        [detailLabelFormatter]="hcpRoleLabel"
+                        [matchProperty]="'backendId'"
+                        [options]="hcps"
+                        [absolute]="false"
+                    ></app-modal-multi-tag-input>
+                </app-modal-form-control>
+            </div>
+        </fieldset>
+        <div class="modal-footer">
+            <button class="btn btn-link" type="button" (click)="finish()">
+                {{ 'cancel' | localise }}
+            </button>
+            <button
+                id="appointmentTempFormSubmit"
+                class="btn btn-primary"
+                [disabled]="shouldDisableSubmit()"
+                [class.loading]="submitting"
+                (click)="state.submit()"
+            >
+                {{ 'saveChanges' | localise }}
+            </button>
+        </div>
+    </form>
+</div>

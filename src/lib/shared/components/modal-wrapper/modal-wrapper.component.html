@@ -1,0 +1,17 @@
+<div class="modal" [class.active]="modalActive">
+  <div class="modal-overlay"></div>
+  <div class="modal-container" [style.width]="modalWidth" [style.overflow]="contentOverflow">
+    <div class="modal-header" *ngIf="modalTitle">
+      <button *ngIf="showCloseBtn" class="btn btn-clear close-btn" (click)="closeModal()"></button>
+      <div id="modal-title">{{modalTitle}}</div>
+      <div id="modal-subtitle">{{modalSubTitle}}</div>
+      <div class="divider"></div>
+    </div>
+    <div class="modal-body" [style.maxHeight]="modalBodyMaxHeight" >
+      <div class="content">
+        <ng-content></ng-content>
+      </div>
+    </div>
+    <div class="modal-footer"></div>
+  </div>
+</div>

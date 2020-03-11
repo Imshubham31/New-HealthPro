@@ -1,0 +1,24 @@
+<div
+    *ngIf="(careModulesService.store$ | async).isFetching; else doneFetching"
+    class="loading"
+></div>
+<ng-template #doneFetching>
+    <fieldset [disabled]="service.disabled$ | async">
+        <div class="form-group caremodule-option">
+            <label
+                class="form-radio"
+                *ngFor="let careModule of (getCareModules$() | async)"
+            >
+                <input
+                    type="radio"
+                    [checked]="careModule.id === value?.id"
+                    [value]="careModule.id"
+                    (input)="handleChange($event)"
+                />
+                <i class="form-icon"></i>
+                <strong [innerHTML]="careModule.title"> </strong>
+                <p [innerHTML]="careModule.description"></p>
+            </label>
+        </div>
+    </fieldset>
+</ng-template>

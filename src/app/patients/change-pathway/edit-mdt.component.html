@@ -1,0 +1,41 @@
+<form *ngIf="form" [formGroup]="form">
+    <div *ngIf="showEditMDTWarning" class="toast toast-primary">
+        {{ 'editMdtTeamWarning' | localise }}
+    </div>
+    <app-modal-form-control
+        formControlName="mdt"
+        label="{{ 'mdts' | localise }}/{{ 'hcps' | localise }}"
+    >
+        <mdts-participant-multi-selector
+            (valueChanged)="this.handleMdtMembersChanged($event)"
+        >
+        </mdts-participant-multi-selector>
+    </app-modal-form-control>
+    <div class="modal-footer">
+        <div class="columns col-gapless">
+            <div class="column col-2 col-mr-auto">
+                <button class="btn btn-link" type="button" (click)="previous()">
+                    <i class="fa fa-chevron-left flip-on-rtl"></i>
+                    {{ 'previous' | localise }}
+                </button>
+            </div>
+            <div class="column col-10">
+                <button
+                    class="btn btn-link"
+                    type="button"
+                    (click)="changePathwayCoordinator.exit.next()"
+                >
+                    {{ 'cancel' | localise }}
+                </button>
+                <button
+                    class="btn btn-primary"
+                    [disabled]="!form.valid"
+                    [class.loading]="submitting"
+                    (click)="next()"
+                >
+                    {{ submitText }}
+                </button>
+            </div>
+        </div>
+    </div>
+</form>

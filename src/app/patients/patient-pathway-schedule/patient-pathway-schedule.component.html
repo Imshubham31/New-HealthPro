@@ -1,0 +1,125 @@
+<div class="loading-container" *ngIf="loading; else showForm">
+    <div class="loading"></div>
+    <div>{{ 'loadingPathway' | localise }}</div>
+</div>
+<ng-template #showForm>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="columns">
+            <div class="col-10 col-mx-auto col-xl-12 all-pages-container">
+                <div class="columns col-12">
+                    <div class="column padding-left-2 text-bold">
+                        <h1 *ngIf="patient" class="page-header">
+                            {{
+                                'someonesPathway'
+                                    | localise: [patient.firstName]
+                            }}
+                        </h1>
+                    </div>
+                    <div
+                        class="column margin-top-small empty-action text-right"
+                    >
+                        <button
+                            class="btn btn-primary"
+                            [disabled]="shouldDisableSubmit()"
+                            [class.loading]="submitting"
+                        >
+                            {{ 'saveChanges' | localise }}
+                        </button>
+                    </div>
+                </div>
+                <div class="columns padding-left-2 link">
+                    <span
+                        [routerLink]="[
+                            '/patient/details',
+                            { id: patient.backendId }
+                        ]"
+                    >
+                        <img
+                            class="flip-on-rtl"
+                            src="../../../assets/back_button.svg"
+                        />
+                        <span>{{
+                            'backToDetails' | localise: [patient.fullName]
+                        }}</span>
+                    </span>
+                </div>
+                <div class="columns">
+                    <div class="column">
+                        <div class="divider"></div>
+                    </div>
+                </div>
+                <div class="column col-12">
+                    <div class="toast toast-error mb-10" *ngIf="formError">
+                        {{ formError }}
+                    </div>
+                    <fieldset [disabled]="submitting">
+                        <div
+                            *ngIf="pathway"
+                            class="columns phase-details-container"
+                        >
+                            <div
+                                *ngFor="let phase of pathway.phases"
+                                class="col-4 col-lg-12 margin-bottom-1 padding-sides-1"
+                            >
+                                <div
+                                    class="card bg-white phase-details-card shadow-4"
+                                >
+                                    <h3 class="phase-title">
+                                        {{ phase.title }}
+                                    </h3>
+                                    <div
+                                        formArrayName="items"
+                                        *ngFor="
+                                            let item of items.controls;
+                                            let i = index
+                                        "
+                                    >
+                                        <div
+                                            *ngIf="
+                                                phaseBelongsToSubphase(
+                                                    phase.id,
+                                                    item.controls.subphaseId
+                                                        .value
+                                                )
+                                            "
+                                            [formGroupName]="i"
+                                            class="margin-bottom-1"
+                                        >
+                                            <p class="subphase-title">
+                                                {{ item.controls.title.value }}
+                                            </p>
+                                            <div class="flexy">
+                                                <div
+                                                    class="date-picker-container"
+                                                >
+                                                    <app-modal-form-control
+                                                        [required]="true"
+                                                        formControlName="startDate"
+                                                    >
+                                                        <app-modal-datepicker
+                                                            [min]="
+                                                                getMinDate(i)
+                                                            "
+                                                            [max]="
+                                                                getMaxDate(i)
+                                                            "
+                                                        ></app-modal-datepicker>
+                                                    </app-modal-form-control>
+                                                </div>
+                                                <ng-container
+                                                    *ngComponentOutlet="
+                                                        goalInput
+                                                    "
+                                                ></ng-container>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+    </form>
+</ng-template>

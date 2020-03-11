@@ -1,0 +1,54 @@
+@import "../../../../styles/variables";
+
+.barChartCont {
+  display: block;
+
+  .arrowl {
+    float: left;
+    margin-left: 30px;
+  }
+
+  .loading-spinner {
+    color: $spinner-color;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .carousel-arrow {
+    padding: 0px 9px;
+    border: 1px solid $spinner-color;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 50%;
+    background: none !important;
+  }
+  .arrowr {
+    float: right;
+    margin-right: 30px;
+  }
+
+  .arrowl_backg {
+    background: $disable-color !important;
+    border: none !important;
+  }
+}
+.chartbtn-section {
+  margin-top: -90px;
+  margin-bottom: 90px;
+  .btn {
+    padding: 0px 20px !important;
+    border-radius: 0px;
+  }
+}
+
+.step-dates {
+  color: $spinner-color;
+  text-align: center;
+}
+
+::ng-deep .wrapper[dir="rtl"] {
+  .chartbtn-section {
+    float: left;
+  }
+}

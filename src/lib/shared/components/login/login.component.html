@@ -1,0 +1,27 @@
+<form [formGroup]="loginForm" (ngSubmit)="login()" splash-wrapper novalidate>
+  <div class="card-body">
+      <div class="toast" *ngIf="redierctMessage && !formError">
+        {{redierctMessage | localise}}
+      </div>
+    <h3 class="login-title">{{'welcomeHeader' | localise}}</h3>
+    <div class="toast toast-error" *ngIf="formError">
+      {{formError}}
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="email">{{'emailAddress' | localise}}</label>
+      <input class="form-input input-lg" type="email" id="email" placeholder="{{'emailAddress' | localise}}" formControlName="username"
+      />
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="password">{{'password' | localise}}</label>
+      <input class="form-input input-lg" type="password" id="password" placeholder="{{'password' | localise}}" formControlName="password"
+      />
+    </div>
+  </div>
+  <div class="card-footer login-container-button">
+    <button class="btn btn-primary btn-block btn-lg" [disabled]="shouldDisableSubmit()" [class.loading]="submitting">{{'login' | localise}}
+    </button>
+    <a class="btn btn-link btn-block btn-link-secondary" (click)="forgotPassword()">{{'forgotYourPassword' | localise}}
+    </a>
+  </div>
+</form>

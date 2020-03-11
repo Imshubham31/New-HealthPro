@@ -1,0 +1,210 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/mixins.scss';
+
+:host {
+    display: block;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.blue-background {
+    background-color: $primary-color;
+    color: white;
+    .message-timestamp {
+        color: rgba(255, 255, 255, 0.7);
+    }
+}
+
+.green-background {
+    background-color: $body-bg;
+    color: $body-font-color;
+    margin-left: 3rem;
+    .message-timestamp {
+        color: $light-gray;
+    }
+}
+
+.message-timestamp {
+    position: absolute;
+    right: 3%;
+    bottom: 3%;
+    width: 94%;
+    text-align: right;
+}
+
+.selected-messages-container {
+    padding-bottom: 5rem;
+    margin-inline-start: 2rem;
+    h4 {
+        font-weight: 400;
+        padding-left: 2rem;
+    }
+}
+
+.selected-chat-messages {
+    position: relative;
+    width: 25vw;
+    @include padding-on-element(2rem, 0.75vw, 2rem, 2rem);
+    border-radius: 4px;
+    margin-bottom: 2rem;
+    white-space: pre-line;
+}
+
+.message-sent {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.patient-avatar-container {
+    margin-inline-start: 1rem;
+}
+
+.selected-chat-patient-avatar {
+    padding-left: 2rem;
+    p {
+        align-self: center;
+        margin-bottom: 0;
+        margin-top: 0;
+    }
+}
+
+.selected-patient-title {
+    align-self: center;
+    margin-right: 1rem;
+    color: $body-font-color;
+    padding-inline-start: 1.25rem;
+}
+
+.selected-chat-small-avatar {
+    height: 3vh;
+    margin: 0.1rem 1rem 0.1rem 0.25rem;
+}
+
+.selected-patient-avatar-name {
+    margin-bottom: 0;
+    margin-top: 1.3rem;
+    color: $light-gray;
+    margin-inline-start: 1rem;
+}
+
+.chat-container {
+    padding-left: 2rem;
+    p {
+        margin-bottom: 0.25rem;
+    }
+}
+
+.new-message-container {
+    bottom: 0;
+    position: fixed;
+    padding-inline-end: 7rem;
+    padding-inline-start: 3rem;
+    background: $body-bg;
+    .new-message-form {
+        width: 58%;
+    }
+}
+
+.subject-container {
+    margin-top: 3.75rem;
+}
+
+.edit-details-container {
+    margin-bottom: 1rem;
+    align-self: center;
+    text-align: end;
+}
+
+.date-container {
+    @include flex-center;
+}
+
+.message-date {
+    background: #d2ecf4;
+    padding: 1rem 2rem;
+    border-radius: 4px;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.message-box {
+    padding-inline-start: 4rem;
+}
+
+.avatar-hidden {
+    opacity: 0.5;
+}
+
+.is-forgotten-participant,
+.participant-not-inmdt {
+    margin-inline-end: 3rem;
+    margin-inline-start: 2rem;
+}
+.system-messages {
+    justify-content: center;
+    margin-bottom: 15px;
+    system-messages {
+        padding: 5px 8px;
+        color: $gray-text;
+        background-color: $bg-color-dark;
+        border-radius: 2px;
+        font-size: $font-size-sm;
+        margin-bottom: 15px;
+    }
+}
+
+.participant img {
+    height: 2.6rem;
+    width: 2.6rem;
+}
+.participant .chip {
+    margin: 0 0.1rem 0.5rem 0;
+}
+
+.participantAlignment {
+    flex-wrap: wrap !important;
+    width: 100%;
+    margin-left: -4%;
+    margin-top: -10px;
+}
+.participant-block {
+    display:flex;
+    width: 100%
+}
+.participant-txt {
+    width: 25%
+}
+.column-25 {
+ width: auto;
+ margin-right: 4%;
+}
+.warning-text{
+    margin-left: 20px;
+}
+
+::ng-deep .singleparticipant .chip {
+    background: transparent;
+    border: 0;
+}
+.align-chat {
+    padding-top: 0.75rem;
+}
+.chipBlockAlign {
+    border: none !important;
+    background-color: transparent;
+    color: $gray-text;
+}
+
+.avatarImageContainer{
+  text-align: center;
+  margin-left: 165px;
+  margin-top: 25%;
+}
+.noMessagesPageAvatar{
+  height: 120px;
+  margin-bottom: 40px;
+}
+.noMessagesSelected{
+  font-size: 20px;
+  font-weight: bold;
+}

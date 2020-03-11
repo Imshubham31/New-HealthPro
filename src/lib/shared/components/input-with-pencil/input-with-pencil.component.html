@@ -1,0 +1,8 @@
+<p *ngIf="(disabled | async); else edit">
+    {{ (value ? value : '0') | localise }} {{ units }}
+</p>
+<ng-template #edit>
+    <input class="form-input" [(ngModel)]="value" #inputField />
+</ng-template>
+<img [src]="actionImgSrc | async" (click)="triggerEditMode(disabled.getValue())"
+    [ngClass]="{ displayPencilNone: pencildisabled  == false }" />

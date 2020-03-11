@@ -1,0 +1,51 @@
+@import '../../styles/variables.scss';
+.settings-title {
+    padding: 0rem 1rem;
+    font-size: $font-size-xxl-lg;
+    font-weight: 600;
+}
+
+::ng-deep .settings-name {
+    display: flex;
+    font-size: $font-size-xl-lg;
+    font-weight: 600;
+    img {
+        padding-inline-end: 1rem;
+    }
+}
+
+.loading-docs {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  text-align: center;
+}
+
+.settings-row {
+    position: relative;
+    height: 7rem;
+    display: flex;
+    align-items: center;
+    padding-inline-end: 1rem;
+    &:after {
+        content: '';
+        position: absolute;
+        left: 1rem;
+        right: 1rem;
+        top: 98%;
+        bottom: 0;
+        background: #eee;
+    }
+    &:last-child:after {
+        background: white;
+    }
+  button {
+    width: 140px;
+    white-space: normal;
+    height: auto;
+  }
+}
+
+.password-title {
+    font-weight: 600;
+    font-size: $font-size-lg;
+}

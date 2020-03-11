@@ -1,0 +1,25 @@
+<master-detail-header
+    *ngIf="patient"
+    [patient]="patient"
+    (onCreate)="startHcpCreateNote()"
+    [title]="'consultationNotesFor' | localise: [patient.patient.fullName]"
+    [buttonTitle]="'createNewNote' | localise"
+></master-detail-header>
+<virtual-scroll
+    [style.height]="height"
+    [childHeight]="90"
+    [items]="notes"
+    (update)="viewPortItems = $event"
+    #virtualScroll
+>
+    <master-row
+        [selected]="false"
+        [title]="note.title"
+        [body]="note.body"
+        [date]="note.updated.datetime | dateformat"
+        *ngFor="let note of viewPortItems"
+        [routerLink]="getRowLink(note)"
+        routerLinkActive="selected"
+    >
+    </master-row>
+</virtual-scroll>

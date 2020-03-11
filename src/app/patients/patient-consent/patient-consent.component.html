@@ -1,0 +1,15 @@
+<div class="columns">
+    <div class="column consent-container consent-details">
+        <img src="{{ consentDescription.icon }}" />
+        <div class="status_date">
+            <p>{{ consentDescription.description }}</p>
+            <p
+                id="consentDescriptionDate"
+                class="text-gray"
+                *ngIf="consentDescription.date"
+            >
+                {{ consentDescription.date | dateformat }}
+            </p>
+        </div>
+    </div>
+</div>

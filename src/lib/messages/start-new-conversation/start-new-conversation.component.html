@@ -1,0 +1,240 @@
+<div
+    modal-wrapper
+    [modalTitle]="getTitle()"
+    [modalSubTitle]=""
+    [modalWidth]="'520px'"
+    [contentOverflow]="'auto'"
+    #modal
+    class="rtl-aware"
+>
+    <form [formGroup]="form" novalidate>
+        <div class="vertical-line"></div>
+        <!--tslint:disable-->
+        <fieldset
+            [disabled]="submitting"
+            class="form-group"
+            (ngSubmit)="submit()"
+            novalidate
+        >
+            <div
+                *ngIf="!disableRadiogroup"
+                class="form-group columns padding-sides-1"
+            >
+                <div class="column col-auto">
+                    <label class="form-radio">
+                        <input
+                            name="relatingPatient"
+                            type="radio"
+                            value="true"
+                            [checked]="true"
+                            (click)="isIncludingPatient(true)"
+                        />
+                        <i class="form-icon"></i>
+                        {{ 'relatingPatient' | localise }}
+                    </label>
+                </div>
+                <div class="column col-auto">
+                    <label class="form-radio">
+                        <input
+                            name="relatingPatient"
+                            type="radio"
+                            value="false"
+                            (click)="isIncludingPatient(false)"
+                        />
+                        <i class="form-icon"></i>
+                        {{ 'nonrelatingPatient' | localise }}
+                    </label>
+                </div>
+            </div>
+            <div *ngIf="relatingPatient">
+                <div class="columns">
+                    <div class="column message-input">
+                        <app-modal-form-control
+                            label="{{ 'patient' | localise }}*"
+                            class="label-text padding-left-0"
+                            [required]="false"
+                            [maxlength]="48"
+                            formControlName="patient"
+                        >
+                            <participant-selector
+                                id="startNewConversationParticipant"
+                                [participantType]="participantType"
+                                (onChange)="handlePatientChange($event)"
+                            ></participant-selector>
+                        </app-modal-form-control>
+                    </div>
+                </div>
+                <div class="columns">
+                    <div class="column message-input">
+                        <label for="subject-input" class="form-label label-text"
+                            >{{ 'subject' | localise }}*</label
+                        >
+                        <input
+                            class="form-input col-12"
+                            formControlName="subject"
+                            id="subject-input"
+                            type="text"
+                            maxlength="48"
+                            (click)="getMessagesTemplate($event)"
+                        />
+                        <div class="dropdown">
+                            <div>
+                                <a
+                                    class="btn dropdown-toggle customdropdown"
+                                    id="subject-dropdown-toggle"
+                                    tabindex="0"
+                                >
+                                    <i class="icon icon-caret"></i>
+                                </a>
+
+                                <div class="custom-dropdown">
+                                    <ul
+                                        class="menu listblcok arrow-box"
+                                        id="messages-template"
+                                        *ngIf="
+                                            showTitleWidget &&
+                                            messageTemplates?.length > 0
+                                        "
+                                    >
+                                        <li
+                                            class="font-gray"
+                                            id="message-title-header"
+                                        >
+                                            {{ 'prefillTemplatesFor' | localise
+                                            }}{{ titleHeader }}
+                                        </li>
+                                        <li
+                                            class="menu-item listitem"
+                                            id="message-template"
+                                            *ngFor="
+                                                let message of messageTemplates
+                                            "
+                                            (click)="
+                                                getMessage(message, $event)
+                                            "
+                                        >
+                                            {{ message.subject }}
+                                        </li>
+                                        <a
+                                            id="message-template-route"
+                                            [routerLink]="['/messagetemplate']"
+                                            routerLinkActive="active"
+                                            (click)="close()"
+                                            *ngIf="isCareCordinator"
+                                            ><li>
+                                                <span class="padding-right-5">{{
+                                                    'manageTheMessageTemplates'
+                                                        | localise
+                                                }}</span
+                                                ><i
+                                                    class="fa fa-external-link"
+                                                ></i></li
+                                        ></a>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="warning-text relating-patient">
+                            {{ 'refrainEnteringMedData' | localise }}
+                        </p>
+                    </div>
+                </div>
+                <div class="columns">
+                    <div class="column message-input">
+                        <app-modal-form-control
+                            label="{{ 'participants' | localise }}*"
+                            class="label-text padding-left-0"
+                            [required]="false"
+                            [maxlength]="48"
+                            formControlName="hcpParticipant"
+                        >
+                            <app-modal-multi-tag-input
+                                [labelFormatter]="hcpLabelFormatter"
+                                [detailLabelFormatter]="hcpRoleLabel"
+                                [matchProperty]="'backendId'"
+                                [options]="HCPs"
+                                [prefixTags]="wrappedPatient"
+                                [checkTagDisabled]="isAuthenticatedUser"
+                            ></app-modal-multi-tag-input>
+                        </app-modal-form-control>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="!relatingPatient">
+                <div class="columns">
+                    <div class="column message-input">
+                        <label for="subject-input" class="form-label label-text"
+                            >{{ 'subject' | localise }}*</label
+                        >
+                        <input
+                            class="form-input col-12"
+                            formControlName="subject"
+                            id="subject-text"
+                            type="text"
+                            maxlength="48"
+                        />
+                    </div>
+                    <p class="warning-text not-relating-patient">
+                        {{ 'refrainEnteringMedData' | localise }}
+                    </p>
+                </div>
+                <div class="columns">
+                    <div class="column message-input">
+                        <app-modal-form-control
+                            label="{{ 'Participants' | localise }}"
+                            class="label-text padding-left-0"
+                            [required]="false"
+                            [maxlength]="48"
+                            formControlName="hcpOnlyParticipants"
+                        >
+                            <participant-multi-selector
+                                [placeholdertext]="''"
+                                [role]="true"
+                                [participantType]="participantType"
+                                [participantTagDisabled]="isAuthenticatedUser"
+                            ></participant-multi-selector>
+                        </app-modal-form-control>
+                    </div>
+                </div>
+            </div>
+            <div class="columns">
+                <div class="column message-input">
+                    <label for="body" class="label-text"
+                        >{{ 'message' | localise }}*</label
+                    >
+                    <textarea
+                        class="form-input message-text-area"
+                        id="body"
+                        formControlName="body"
+                        rows="5"
+                        [maxlength]="maxbodyLength"
+                    ></textarea>
+                </div>
+            </div>
+            <div class="columns">
+                <div class="column col-12 chars-left-container">
+                    <p class="characters-remaining margin-bottom-0">
+                        {{ bodyLength | countdown: 240 }}
+                    </p>
+                </div>
+                <p class="warning-text message">
+                    {{ 'refrainEnteringMedData' | localise }}
+                </p>
+            </div>
+        </fieldset>
+        <div class="modal-footer mx-0">
+            <div class="helper-text">* {{ 'requiredFields' | localise }}</div>
+            <button class="btn btn-link" type="button" (click)="close()">
+                {{ 'cancel' | localise }}
+            </button>
+            <button
+                class="btn btn-primary"
+                [disabled]="shouldDisableSubmit()"
+                [class.loading]="submitting"
+                (click)="submit()"
+            >
+                {{ 'startConversation' | localise }}
+            </button>
+        </div>
+    </form>
+</div>

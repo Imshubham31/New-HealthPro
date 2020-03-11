@@ -1,0 +1,43 @@
+.modal-footer {
+    background: rgba(0, 43, 50, 0.03);
+}
+
+.modal-body .content .modal-footer {
+    margin: 2.5rem -1.5rem -1.5rem -1.5rem;
+}
+
+.modal-footer .helper-text {
+    float: left;
+    line-height: 3.2rem;
+}
+// Delete apptemplate component modal css 
+#modalCustom,#messageDeleteModal{
+    .modal-header {
+        text-align: center !important;
+        #modal-title{
+            font-size: 2rem;
+        }
+    }
+    .contentTxt{
+        color: #002b32;
+        font-size: 1.4rem;
+        font-weight: 400;
+    }
+    .link{
+        &.cancle{
+            color: #002b32;
+        }
+        &.iAmSure{
+            color: #009db9;
+        }
+        text-transform: uppercase;
+        font-size: 15px;
+        font-weight: 600;
+        text-decoration: none;
+    }
+   .divider {
+    border-top: 0rem solid #d2d6de;
+    height: 0rem; 
+    margin: 1rem 0;
+}
+} 

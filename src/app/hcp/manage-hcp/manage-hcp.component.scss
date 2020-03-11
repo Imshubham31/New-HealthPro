@@ -1,0 +1,68 @@
+@import '../../../styles/mixins.scss';
+.sorting-columns:last-child {
+    padding-right: 0;
+    margin-right: 0;
+}
+
+.sorting-columns:first-child {
+    padding-left: 0;
+    text-align: left;
+}
+
+.col-trash {
+    width: 2.3em;
+    height: 100%;
+    border: none;
+    background-color: rgba(151, 151, 151, 0.1);
+    transition: all 0.2s ease-in-out;
+    img {
+        width: 1em;
+        height: 1em;
+    }
+    &:hover {
+        transform: scale(1.1);
+        background-color: rgba(151, 151, 151, 1);
+    }
+}
+
+.contact-details-container {
+    text-transform: uppercase;
+    margin-left: 3rem;
+    @media screen and (min-width: 1600px) {
+        margin-left: 4rem;
+    }
+    @media screen and (min-width: 1990px) {
+        margin-left: 5rem;
+    }
+}
+
+.trash-details {
+    position: absolute;
+    right: 0%;
+    height: 100%;
+    width: 3.3em;
+    background: rgba(151, 151, 151, 0.1);
+    color: black;
+    img {
+        height: 20px;
+    }
+}
+
+.hcp-container {
+    @include card-mixin(2rem, 0rem, 0rem);
+    margin-bottom: 2rem;
+}
+
+.hcp-actions-container {
+    display: flex;
+    align-items: center;
+}
+.center-content {
+    display: flex;
+    align-items: center;
+}
+
+.center-text {
+        display: inline-block;
+        vertical-align: middle;
+}

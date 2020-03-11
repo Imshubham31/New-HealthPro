@@ -1,0 +1,111 @@
+@import 'colours';
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i');
+// Core variables
+// Fonts
+// Credit: https://www.smashingmagazine.com/2015/11/using-system-ui-fonts-practical-guide/
+$base-font-family: 'Source Sans Pro',
+sans-serif !default;
+$fallback-font-family: 'Helvetica Neue',
+sans-serif !default;
+$cjk-font-family: $base-font-family,
+'PingFang SC',
+'Hiragino Sans GB',
+'Microsoft YaHei',
+'Hiragino Kaku Gothic Pro',
+Meiryo,
+'Malgun Gothic',
+$fallback-font-family !default;
+$body-font-family: $base-font-family,
+$fallback-font-family !default;
+// Sizes
+$layout-padding: 1rem !default;
+$layout-padding-lg: 1.5rem !default;
+$control-min-width: 18rem !default;
+$border-radius: 0.2rem !default;
+$border-width: 0.1rem !default;
+$font-weight-small: 400;
+// Colors
+// Core colors
+$primary-color: $brandTeal !default;
+$primary-color-dark: darken($primary-color,
+3%) !default;
+$primary-color-light: lighten($primary-color,
+3%) !default;
+$secondary-color: lighten($primary-color,
+40%) !default;
+$secondary-color-dark: darken($secondary-color,
+3%) !default;
+$secondary-color-light: lighten($secondary-color,
+3%) !default;
+$link-color: $primary-color !default;
+$link-color-dark: darken($link-color,
+10%) !default;
+// Gray colors
+$dark-color: #454d5d !default;
+$light-color: #fff !default;
+$gray-text: $grayColour;
+$gray-background: $backgroundGray;
+$gray-border: $borderGray;
+$black: #000;
+$gray-color: lighten($dark-color,
+30%) !default;
+$gray-color-dark: darken($gray-color,
+20%) !default;
+$gray-color-light: lighten($gray-color,
+20%) !default;
+$light-gray: $grayColour;
+$border-color: lighten($gray-color-light,
+3%) !default;
+$border-color-dark: darken($border-color,
+15%) !default;
+$bg-color: lighten($dark-color,
+66%) !default;
+$bg-color-dark: darken($bg-color,
+3%) !default;
+$bg-color-light: $light-color !default;
+// Control colors
+$control-color-success: #32b643 !default;
+$control-color-warning: #ffb700 !default;
+$control-color-error: #e85600 !default;
+// Other colors
+$code-color: #e06870 !default;
+$highlight-color: #ffe9b3 !default;
+$dark-blue: #002b32;
+$chip-background-color: #f4f9fd;
+$spinner-color :  #0098b3;
+$disable-color : #dcdcdc;
+$trust-box-background : #151515;
+$trust-box-color : #dee2e6;
+$trust-button-color : #6CC04A;
+$black-color:#000000;
+$details-tile-background-color: rgba(151, 151, 151, 0.1);
+$btn-link-color:#002b32;
+$color-hex-white: #ffffff !default;
+$timed-label-color: #8e8e93 !default;
+
+// Global
+$html-font-size: 10px !default;
+$html-line-height: 1.428571429 !default;
+$body-bg: $brandLightBlue !default;
+$body-font-color: $textColour;
+$font-size: 1.4rem !default;
+$font-size-xs: 1rem !default;
+$font-size-sm: 1.2rem !default;
+$font-size-md: 1.3rem !default;
+$font-size-lg: 1.6rem !default;
+$font-size-xl-lg: 2rem !default;
+$font-size-xxl-lg: 2.8rem !default;
+// Responsive breakpoints
+$size-xs: 480px !default;
+$size-sm: 600px !default;
+$size-md: 840px !default;
+$size-lg: 960px !default;
+$size-xl: 1280px !default;
+$size-2x: 1440px !default;
+// Z-index
+$zindex-0: 1 !default;
+$zindex-1: 100 !default;
+$zindex-2: 200 !default;
+$zindex-3: 300 !default;
+$zindex-4: 400 !default;
+$navBarHeight: 56px;

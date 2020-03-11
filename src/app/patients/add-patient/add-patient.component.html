@@ -1,0 +1,15 @@
+<div modal-wrapper [modalTitle]="addPatientCoordinator.getTitle()" [modalSubTitle]="addPatientCoordinator.getSubtitle()"
+  [modalWidth]="'520px'" [contentOverflow]="(addPatientCoordinator.stage$ | async) === stages.SurgeryDetails ? 'visible' : 'auto'"
+  #modal>
+  <div class="toast toast-error margin-bottom-small" *ngIf="addPatientCoordinator.errors.length > 0">
+    <div *ngFor="let error of addPatientCoordinator.errors">
+      {{error | errorMsg: 'userCreationError' : [addPatientCoordinator.patient.email]}}
+    </div>
+  </div>
+  <ng-container *ngIf="(addPatientCoordinator.stage$ | async) === stages.PersonalDetails">
+    <ng-container *ngComponentOutlet="addPersonalDetailsComponent"></ng-container>
+  </ng-container>
+  <care-module *ngIf="(addPatientCoordinator.stage$ | async) === stages.CareModules" (onCancel)="addPatientCoordinator.stage$.next(stages.PersonalDetails)"></care-module>
+  <surgery-details *ngIf="(addPatientCoordinator.stage$ | async) === stages.SurgeryDetails" (onCancel)="addPatientCoordinator.stage$.next(stages.CareModules)">
+  </surgery-details>
+</div>

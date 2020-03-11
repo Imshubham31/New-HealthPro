@@ -1,0 +1,29 @@
+app-search-input {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+::ng-deep .unread-messages {
+    font-weight: bold;
+}
+
+.layout{
+    padding-top: 30%;
+}
+
+.avatarImageContainer{
+    width: 25%;
+    text-align: center;
+    margin-left: 165px;
+}
+.noMessagesPageAvatar{
+    width: 75%;
+}
+.noFutureMessagesPage{
+    text-align: center;
+    margin-top: 16px;
+    font-weight: bold;
+}
+.feelFreeToMessageTeamPage{
+    text-align: center;
+}

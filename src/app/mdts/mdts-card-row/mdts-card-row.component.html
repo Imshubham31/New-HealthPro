@@ -1,0 +1,35 @@
+<div class="mdts-card-container">
+    <div class="columns">
+        <div class="column col-11">
+            <div class="mdts-name">{{ mdt.name }}</div>
+            <div class="columns">
+                <div
+                    class="column col-4 col-lg-12 avatar-container"
+                    *ngFor="let hcp of mdt.hcps"
+                >
+                    <avatar-img size="6rem" [user]="hcp"></avatar-img>
+                    <div class="column mdts-container">
+                        <div class="hcp-name">
+                            {{ hcp.firstName }} {{ hcp.lastName }}
+                        </div>
+                        <div class="hcp-role">{{ hcp.role }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="column details-button col-1" (click)="this.startMdtsEdit(mdt)" role="button">
+            <div class="block-centered">
+                <a
+                    id="edit-mdts"
+                    class="link"
+                >
+                    <img
+                        src="../../../assets/accent_black.svg"
+                        class="flip-on-rtl"
+                        alt=""
+                /></a>
+                <p>{{ 'edit' | localise }}</p>
+            </div>
+        </div>
+    </div>
+</div>

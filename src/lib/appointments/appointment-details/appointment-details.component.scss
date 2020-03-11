@@ -1,0 +1,49 @@
+@import "../../../styles/variables";
+
+h3,
+h5 {
+    font-weight: 600;
+    flex: 1;
+}
+
+.green {
+    color: $control-color-success;
+}
+
+.btn-link.delete {
+    color: $control-color-error;
+}
+
+.section-heading {
+    font-size: $font-size-lg;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.participants>.columns {
+    align-items: center;
+}
+
+hr {
+    border: 0;
+    height: .1rem;
+    color: $gray-color-light;
+    background-color: $gray-color-light;
+}
+
+.column.type {
+    flex: 0 0 80px;
+}
+
+.description {
+    word-break: break-all;
+}
+
+.flex-container {
+    margin-top: 3rem;
+}
+
+appointment-status {
+    display: flex;
+    align-items: center;
+}

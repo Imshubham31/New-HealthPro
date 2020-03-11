@@ -1,0 +1,25 @@
+<ng-container [formGroup]="group">
+    <app-modal-form-control
+        [label]="'surgeon' | localise"
+        [loading]="(surgeonsService.store$ | async).isFetching"
+        formControlName="surgeon"
+    >
+        <app-modal-select
+            [options]="(surgeonsService.store$ | async).list"
+            [labelFormatter]="surgeonLabelFormatter"
+            [canClear]="true"
+            matchProperty="id"
+        >
+        </app-modal-select>
+    </app-modal-form-control>
+    <app-modal-form-control
+        *ngIf="!(hospitalService.hospital | async).integrated"
+        formControlName="startDateTime"
+    >
+        <app-modal-date-time-picker
+            [canClear]="true"
+            [dateLabel]="'dateOfSurgery'"
+            [timeLabel]="'timeOfSurgery'"
+        ></app-modal-date-time-picker>
+    </app-modal-form-control>
+</ng-container>

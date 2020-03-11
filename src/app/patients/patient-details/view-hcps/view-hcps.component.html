@@ -1,0 +1,35 @@
+<div class="card">
+    <div *ngIf="mdts.length > 0; else noMembers">
+        <div class="flex-container" *ngFor="let mdt of mdts">
+            <span *ngIf="mdt.personal" class="display-contents">
+                <h5 class="card-title">{{ 'multiDisTeam' | localise }}</h5>
+                <a
+                    role="button"
+                    (click)="editMDT.emit(mdt.hcps)"
+                    class="link"
+                    *ngIf="authenticationService.isCareCoordinator()"
+                    >{{ 'editTeamMembers' | localise }}</a
+                >
+            </span>
+            <span
+                *ngIf="!mdt.personal && mdts.length === 1"
+                class="display-contents"
+            >
+                <h5 class="card-title">{{ 'multiDisTeam' | localise }}</h5>
+                <a
+                    role="button"
+                    (click)="editMDT.emit(mdt.hcps)"
+                    class="link"
+                    *ngIf="authenticationService.isCareCoordinator()"
+                    >{{ 'editTeamMembers' | localise }}</a
+                >
+            </span>
+        </div>
+        <app-mdt-members [mdts]="mdts"></app-mdt-members>
+    </div>
+    <ng-template #noMembers>
+        <div class="empty">
+            <p class="text-large">{{ 'mdtTeamNotAddedYet' | localise }}</p>
+        </div>
+    </ng-template>
+</div>

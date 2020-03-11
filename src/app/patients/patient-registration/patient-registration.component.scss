@@ -1,0 +1,32 @@
+@import '../../../styles/variables.scss';
+.registration-container {
+    line-height: 0.3em;
+}
+
+.appointment-message-container {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    padding-left: 2.5rem;
+    padding-top: 1rem;
+}
+
+.appointment-paragraph-container {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+}
+
+.appointment-phase {
+    font-weight: 600;
+    font-size: 1.75rem;
+}
+
+.appointment-paragraph {
+    padding-bottom: 1rem;
+    line-height: 1.75rem;
+}
+
+.phase-container {
+    margin-inline-start: 1.5rem;
+}

@@ -1,0 +1,209 @@
+<div class="avatarImageContainer" *ngIf="!chat">
+    <img
+        class="noMessagesPageAvatar"
+        src="../../../assets/messages_grey.svg"
+        alt="No messages to display"
+    />
+    <p class="noMessagesSelected">
+        {{ 'noMessagesSelected' | localise }}
+    </p>
+    <p class="noMessagesSelectedDesc">
+        {{ 'noMessagesSelectedDesc' | localise }}
+    </p>
+</div>
+<div *ngIf="chat">
+    <div class="columns col-9 col-xl-11 selected-messages-container">
+        <div class="columns col-12 subject-container">
+            <div class="column col-6 panel-title">
+                <h4 class="text-break">{{ chat.subject }}</h4>
+            </div>
+            <div
+                class="column col-6 edit-details-container"
+                *ngIf="!messagesService.hasInactive(chat)"
+            >
+                <a
+                    class="link"
+                    *ngIf="messagesService.canReply(chat)"
+                    (click)="
+                        messagesCoordinatorService.showEditChatSubject(chat)
+                    "
+                >
+                    {{ 'editMessageDetails' | localise }}</a
+                >
+            </div>
+        </div>
+        <div class="col-12 selected-chat-patient-avatar">
+            <div class="divider"></div>
+            <div class="participant-block">
+                <div class="participant-txt">
+                    <p class="selected-patient-title">
+                        {{ 'participants' | localise }} :
+                    </p>
+                </div>
+                <div
+                    class="participantAlignment patient-avatar-container columns"
+                    [ngClass]="{
+                        'avatar-hidden': messagesService.hasInactive(chat)
+                    }"
+                >
+                    <app-avatar-with-label
+                        image="./../../assets/Avatar.svg"
+                        *ngIf="!chat.participantDetails; else participantInfo"
+                    >
+                    </app-avatar-with-label>
+                    <ng-template #participantInfo>
+                        <div
+                            *ngFor="
+                                let participantDetails of chat.participantDetails
+                            "
+                            class="column-25"
+                        >
+                            <app-avatar-with-label
+                                [user]="participantDetails"
+                            ></app-avatar-with-label>
+                        </div>
+                    </ng-template>
+                </div>
+                <p
+                    class="is-forgotten-participant  warning-text"
+                    *ngIf="messagesService.hasInactive(chat)"
+                >
+                    {{ 'participantNoLonger' | localise }}
+                </p>
+                <p
+                    class="participant-not-inmdt  warning-text"
+                    *ngIf="
+                        messagesService.hasInvalidRelation(chat) &&
+                        !messagesService.hasInactive(chat)
+                    "
+                >
+                    {{ 'participantNotInMDT' | localise }}
+                </p>
+            </div>
+            <div class="divider"></div>
+        </div>
+        <div class="divider"></div>
+        <p class="warning-text">{{ 'refrainSendingMedData' | localise }}</p>
+        <div class="column col-12 chat-container">
+            <div *ngFor="let message of chat.messages; let i = index">
+                <div
+                    class="date-container"
+                    *ngIf="
+                        shouldDisplayDate(
+                            message.time,
+                            chat.messages[i - 1]?.time
+                        )
+                    "
+                >
+                    <div id="patientMessagesTime" class="message-date">
+                        {{ formatDate(message.time) }}
+                    </div>
+                </div>
+                <div
+                    [class.message-sent]="
+                        !message.senderId || message.senderId === user.backendId
+                    "
+                    class="message-box"
+                >
+                    <div
+                        class="columns"
+                        *ngIf="
+                            message.senderId &&
+                            message.senderId !== user.backendId &&
+                            (i == 0 ||
+                                chat.messages[i - 1].senderId !=
+                                    message.senderId) &&
+                            this.participantMap
+                        "
+                    >
+                        <div class="columns col-oneline participant">
+                            <div *ngIf="participantMap.has(message.senderId)">
+                                <app-avatar-with-label
+                                    [chipBlock]="true"
+                                    [user]="
+                                        participantMap.get(message.senderId)
+                                    "
+                                    class="singleparticipant"
+                                ></app-avatar-with-label>
+                            </div>
+                            <div
+                                *ngIf="!participantMap.has(message.senderId)"
+                                class="singleparticipant"
+                            >
+                                <span class="chip chipBlockAlign">
+                                    <img
+                                        class="circle"
+                                        src="/assets/Avatar.svg"
+                                        alt="Default user avatar"
+                                    />
+                                    <span class="margin-sides-half">{{
+                                        'removedParticipant' | localise
+                                    }}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        *ngIf="message.body"
+                        class="selected-chat-messages columns align-chat"
+                        [ngClass]="
+                            message.senderId &&
+                            message.senderId !== user.backendId
+                                ? 'green-background'
+                                : 'blue-background'
+                        "
+                    >
+                        <div class="text-break">
+                            {{ message.body }}
+                        </div>
+                        <div class="message-timestamp">
+                            <p class="padding-bottom-0">
+                                {{ message.time | date: 'shortTime' }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="message.code">
+                    <div class="columns system-messages">
+                        <system-messages [message]="message"></system-messages>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div
+        class="column col-12 new-message-container"
+        *ngIf="messagesService.canReply(chat)"
+    >
+        <form class="new-message-form" [formGroup]="form" novalidate>
+            <fieldset>
+                <span
+                    *ngIf="formError"
+                    class="label label-error form-input-hint mb-5"
+                >
+                    {{ formError }}</span
+                >
+                <div class="input-group">
+                    <input
+                        type="text"
+                        class="form-input"
+                        formControlName="message"
+                        placeholder="{{ 'writeAMessage' | localise }}"
+                        maxlength="240"
+                    />
+                    <button
+                        class="btn btn-primary circle margin-sides-1 flip-on-rtl"
+                        [disabled]="shouldDisableSubmit()"
+                        (click)="submit()"
+                    >
+                        <img
+                            alt="send message"
+                            class="icon icon-arrow-left"
+                            src="./../../assets/send.svg"
+                        />
+                    </button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

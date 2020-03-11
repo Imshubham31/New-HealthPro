@@ -1,0 +1,23 @@
+@import '../../../../styles/variables.scss';
+
+.status_date {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+
+.hcp-info {
+    margin-inline-start: 2rem;
+    a {
+        text-decoration: underline;
+        color: $body-font-color;
+        cursor: pointer;
+        font-size: $font-size-sm;
+        padding-left: 0rem;
+    }
+}
+
+.action-icon-container {
+    align-self: center;
+    white-space: nowrap;
+}

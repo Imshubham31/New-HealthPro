@@ -1,0 +1,57 @@
+@import '../../../styles/variables.scss';
+
+.phase-details-container {
+    min-height: 10rem;
+}
+
+.phase-details-card {
+    @media screen and (max-width: 1280px) {
+        overflow: visible;
+    }
+}
+
+.date-picker-container {
+    width: 17em;
+}
+
+:host ::ng-deep .mydp {
+    width: 30rem;
+}
+
+:host ::ng-deep .mydp .mydpicon {
+    color: $brandTeal;
+}
+
+:host ::ng-deep .mydp,
+.mydp .headertodaybtn {
+    border-color: $gray-border;
+    border-width: 1px;
+}
+
+.goal-details-container {
+    width: 5rem;
+    max-height: 3.6rem;
+    margin-inline-start: 2rem;
+    margin-bottom: 0.5rem;
+    border-color: $gray-border;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 2px;
+    padding: 0.4rem;
+}
+
+.goal-units {
+    margin: 0.5rem;
+}
+
+.card {
+    background: white;
+}
+
+.phase-title {
+    font-weight: $font-weight-small;
+}
+
+input:disabled {
+    background-color: #eee;
+}

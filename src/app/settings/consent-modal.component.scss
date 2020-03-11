@@ -1,0 +1,9 @@
+::ng-deep {
+  h1 {
+    display: none;
+  }
+  .content {
+    overflow-y: scroll;
+    max-height: 300px;
+  }
+}

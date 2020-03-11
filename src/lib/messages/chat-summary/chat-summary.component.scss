@@ -1,0 +1,74 @@
+@import '../../../styles/variables';
+@import '../../../styles/colours';
+
+:host {
+    display: block;
+    word-wrap: break-word;
+    padding: 1rem;
+    cursor: pointer;
+    padding: 2rem 2.7rem;
+    &:focus {
+        outline: 0;
+    }
+    &.selected {
+        background: white;
+    }
+    &:hover:not(.selected) {
+        background: lighten($color: $brandLightBlue, $amount: 0.9);
+    }
+}
+
+.row-title {
+    margin-bottom: 0.75rem;
+    font-size: $font-size-lg;
+    font-weight: bolder;
+}
+.row-date {
+    font-size: $font-size;
+    color: $light-gray;
+    margin-bottom: 0.2rem;
+    margin-top: 1;
+}
+
+.row-body {
+    color: $gray-text;
+    font-size: $font-size;
+    padding-left: 0px;
+}
+
+.row-users {
+    margin-top: 0.75rem;
+    color: $light-gray;
+    font-size: $font-size-sm;
+    .fa {
+        color: $brandTeal;
+    }
+    .patient {
+        color: $brandTeal;
+        font-weight: bolder;
+    }
+    .patient-dob {
+        color: $gray-color;
+    }
+    avatar-img {
+        display: inline-block;
+        margin: 0.2rem;
+        &:first-of-type {
+            margin-inline-start: 0rem;
+        }
+    }
+}
+
+.count-badge {
+    color: #fff;
+    background-color: red;
+    border-radius: 50%;
+    padding: 3px 8px;
+}
+.truncate-overflow {
+    width:100%;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}

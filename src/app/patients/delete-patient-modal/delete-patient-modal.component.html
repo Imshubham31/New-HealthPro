@@ -1,0 +1,53 @@
+<div
+    modal-wrapper
+    [modalTitle]="
+        'doYouWantToDeletePatient' | localise: [patient.patient.fullName]
+    "
+    [modalWidth]="'520px'"
+    [contentOverflow]="'visible'"
+    #modal
+    class="text-center"
+>
+    <form
+        [formGroup]="form"
+        class="form-group"
+        [ngClass]="{ 'has-error': formError }"
+        novalidate
+    >
+        <div class="toast toast-error" *ngIf="formError">
+            {{ formError | errorMsg }}
+        </div>
+        {{ 'personWillBeRemovedFromRecords' | localise }}
+        <fieldset>
+            <label class="form-label" for="deletionReason">{{
+                'provideDeletionReason' | localise
+            }}</label>
+            <div class="form-group">
+                <select
+                    class="form-select full-width"
+                    formControlName="deletionReason"
+                >
+                    <option value="" disabled selected>{{
+                        'pleaseSelect' | localise
+                    }}</option>
+                    <option *ngFor="let option of options" value="{{ option }}">
+                        {{ option | localise }}
+                    </option>
+                </select>
+            </div>
+        </fieldset>
+        <div class="modal-footer">
+            <button class="btn btn-link link" (click)="close()">
+                {{ 'cancel' | localise }}
+            </button>
+            <button
+                (click)="showPasswordConfirmation()"
+                class="btn btn-primary btn-lg"
+                [disabled]="shouldDisableSubmit()"
+                [class.loading]="submitting"
+            >
+                {{ 'iAmSure' | localise }}
+            </button>
+        </div>
+    </form>
+</div>

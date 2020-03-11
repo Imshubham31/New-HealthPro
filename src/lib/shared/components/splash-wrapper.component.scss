@@ -1,0 +1,42 @@
+@import '../../../styles/variables';
+
+.left-splash {
+    background-size: cover;
+    background-position: 50%;
+    background-image: url('../../../assets/splash.jpeg');
+}
+
+.right-container {
+    padding-top: 5.5rem;
+    padding-bottom: 5.5rem;
+    padding-left: 2rem;
+    position: relative;
+}
+
+.card {
+    border: none;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 0;
+    padding-inline-end: 2rem;
+    .columns {
+        min-height: 447px;
+    }
+}
+
+.container {
+    margin-top: 135px;
+    @media screen and (max-width: 812px) {
+        margin-top: 0px;
+    }
+}
+
+.app-name {
+    top: 53%;
+    text-align: center;
+    position: relative;
+    color: $light-color;
+    font-family: $body-font-family;
+    font-size: $font-size-xl-lg;
+    font-weight: $font-weight-small;
+}

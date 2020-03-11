@@ -1,0 +1,12 @@
+@import '../../../styles/utilities.scss';
+img {
+    width: 1.25em;
+    height: 1.25em;
+    vertical-align: middle;
+    margin-right: 0.75rem;
+    margin-left: 0.75rem;
+}
+
+.contact-info-container {
+    white-space: nowrap;
+}

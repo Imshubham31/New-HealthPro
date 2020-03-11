@@ -1,0 +1,108 @@
+@import '../../../../../styles/variables';
+@import '../../../../../styles/colours';
+@import '../../../../../styles/mixins';
+:host {
+    cursor: text;
+}
+.tag-container {
+    width: 100%;
+    position: relative;
+    .focused {
+        border-color: $brandTeal;
+        box-shadow: 0 0 0 0.2rem rgba(0, 157, 185, 0.15);
+    }
+    &.disabled {
+        cursor: not-allowed;
+        background: $greyLight;
+    }
+}
+
+.input-container {
+    border: 0.1rem solid #c4c9d3;
+    border-radius: 0.2rem;
+    padding: 0.5rem;
+    &.focused {
+        border-bottom: none;
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+    }
+}
+
+input {
+    display: inline-block;
+    border: none;
+    padding: 0 0.5rem;
+    background-color: transparent;
+    &:focus {
+        outline: 0;
+    }
+}
+
+.tag {
+    color: white;
+    background: $brandTeal;
+    border-radius: 2px;
+    padding: 0.2rem 0.5rem;
+    margin: 0 2px 2px 0;
+    display: inline-block;
+}
+
+.tag-disabled {
+    background-color: $gray-color;
+    .close {
+        display: none;
+    }
+}
+.tag-prefix {
+    background: $lightBlue;
+    color: $black;
+}
+
+.close {
+    cursor: pointer;
+}
+
+ul {
+    list-style-type: none;
+    margin: 1rem;
+    li.selectable {
+        margin: 0;
+        padding: 1rem;
+        cursor: pointer;
+        &.highlighted {
+            color: white;
+            background: $brandTeal;
+        }
+        &:not(.highlighted):hover {
+            background: $greyLight;
+        }
+        .label-detail {
+            color: $grayColour;
+            float: right;
+        }
+    }
+}
+
+.dropdown {
+    box-shadow: 0 2px 0 0.2rem rgba(0, 157, 185, 0.15);
+    border: 0.1rem solid $brandTeal;
+    border-top: none;
+    border-radius: 0.2rem;
+    background: white;
+    width: 100%;
+    z-index: 10000;
+    max-height: 200px;
+    overflow-y: scroll;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+.posAbsolute {
+    position: absolute;
+}
+.tag-group {
+    color: $brandTeal;
+}
+.tag-mdt {
+    background-color: $lightBlue;
+    color: $black;
+}

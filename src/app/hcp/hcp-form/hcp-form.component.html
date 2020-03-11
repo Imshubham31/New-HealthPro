@@ -1,0 +1,157 @@
+<div
+    modal-wrapper
+    [modalTitle]="state ? state.title : ''"
+    [modalSubTitle]=""
+    [modalWidth]="'520px'"
+    (onCloseModal)="cleanForm()"
+    #modal
+>
+    <form *ngIf="form" [formGroup]="form" novalidate>
+        <div
+            class="toast toast-error margin-bottom-small"
+            *ngIf="errors.length > 0"
+        >
+            <div *ngFor="let error of errors">
+                {{
+                    error
+                        | errorMsg
+                            : 'userCreationError'
+                            : [state.context.hcp.email]
+                }}
+            </div>
+        </div>
+        <fieldset [disabled]="submitting" (ngSubmit)="submit()">
+            <div class="form-group" *ngIf="form.controls.mrn">
+                <label class="form-label" for="personalDetailsMrn"
+                    >{{ 'hcpId' | localise }} *</label
+                >
+                <input
+                    class="form-input"
+                    id="personalDetailsMrn"
+                    placeholder="{{ 'hcpId' | localise }}"
+                    formControlName="mrn"
+                    maxlength="255"
+                />
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="personalDetailsFirstName"
+                    >{{ 'firstName' | localise }} *</label
+                >
+                <input
+                    class="form-input"
+                    id="personalDetailsFirstName"
+                    placeholder="{{ 'firstName' | localise }}"
+                    formControlName="firstName"
+                    maxlength="30"
+                />
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="personalDetailsLastName"
+                    >{{ 'lastName' | localise }} *</label
+                >
+                <input
+                    class="form-input"
+                    id="personalDetailsLastName"
+                    placeholder="{{ 'lastName' | localise }}"
+                    formControlName="lastName"
+                    maxlength="40"
+                />
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="personalDetailsEmail"
+                    >{{ 'email' | localise }} *</label
+                >
+                <input
+                    class="form-input"
+                    type="email"
+                    id="personalDetailsEmail"
+                    placeholder="{{ 'email' | localise }}"
+                    formControlName="email"
+                    maxlength="100"
+                />
+            </div>
+            <div class="form-group column padding-0">
+                <label class="form-label" for="personalDetailsPhone"
+                    >{{ 'phoneNumber' | localise }} *</label
+                >
+                <input
+                    class="form-input"
+                    type="tel"
+                    id="personalDetailsPhone"
+                    placeholder="{{ 'phoneNumber' | localise }}"
+                    formControlName="phoneNumber"
+                    maxlength="100"
+                    #phoneField
+                />
+            </div>
+            <app-modal-form-control
+                *ngIf="form.get('language')"
+                [required]="true"
+                [label]="'language' | localise"
+                formControlName="language"
+            >
+                <app-modal-language-picker></app-modal-language-picker>
+            </app-modal-form-control>
+            <div class="form-group column col-9 padding-0">
+                <label class="form-label">{{ 'function' | localise }} *</label>
+                <div class="flexy margin-bottom-1">
+                    <label class="form-radio">
+                        <input
+                            type="radio"
+                            class="margin-right-1 align-center"
+                            [formControlName]="roleRadioControl"
+                            [value]="existingValues"
+                        />
+                        <i class="form-icon"></i>
+                    </label>
+                    <select
+                        class="form-select full-width"
+                        formControlName="existingRole"
+                        [disableControlDirective]="!shouldDisableOther()"
+                    >
+                        <option [value]="null" disabled>{{
+                            'selectFunction' | localise
+                        }}</option>
+                        <option
+                            *ngFor="let userRole of userRoles"
+                            [value]="userRole"
+                        >
+                            {{ userRole | localise }}
+                        </option>
+                    </select>
+                </div>
+                <div class="flexy">
+                    <label class="form-radio">
+                        <input
+                            type="radio"
+                            [formControlName]="roleRadioControl"
+                            value="other"
+                        />
+                        <i class="form-icon"></i> {{ 'other' | localise }}
+                    </label>
+                    <input
+                        class="form-input"
+                        maxlength="45"
+                        formControlName="otherRole"
+                        [disableControlDirective]="shouldDisableOther()"
+                    />
+                </div>
+            </div>
+        </fieldset>
+        <div class="modal-footer">
+            <div class="helper-text">* {{ 'requiredFields' | localise }}</div>
+            <button class="btn btn-link" type="button" (click)="finish()">
+                {{ 'cancel' | localise }}
+            </button>
+            <button
+                id="hcpFormSubmit"
+                class="btn btn-primary"
+                [disabled]="shouldDisableSubmit()"
+                [class.loading]="submitting"
+                (click)="state.submit()"
+            >
+                {{ state.submitButtonText }}
+            </button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,53 @@
+<div
+    modal-wrapper
+    [modalTitle]="'editMTDTeam' | localise: [patient.patient.fullName]"
+    [modalSubTitle]=""
+    [modalWidth]="'520px'"
+    [contentOverflow]="'visible'"
+    #modal
+>
+    <form [formGroup]="form" novalidate>
+        <div class="vertical-line"></div>
+        <fieldset
+            [disabled]="submitting"
+            class="form-group"
+            (ngSubmit)="submit()"
+            novalidate
+        >
+            <div class="toast toast-error mb-10" *ngIf="formError">
+                <button class="btn btn-clear float-right"></button>
+                {{ formError }}
+            </div>
+            <div class="columns">
+                <div class="column">
+                    <app-modal-form-control
+                        label="{{ title }}"
+                        formControlName="members"
+                        [required]="true"
+                    >
+                        <mdts-participant-multi-selector
+                            (valueChanged)="
+                                this.handleMdtMembersChanged($event)
+                            "
+                        >
+                        </mdts-participant-multi-selector>
+                    </app-modal-form-control>
+                </div>
+            </div>
+        </fieldset>
+        <div class="modal-footer mx-0 padding-top-0">
+            <div class="helper-text">* {{ 'requiredFields' | localise }}</div>
+            <button class="btn btn-link" type="button" (click)="close()">
+                {{ 'cancel' | localise }}
+            </button>
+            <button
+                class="btn btn-primary"
+                [disabled]="shouldDisableSubmit()"
+                [class.loading]="submitting"
+                (click)="submit()"
+            >
+                {{ 'createMDT' | localise }}
+            </button>
+        </div>
+    </form>
+</div>

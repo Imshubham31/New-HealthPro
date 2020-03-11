@@ -1,0 +1,16 @@
+.tableHeaders {
+  text-align: left;
+}
+table.dataTable tbody td {
+    padding: 12px 18px;
+}
+
+.tableHeaders th:nth-child(-n+3) {
+    width:15% !important;
+  }
+  .tableHeaders th:nth-child(4) {
+    width:35% !important;
+  }
+  .tableHeaders th:nth-child(5) {
+    width:20% !important;
+  }

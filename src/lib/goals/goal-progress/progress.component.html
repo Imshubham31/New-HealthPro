@@ -1,0 +1,18 @@
+<div class="goal-progress-wrap">
+  <div class="goal-progress" [class.error]="failed">
+    <circular-progress
+      class="center"
+      [background]="'#F7F7F7'"
+      [radius]="75"
+      [rounded]="true"
+      [stroke]="8"
+      [current]="failed ? 0 : currentValue"
+      [max]="max"
+      [responsive]="true"
+    ></circular-progress>
+    <div class="goal-description center">
+      <p class="padding-0 margin-0">{{failed ? 0 : centerText}}</p>
+      <label for="goal">{{failed ? ('noProgressRecorded' | localise) : subtext}}</label>
+    </div>
+  </div>
+</div>

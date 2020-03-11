@@ -1,0 +1,46 @@
+<div class="col-10 col-xl-12 all-pages-container">
+  <div class="flex-container">
+    <h3 class="page-header">
+        {{ 'onboardingRequests' | localise}}
+    </h3>
+    <button class="btn btn-primary" type="button" id="approveSelected" [disabled] ="toggleButton">
+         {{ 'approveSelected' | localise }}
+    </button>
+  </div>
+  <div class="columns">
+    <div class="column">
+        <div class="divider"></div>
+    </div>
+  </div>
+  <div>
+    <table *ngIf="showTable"
+        datatable
+        [dtOptions]="dtOptions"
+        class="row-border"
+    >
+      <thead >
+        <tr class="tableHeaders">
+            <th id="registerEmptyColum">&nbsp;</th>
+            <th id="requestDate">{{'requestDate'| localise}}</th>
+            <th id="pathway">{{'pathway' | localise}}</th>
+            <th id="patient">{{'patient' | localise}}</th>
+            <th id="email">{{'email' | localise}}</th>
+            <th id="phone">{{'phone' | localise}}</th>
+            <th id="dateOfBirth">{{'dateOfBirth' | localise}}</th>
+        </tr>
+        
+      </thead>
+      <tbody>
+        <tr *ngFor="let patientdata of patientReglist; let i = index">
+            <td><input id="selectedlist_{{i}}" type="checkbox" [value]="patientdata.isChecked" (change)="selectPatient($event,i)"/></td>
+            <td>{{ patientdata.patient.createdAt | dateformat }}</td>
+            <td>{{ patientdata.careModule.title}}</td>
+            <td>{{ patientdata.patient.fullName}}</td>
+            <td>{{ patientdata.patient.email}}</td>
+            <td>{{ patientdata.patient.phoneNumber}}</td>
+            <td>{{ patientdata.patient.dob | dateformat}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

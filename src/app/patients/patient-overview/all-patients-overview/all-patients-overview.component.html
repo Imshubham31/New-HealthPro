@@ -1,0 +1,90 @@
+<div class="col-10 col-xl-12 all-pages-container">
+    <div class="columns col-gapless">
+        <div class="column col-3">
+            <app-search-input
+                [dataSource]="patients"
+                [keys]="searchFields"
+                [placeholder]="'search' | localise"
+                #search
+            ></app-search-input>
+        </div>
+        <div class="column col-9 text-right">
+            <div class="dropdown text-left">
+                <a class="btn dropdown-toggle" tabindex="0">
+                    <i
+                        class="fa"
+                        [ngClass]="{
+                            'fa-sort-alpha-asc': sort.order === 'asc',
+                            'fa-sort-alpha-desc': sort.order === 'desc'
+                        }"
+                    ></i>
+                    {{ sortLabel }} <i class="icon icon-caret"></i>
+                </a>
+                <ul class="menu">
+                    <li class="menu-item">
+                        <a (click)="sortOn('patient.lastName', 'asc')">
+                            <i class="fa fa-sort-alpha-asc"></i
+                            >{{ 'lastNameAsc' | localise }}</a
+                        >
+                    </li>
+                    <li class="menu-item">
+                        <a (click)="sortOn('patient.lastName', 'desc')">
+                            <i class="fa fa-sort-alpha-desc"></i
+                            >{{ 'lastNameDesc' | localise }}</a
+                        >
+                    </li>
+                    <li class="menu-item">
+                        <a (click)="sortOn('patient.firstName', 'asc')">
+                            <i class="fa fa-sort-alpha-asc"></i
+                            >{{ 'firstNameAsc' | localise }}</a
+                        >
+                    </li>
+                    <li class="menu-item">
+                        <a (click)="sortOn('patient.firstName', 'desc')">
+                            <i class="fa fa-sort-alpha-desc"></i
+                            >{{ 'firstNameDesc' | localise }}</a
+                        >
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="columns col-gapless gray-text">
+        <div class="column col-4" *ngIf="search.results">
+            {{
+                'patientsCount'
+                    | localise: [search.results.length || '0' | localise]
+                    | uppercase
+            }}
+        </div>
+        <div class="column col-2">
+            {{ 'currentPhase' | localise | uppercase }}
+        </div>
+        <div class="margin-start-2 column col-3 text-center">
+            {{ 'preparation' | localise | uppercase }}
+        </div>
+        <div class="column col-2">
+            {{ 'conditionalGoal' | localise | uppercase }}
+        </div>
+    </div>
+    <div
+        class="columns"
+        *ngFor="
+            let patient of (search.results
+                | sortOn: sort
+                | paginate: { itemsPerPage: 5, currentPage: currentPage })
+        "
+    >
+        <patient-card-row class="column" [patient]="patient"></patient-card-row>
+    </div>
+    <div class="columns">
+        <app-pagination-controls
+            class="column col-4"
+            (pageChange)="currentPage = $event"
+        ></app-pagination-controls>
+        <hospital-logo
+            class="column col-4 col-md-12"
+            [center]="true"
+        ></hospital-logo>
+    </div>
+</div>

@@ -1,0 +1,10 @@
+<div modal-wrapper [showCloseBtn]="false" [modalActive]="true" [modalTitle]="heading" [modalSubTitle]="subtitle">
+  <div class="options">
+    <button type="button" class="btn btn-block btn-secondary yes" (click)="handleNo()">
+      {{ 'cancel' | localise }}
+    </button>
+    <button type="button" class="btn btn-block btn-primary no" (click)="handleYes()" autofocus>
+      {{ confirmBtnText }}
+    </button>
+  </div>
+</div>

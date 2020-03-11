@@ -1,0 +1,30 @@
+@import '../../../../styles/variables';
+$widthRatio: 40%;
+:host {
+    width: 100%;
+}
+
+img {
+    width: 1.5rem;
+    cursor: pointer;
+    margin-inline-start: 1.5rem;
+}
+
+p {
+    line-height: 1.8rem;
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: $body-font-color;
+    width: $widthRatio;
+    @media screen and (min-width: 1300px) {
+        white-space: nowrap;
+    }
+}
+
+input {
+    width: $widthRatio;
+}
+.displayPencilNone{
+    display: none;
+}
